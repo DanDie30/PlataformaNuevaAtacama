@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "@azure/msal-browser": "^3.5.0",
+    "@azure/msal-node": "^2.5.1",
+    "bootstrap": "^5.3.2",
+    "chart.js": "^4.4.0",
+    "express": "^4.18.2",
+    "mssql": "^10.0.1",
+    "odbc": "^2.4.8"
+  },
+  "name": "pruebaatacama",
+  "version": "1.0.0",
+  "main": "App.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

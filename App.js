@@ -26,6 +26,8 @@ app.post('/guardarDatosFormulario', async (req, res) => {
     const horaDetencion = req.body.HoraDetencion + ":00"; // Agregar segundos
     const horaResolucion = req.body.HoraResolucion + ":00"; // Agregar segundos
 
+    ///generar endpoint y controlador a parte
+
     // Insertar los datos en la tabla
     await pool.request()
       .input('TipoFalla', sql.NVarChar, req.body.TipoFalla)

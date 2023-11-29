@@ -10,7 +10,7 @@ const config = {
   server: 'servidortestsql.database.windows.net',
   database: 'BDTest',
   options: {
-    encrypt: true, // Si estás en Azure, suele ser necesario
+    encrypt: true, 
   },
 };
 

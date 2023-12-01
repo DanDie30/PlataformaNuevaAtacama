@@ -33,16 +33,17 @@ app.post('/guardarDatosFormulario', async (req, res) => {
       .input('TipoFalla', sql.NVarChar, req.body.TipoFalla)
       .input('IdSector', sql.Int, req.body.IdSector)
       .input('IdPlanta', sql.NVarChar, req.body.IdPlanta)
-      .input('Fecha', sql.Date, req.body.Fecha)
+      .input('FechaDetencion', sql.Date, req.body.FechaDetencion)
       .input('Descripcion', sql.NVarChar, req.body.Descripcion)
       .input('ResponsableMantenimiento', sql.NVarChar, req.body.ResponsableMantenimiento)
       .input('HoraDetencion', sql.NVarChar, horaDetencion) // Usar NVarChar para el tiempo
       .input('HoraResolucion', sql.NVarChar, horaResolucion) // Usar NVarChar para el tiempo
+      .input('FechaResolucion', sql.Date, req.body.FechaResolucion)
       .query(`
         INSERT INTO MantenimientoFallaDetectada
-        (TipoFalla, IdSector, IdPlanta, Fecha, Descripcion, ResponsableMantenimiento, HoraDetencion, HoraResolucion)
+        (TipoFalla, IdSector, IdPlanta, FechaDetencion, Descripcion, ResponsableMantenimiento, HoraDetencion, HoraResolucion, FechaResolucion)
         VALUES
-        (@TipoFalla, @IdSector, @IdPlanta, @Fecha, @Descripcion, @ResponsableMantenimiento, @HoraDetencion, @HoraResolucion)
+        (@TipoFalla, @IdSector, @IdPlanta, @FechaDetencion, @Descripcion, @ResponsableMantenimiento, @HoraDetencion, @HoraResolucion, @FechaResolucion)
       `);
 
     res.status(200).send('Datos insertados correctamente');

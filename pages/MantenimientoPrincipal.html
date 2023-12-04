@@ -22,7 +22,7 @@
       bottom: 0;
       left: 0;
       z-index: 1000;
-      width: 270px;
+      width: 220px;
       overflow-y: auto;
       padding-top: px; /* Altura de la barra de navegación */
     }
@@ -102,25 +102,27 @@
             </img>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
+                        <div>
+                            <img src="/img/LogoNuevaAtacama.jpg" alt="LogoNuevaAtacama">
+                        </div>
                         <a href="../index.html" class="nav-link align-middle px-0">
+                            
                             <i class="fas fa-chart-line"></i><span class="ms-1 d-none d-sm-inline text-dark">Dashboard</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline text-dark">Copiapó</span>
-                        </a>
-                        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                                        <li>
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline text-dark">Copiapo</span> </a>
+                        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="DiagramaCopiapo.html" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Diagrama</span> 
-                                </a>
+                                <a href="DiagramaCopiapo.html" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Diagrama</span></a>
                             </li>
                             <li>
-                                <a href="GraficosCopiapo.html" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Grafico</span>
-                                </a>
+                                <a href="GraficosCopiapo.html" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Grafico</span></a>
                             </li>
                         </ul>
-                    </li> 
+                    </li>
+                 
                     <li>
                         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
                             <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline text-dark">Vallenar</span></a>
@@ -129,7 +131,7 @@
                                 <a href="DiagramaVallenar.html" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Diagrama</span> </a>
                             </li>
                             <li>
-                                <a href="GraficosVallenar.html" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Grafico</span></a>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Grafico</span></a>
                             </li>
                         </ul>
                     </li>
@@ -143,7 +145,8 @@
                             <li>
                                 <a href="GraficoChanaral.html" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Grafico</span> </a>
                             </li>
-                            </ul>
+                           
+                        </ul>
                     </li>
                     <li>
                         <a href="" class="nav-link px-0 align-middle">
@@ -151,7 +154,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="" class="nav-link px-0 align-middle">
+                        <a href="MantenimientoPrincipal.html" class="nav-link px-0 align-middle">
                             <i class="far fa-clipboard"></i><span class="ms-1 d-none d-sm-inline text-dark">Mantenimiento</span>
                         </a>
                     </li>
@@ -178,6 +181,8 @@
           </div>
           <div class="col-12 col-md-6 " id="BotonesAcceso">
                 <div class="d-grid gap-2">
+                    
+
               <button class="btn btn-primary btn-md my-2" id="btnVerDispositivos" type="button">Ver Mantenimiento Dispositivos</button>
               <button class="btn btn-primary btn-md my-2" id="btnRegistrarDispositivos" type="button">Registrar Mantenimiento Dispositivos</button>
               <button class="btn btn-primary btn-md my-2" id="btnVerFallas" type="button">Ver Mantenimiento Fallas Detectadas</button>

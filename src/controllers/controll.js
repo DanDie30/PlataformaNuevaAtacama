@@ -3,12 +3,10 @@ const pool = require('../utils/db')
 
 const obtenerDatosInformes = async (req, res) => {
     try {
-        const result = await pool.request().query(`
-        SELECT *
-        FROM Planta
-      `);
+        const result = await pool.request().query(
+        `SELECT * FROM Planta`);
   
-      res.status(200).json(datosDesdeBD);
+      res.status(200).json(result.recordset);
     } catch (err) {
       res.status(500).send('Error al obtener datos de eventos por mes: ' + err.message);
       console.log(err.message);
@@ -76,42 +74,11 @@ const saveDataFormDispositivos = async () => {
         res.status(500).send('Error al insertar datos: ' + err.message);
     }
 }
-const obtenerEventosPorMes = async (req, res) => {
-    try {
-        const result = await pool.request().query(`
-            SELECT 
-                COUNT(IdEvento) AS EventosRegistrados,
-                MONTH(Fecha) AS Mes
-            FROM Evento
-            GROUP BY MONTH(Fecha)
-        `);
 
-        const eventosPorMes = result.recordset.map(row => ({
-            mes: row.Mes,
-            eventos: row.EventosRegistrados
-        }));
-
-        res.status(200).json(eventosPorMes);
-    } catch (err) {
-        res.status(500).send('Error al obtener datos de eventos por mes: ' + err.message);
-        console.log(err.message)
-
-    }
-}
-
-
-
-const setearDatas = async (req, res) => {
-
-
-
-}
 
 
 module.exports = {
     saveDataFormFallas,
     saveDataFormDispositivos,
-    setearDatas,
-    obtenerEventosPorMes,
     obtenerDatosInformes
 }

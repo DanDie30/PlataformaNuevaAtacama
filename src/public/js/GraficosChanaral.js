@@ -17,7 +17,7 @@ var options1 = {
     }
   }
 };
-var GraficoBarraVallenar = new Chart(ctx1, {
+var GraficoBarraChanaral = new Chart(ctx1, {
   type: 'bar',
   data: data1,
   options: options1
@@ -42,7 +42,7 @@ var options3 = {
     }
   }
 };
-var GraficoLinealVallenar = new Chart(ctx3, {
+var GraficoLinealChanaral = new Chart(ctx3, {
   type: 'line',
   data: data3,
   options: options3

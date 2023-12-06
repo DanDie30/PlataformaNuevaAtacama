@@ -12,13 +12,14 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(router)
 
-app.use(express.static(path.join(__dirname, 'pages')));
 
-app.get('/GraficosCopiapo', (req, res) => {
-    res.sendFile(path.join(__dirname, 'Pages', 'GraficosCopiapo.html'));
-});
-
+app.use('/pages', router);
   
+app.use('/api', router); // Monta las rutas del router en /api
+
+  app.use(express.static(__dirname + "/public"))
+  console.log(__dirname);
+
 
 app.listen(port, () => {
     console.log(`Aplicacion corriendo en el puerto ${port}`)

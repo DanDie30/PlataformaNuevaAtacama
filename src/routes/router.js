@@ -40,13 +40,14 @@ router.get('/informes', (req, res) => {
     res.sendFile('Informes.html', { root: './pages' });
   });
 
-router.get('/data', (req, res) => {
-    res.json({ message: 'Main Route' })
+
+router.route('/data')
+  .get(controll.obtenerDatosInformes) // Manejar GET
+  .post(controll.saveDataFormFallas); // Manejar POST
+
+  router.get('/data', (req, res) => {
+    res.json({ message: 'Main poto' })
 })
-
-router.post('/data', controll.saveDataFormFallas)
-
-router.get('/data', controll.obtenerDatosInformes);
 
 router.post('/data', controll.saveDataFormDispositivos);
 

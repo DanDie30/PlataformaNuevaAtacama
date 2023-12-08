@@ -21,9 +21,10 @@ router.get('/diagramavallenar', (req, res) => {
 router.get('/graficoschanaral', (req, res) => {
     res.sendFile('GraficoChanaral.html', { root: './pages' });
   });
-router.get('/graficoscopiapo', (req, res) => {
+  router.get('/graficoscopiapo', (req, res) => {
     res.sendFile('GraficosCopiapo.html', { root: './pages' });
   });
+  
 router.get('/graficosvallenar', (req, res) => {
     res.sendFile('GraficosVallenar.html', { root: './pages' });
   });
@@ -42,14 +43,22 @@ router.get('/informes', (req, res) => {
 
 
 router.route('/data')
-  .get(controll.obtenerDatosInformes) // Manejar GET
   .post(controll.saveDataFormFallas); // Manejar POST
 
   router.get('/data', (req, res) => {
     res.json({ message: 'Main poto' })
 })
 
+
+  .post(controll.saveDataFormFallas);
+
+
+
 router.post('/data', controll.saveDataFormDispositivos);
+
+router.get('/recuentoEventosPorMes', controll.obtenerRecuentoEventosPorMes);
+router.get('/recuentoEventosPorPlanta', controll.obtenerRecuentoEventosPorPlanta);
+router.get('/datosInformes', controll.obtenerDatosInformes);
 
 
 module.exports = router;

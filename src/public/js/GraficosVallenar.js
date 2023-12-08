@@ -1,3 +1,39 @@
+fetch('/recuentoEventosPorMes')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data); // Verifica la estructura de los datos en la consola
+
+    // Actualiza los datos del gráfico de barras
+    GraficoLinealVallenar.data.labels = data.labels;
+    GraficoLinealVallenar.data.datasets[0].data = data.data;
+
+    // Actualiza el gráfico de barras
+    GraficoLinealVallenar.update();
+  })
+  .catch(error => {
+    console.error('Error al obtener los datos:', error);
+  });
+
+
+  fetch('/recuentoEventosPorPlanta') // Actualiza la ruta según tu configuración
+  .then(response => response.json())
+  .then(data => {
+    console.log(data); // Verifica la estructura de los datos en la consola
+
+    // Actualiza los datos del gráfico de barras
+    GraficoBarraVallenar.data.labels = data.labels;
+    GraficoBarraVallenar.data.datasets[0].data = data.data;
+
+    // Actualiza el gráfico de barras
+    GraficoBarraVallenar.update();
+  })
+  .catch(error => {
+    console.error('Error al obtener los datos:', error);
+  });
+
+
+
+
 //GRAFICOS VALLENAR
 var ctx1 = document.getElementById('GraficoBarraVallenar').getContext('2d');
 var data1 = {

@@ -7,12 +7,14 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">  
 
-<style>
+  <style>
     /* Estilos adicionales */
     .navbar {
       flex-shrink: 0;
       color: black;
-    
+    }
+    canvas {
+      margin-bottom: 20px;
     }
     .sidebar {
       position: fixed;
@@ -22,6 +24,19 @@
       z-index: 1000;
       overflow-y: auto;
       padding-top: 56px; /* Altura de la barra de navegación */
+    }    .content2 {
+      margin-left: 15%;
+      padding: 16px;
+      height: 800px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .chart-container {
+      width: 48%; 
+    }
+    canvas {
+      margin-bottom: 20px;
     }
     .content {
       margin-left: 250px; /* Ancho del sidebar */
@@ -31,50 +46,16 @@
         margin-left: 0;
       }
     }
-    #Dropdown1, #Dropdown2{
-        background-color: #C4C4C4;
-        margin-top: 20%;
-    }
-    #btn-Buscar{
-       
-      border-radius: 10%;
-        font-size: 23px;
-    }
-    #btn-Buscar:hover{
-      transition: cubic-bezier(0.6, -0.28, 0.735, 0.045);
-      transition-duration: 0.10s;
-      background-color: darkgray;
-    }
-    #btn-mensual{
-      margin-top: 2%;
-      margin-left: 113%;
-      border-radius: 5%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      width: 30%;
-      height: 10%;
-      font-size: 20px;
-    }
-    #btn-mensual:hover{
-      transition: cubic-bezier(0.6, -0.28, 0.735, 0.045);
-      transition-duration: 0.10s;
-      background-color: darkgray;
-    }
-    
-    .table{
-      margin-top: 5%;
-      border: black;
-      border-radius: 1px;
-    }
-
- 
+  .content2{
+    margin-left: 10px;
+  }
   </style>
 </head>
 <body>
-      <!-- #### Encabezado #### -->
-
-  <nav class=" navbar-light bg-body-secondary border border-dark text-dark">
+  <!-- #### Encabezado #### -->
+  <nav class="navbar-light bg-body-secondary border border-dark text-dark">
     <p class="text-end text-dark fs-2 my-0">
-    Informes 
+      Graficos Vallenar 
     </p>
   </nav>
   <!-- SideBar-->
@@ -95,10 +76,10 @@
                         <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline text-dark">Copiapo</span> </a>
                     <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                         <li class="w-100">
-                            <a href="/diagramacopiapo" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Diagrama</span></a>
+                            <a href="DiagramaCopiapo.html" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Diagrama</span></a>
                         </li>
                         <li>
-                            <a href="/graficoscopiapo" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Grafico</span></a>
+                            <a href="GraficosCopiapo.html" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Grafico</span></a>
                         </li>
                     </ul>
                 </li>
@@ -108,10 +89,10 @@
                         <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline text-dark">Vallenar</span></a>
                     <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                         <li class="w-100">
-                            <a href="/diagramavallenar" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Diagrama</span> </a>
+                            <a href="DiagramaVallenar.html" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Diagrama</span> </a>
                         </li>
                         <li>
-                            <a href="/graficosvallenar" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Grafico</span></a>
+                            <a href="GraficosVallenar.html" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Grafico</span></a>
                         </li>
                     </ul>
                 </li>
@@ -120,26 +101,26 @@
                         <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline text-dark">Chañaral</span> </a>
                         <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                         <li class="w-100">
-                            <a href="/diagramachanaral" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Diagrama</span></a>
+                            <a href="DiagramaChanaral.html" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Diagrama</span></a>
                         </li>
                         <li>
-                            <a href="/graficoschanaral" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Grafico</span> </a>
+                            <a href="GraficoChanaral.html" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Grafico</span> </a>
                         </li>
                        
                     </ul>
                 </li>
                 <li>
-                    <a href="/informes" class="nav-link px-0 align-middle">
+                    <a href="Informes.html" class="nav-link px-0 align-middle">
                         <i class="fas fa-file"></i><span class="ms-1 d-none d-sm-inline text-dark">Informe</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/mantenimientoprincipal" class="nav-link px-0 align-middle">
+                    <a href="MantenimientoPrincipal.html" class="nav-link px-0 align-middle">
                         <i class="far fa-clipboard"></i><span class="ms-1 d-none d-sm-inline text-dark">Mantenimiento</span>
                     </a>
                 </li>
                 <li>
-                        <a href="/configuracion" class="nav-link px-0 align-middle">
+                        <a href="Configuracion.html" class="nav-link px-0 align-middle">
                             <i class="fas fa-cogs icono-config"></i>  <span class="ms-1 d-none d-sm-inline text-dark">Configuración</span></a>
                 </li>
             </ul>

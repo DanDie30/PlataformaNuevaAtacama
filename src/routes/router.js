@@ -57,13 +57,15 @@ router.route('/data')
 
   .post(controll.saveDataFormFallas);
 
-
-
 router.post('/data', controll.saveDataFormDispositivos);
+router.get('/recuentoEventoTresMesesVallenar', controll.obtenerTresMesesConMasEventosVallenar);
 
-router.get('/recuentoEventosPorMes', controll.obtenerRecuentoEventosPorMes);
-router.get('/recuentoEventosPorPlanta', controll.obtenerRecuentoEventosPorPlanta);
+router.get('/recuentoEventosPorPlantaCopiapo', controll.obtenerRecuentoEventosPorPlantaCopiapo);
+
+router.get('/recuentoEventosPorMesCopiapo', controll.obtenerRecuentoEventosPorMesCopiapo);
+router.get('/recuentoEventosPorMesVallenar', controll.obtenerRecuentoEventosPorMesVallenar);
 router.get('/datosInformes', controll.obtenerDatosInformes);
-
+router.get('/recuentoEventosPorMesChanaral', controll.obtenerRecuentoEventosPorMesChanaral);
+router.get('/recuentoEventoTresMesesChanaral', controll.obtenerTresMesesConMasEventosChanaral);
 
 module.exports = router;

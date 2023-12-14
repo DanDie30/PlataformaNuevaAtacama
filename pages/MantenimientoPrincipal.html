@@ -46,12 +46,29 @@
         border-color: black;
         font-size: 20px;
     }
+    #btnVerDispositivos:hover{
+        background-color: #dadada;
+        
+    }
+    #btnVerFallas:hover{
+        background-color: #dadada;
+
+    }
+    #btnRegistrarDispositivos:hover{
+        background-color: #dadada;
+
+    }
+    #btnRegistrarFallas:hover{
+        background-color: #dadada;
+
+    }
     #btnVerFallas{
         background-color: #EFEFEF;
         color: black;
         border-color: black;
         font-size: 20px;
     }
+   
     #btnRegistrarFallas{
         background-color: #EFEFEF;
         color: black;
@@ -97,7 +114,7 @@
   <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-md-3 col-xl-2 bg-body-secondary border border-dark sidebar">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-5 text-white">
                 <img src="" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
             </img>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
@@ -179,10 +196,10 @@
                 <div class="d-grid gap-2">
                     
 
-              <button class="btn btn-primary btn-md my-2" id="btnVerDispositivos" type="button">Ver Mantenimiento Dispositivos</button>
-              <button class="btn btn-primary btn-md my-2" id="btnRegistrarDispositivos" type="button">Registrar Mantenimiento Dispositivos</button>
-              <button class="btn btn-primary btn-md my-2" id="btnVerFallas" type="button">Ver Mantenimiento Fallas Detectadas</button>
-              <button class="btn btn-primary btn-md my-2" id="btnRegistrarFallas" type="button">Registrar Mantenimiento Fallas Detectadas</button>
+                    <a class="btn btn-primary btn-md my-2" id="btnVerDispositivos" href="/verdispositivos">Ver Mantenimiento Dispositivos</a>
+                    <a class="btn btn-primary btn-md my-2" id="btnRegistrarDispositivos" href="/registrodispositivos">Registrar Mantenimiento Dispositivos</a>
+              <a class="btn btn-primary btn-md my-2" id="btnVerFallas" href="/verfallasdetectadas">Ver Mantenimiento Fallas Detectadas</a>
+              <a class="btn btn-primary btn-md my-2" id="btnRegistrarFallas" href="/registrofallasDetectadas">Registrar Mantenimiento Fallas Detectadas</a>
                 </div>
             </div>
         </div>

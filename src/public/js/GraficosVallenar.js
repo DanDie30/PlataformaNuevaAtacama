@@ -39,7 +39,7 @@ var ctx1 = document.getElementById('GraficoBarraVallenar').getContext('2d');
 var data1 = {
   labels: ['Vicuña', 'Cancha Rayada', 'Cartavio', 'Sectores Altos'],
   datasets: [{
-    label: 'Ejemplo de Gráfico de Barras',
+    label: 'Recuento de eventos ocurridos:',
     backgroundColor: 'rgba(75, 192, 192, 0.2)',
     borderColor: 'rgba(75, 192, 192, 1)',
     borderWidth: 1,

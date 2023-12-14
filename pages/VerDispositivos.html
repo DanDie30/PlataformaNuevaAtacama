@@ -3,13 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Diagrama Copiapó</title>
+  <title>Bootstrap demo</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <!-- Librería de Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">  
- <style>
-   
-   /* Estilos adicionales */
+
+<style>
+    /* Estilos adicionales */
     .navbar {
       flex-shrink: 0;
       color: black;
@@ -21,9 +20,8 @@
       bottom: 0;
       left: 0;
       z-index: 1000;
-      width: 270px;
       overflow-y: auto;
-      padding-top: px; /* Altura de la barra de navegación */
+      padding-top: 56px; /* Altura de la barra de navegación */
     }
     .content {
       margin-left: 250px; /* Ancho del sidebar */
@@ -33,101 +31,58 @@
         margin-left: 0;
       }
     }
-    #btnVerDispositivos{
-        background-color: #EFEFEF;
-        color: black;
-        border-color: black;
-        font-size: 20px;
+    #Dropdown1, #Dropdown2{
+        background-color: #C4C4C4;
+        margin-top: 20%;
     }
-    #btnRegistrarDispositivos{
-        background-color: #EFEFEF;
-        color: black;
-        border-color: black;
-        font-size: 20px;
+    #btn-Buscar{
+       
+      border-radius: 10%;
+        font-size: 23px;
     }
-    #btnVerFallas{
-        background-color: #EFEFEF;
-        color: black;
-        border-color: black;
-        font-size: 20px;
+    #btn-Buscar:hover{
+      transition: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+      transition-duration: 0.10s;
+      background-color: darkgray;
     }
-    #btnRegistrarFallas{
-        background-color: #EFEFEF;
-        color: black;
-        border-color: black;
-        font-size: 20px;
+    #btn-mensual{
+      margin-top: 1%;
+      margin-bottom: 10px;
+      margin-left: 100%;
+      border-radius: 5%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      width: 30%;
+      height: 10%;
+      font-size: 18px;
     }
- 
-    #BotonesAcceso {
-    margin-top: 10%;
-    margin-left: 35%; /* Ajusta este valor según la cantidad de desplazamiento que desees */
-    text-align: end; /* Alinea los botones a la derecha */
-  }
-  /* Estilos para el botón */
-  .boton-config {
-      display: inline-block;
-      padding: 10px 20px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background-color: #f0f0f0;
-      font-family: Arial, sans-serif;
-      text-decoration: none;
-      color: #333;
-      transition: background-color 0.3s ease;
+    #btn-mensual:hover{
+      transition: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+      transition-duration: 0.10s;
+      background-color: darkgray;
     }
-    /* Estilos para el icono */
-    .icono-config {
-      margin-right: 5px;
-    }
-    /* Estilos cuando se pasa el cursor sobre el botón */
-    .boton-config:hover {
-      background-color: #e0e0e0;
-    }
-
-  .TituloDiagrama{
-    text-align: center;
-    margin-left: 18%;
-    margin-top: 3%;
-    font-size: 40px;
-  }  
-
-table, tr, th{
-    border: 1px solid rgb(0, 0, 0);
-    justify-content: center;
-    text-align: center;
-    margin: 0 auto;
-    width: 50%;
-}
-th{
-    width: 30%;
-
-    font-size: 23px;
     
-font-family: Arial, Helvetica, sans-serif;
-font-weight: 100;
-}
-tr{
-    font-size: 20px;
-}
+    .table{
+      margin-top: 5%;
+      border: black;
+      border-radius: 1px;
+    }
 
-table{
-    margin-top: 10%;
-    margin-right: 15%;
-}
+ 
   </style>
 </head>
 <body>
       <!-- #### Encabezado #### -->
+
   <nav class=" navbar-light bg-body-secondary border border-dark text-dark">
-    <p class="text-end text-dark fs-2 my-0" style="padding-right: 10px">
-        Diagrama Copiapó
+    <p class="text-end text-dark fs-2 my-0">
+    Ver Mantenimiento de Dispositivos
     </p>
   </nav>
   <!-- SideBar-->
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 col-md-3 col-xl-2 bg-body-secondary border border-dark sidebar">
-        <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-5 text-white">
+        <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white">
             <img src="" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         </img>
             <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
@@ -205,53 +160,101 @@ table{
             </div>
         </div>
       </div>
-        </div>
-     <!-- Mantén el resto del código intacto -->
-    <!-- Dentro del div con la clase "content" -->
-<div class="TituloDiagrama">
-    Diagrama Estado de Sensor Ciudad Copiapó
-</div>
+    <!-- Mantén el resto del código intacto -->
+<!-- Mantén el resto del código intacto -->
 
+<!-- Dentro del div con la clase "content" -->
+<div class="col content d-flex justify-content-center">
+    <div>
+      <button id="btn-mensual">Registrar Mantenimiento</button>
 
+      
 
-    <div class="ContenedorTabla">
+      <div class="d-flex" style="justify-content: space-evenly;">
+     
+       
 
-      <table class="">
+          <select name="" id="SelectPlanta" style=" height: 40px; font-size: 20px;">
+            <option value="">Planta</option>
+            <option value="">Vicuña</option>
+            <option value="">Copiapó</option>
+            <option value="">Cartavio</option>
+            <option value="">Paipote</option>
+          </select>
+
+    
+          
+         
+        <button  id="btn-Buscar" name="/data" type="submit">Buscar</button>
+      </div>
+
+      <div style="display: flex;">
+
+      <table class="table">
+        <caption>Datos de informe</caption>
         <thead>
           <tr>
-            <th scope="">ID Sensor</th>
-            <th scope="">Estado</th>
-            <th scope="">Sector</th>
- 
+            <th scope="col">Id Sensor</th>
+            <th scope="col">Planta</th>
+            <th scope="col">Fecha Mantenimiento</th>
+            <th scope="col">Descripcion Mantenimiento</th>
+            <th scope="col">Responsable Mantenimiento</th>
+
+
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>1</td>
-            <td style="background-color: green; border-color: black; border: 1px solid;"></td>
-            <td><button>Acceder</button>  </td>
+            <td>102323</td>
+            <td>Vicuña</td>
+            <td>13-12-2023</td>
+            <td>Ajuste de dispositivo</td>
+            <td>Diego Villalobos</td>
+        
           </tr>
           <tr>
-            <td>3</td>
-            <td style="background-color: green; border-color: black; border: 1px solid;"></td>
-            <td><button>Acceder</button></td>
+            <td>102353</td>
+            <td>Vicuña</td>
+            <td>13-12-2023</td>
+            <td>Ajuste de caja maestra</td>
+            <td>Duvan Rojas</td>
+          </tr>
+          <tr>
+            <td>113293</td>
+            <td>Vicuña</td>
+            <td>14-12-2023</td>
+            <td>Ajuste de dispositivo</td>
+            <td>Catalina Lagos</td>
 
-          </tr>
-          <tr>
-            <td>2</td>
-            <td style="background-color: red; border-color: black; border: 1px solid;"></td>
-            <td><button>Acceder</button></td>
-            
           </tr>
         </tbody>
-      </table>      
-
+      </table>
     </div>
 
+  
 
+      <script>
+        document.getElementById('getDataButton').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/api/data'); // Hacer una solicitud a la ruta '/api/data'
+                const data = await response.json(); // Obtener los datos JSON de la respuesta
+                
+                // Manejar los datos recibidos, como mostrarlos en el DOM
+                console.log(data); // Mostrar los datos en la consola para ver qué recibiste
+            } catch (error) {
+                console.error('Error al obtener datos:', error);
+                console.log(error);
+                
+            }
+        });
+    </script>
+
+
+ 
+    </div>
+    </div>
+    
   </div>
-    </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

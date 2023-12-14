@@ -40,9 +40,14 @@ router.get('/registrofallasDetectadas', (req, res) => {
 router.get('/informes', (req, res) => {
     res.sendFile('Informes.html', { root: './pages' });
   });
-
-
+  router.get('/verdispositivos', (req, res) => {
+    res.sendFile('VerDispositivos.html', { root: './pages' });
+  });
+  router.get('/verfallasdetectadas', (req, res) => {
+    res.sendFile('VerFallasDetectadas.html', { root: './pages' });
+  });
 router.route('/data')
+  .get(controll.obtenerDatosInformes) //Manejar GET
   .post(controll.saveDataFormFallas); // Manejar POST
 
   router.get('/data', (req, res) => {

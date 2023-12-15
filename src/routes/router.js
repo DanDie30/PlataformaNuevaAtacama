@@ -5,7 +5,9 @@ const router = express.Router()
 const controll = require('../controllers/controll');
 
 
-
+router.get('/index', (req, res) => {
+  res.sendFile('index.html', { root: './pages' });
+});
 router.get('/configuracion', (req, res) => {
     res.sendFile('Configuracion.html', { root: './pages' });
   });
@@ -63,13 +65,15 @@ router.route('/data')
 
   .post(controll.saveDataFormFallas);
 
-
-
 router.post('/data', controll.saveDataFormDispositivos);
+router.get('/recuentoEventoTresMesesVallenar', controll.obtenerTresMesesConMasEventosVallenar);
 
-router.get('/recuentoEventosPorMes', controll.obtenerRecuentoEventosPorMes);
-router.get('/recuentoEventosPorPlanta', controll.obtenerRecuentoEventosPorPlanta);
+router.get('/recuentoEventosPorPlantaCopiapo', controll.obtenerRecuentoEventosPorPlantaCopiapo);
+
+router.get('/recuentoEventosPorMesCopiapo', controll.obtenerRecuentoEventosPorMesCopiapo);
+router.get('/recuentoEventosPorMesVallenar', controll.obtenerRecuentoEventosPorMesVallenar);
 router.get('/datosInformes', controll.obtenerDatosInformes);
-
+router.get('/recuentoEventosPorMesChanaral', controll.obtenerRecuentoEventosPorMesChanaral);
+router.get('/recuentoEventoTresMesesChanaral', controll.obtenerTresMesesConMasEventosChanaral);
 
 module.exports = router;

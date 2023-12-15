@@ -1,4 +1,4 @@
-fetch('/recuentoEventosPorMes')
+fetch('/recuentoEventosPorMesVallenar')
   .then(response => response.json())
   .then(data => {
     console.log(data); // Verifica la estructura de los datos en la consola
@@ -15,22 +15,22 @@ fetch('/recuentoEventosPorMes')
   });
 
 
-  fetch('/recuentoEventosPorPlanta') // Actualiza la ruta según tu configuración
+// Llamada a la función para obtener los tres meses con más eventos
+fetch('/recuentoEventoTresMesesVallenar') // Cambia la ruta según tu configuración
   .then(response => response.json())
   .then(data => {
     console.log(data); // Verifica la estructura de los datos en la consola
 
-    // Actualiza los datos del gráfico de barras
-    GraficoBarraVallenar.data.labels = data.labels;
-    GraficoBarraVallenar.data.datasets[0].data = data.data;
+    // Actualiza los datos del gráfico de barras con los tres meses con más eventos
+    GraficoBarraVallenar.data.labels = data.map(item => `Mes ${item.Mes}`); // Supongamos que usamos "Mes X" como etiqueta
+    GraficoBarraVallenar.data.datasets[0].data = data.map(item => item.CantidadEventos);
 
     // Actualiza el gráfico de barras
     GraficoBarraVallenar.update();
   })
   .catch(error => {
-    console.error('Error al obtener los datos:', error);
+    console.error('Error al obtener los datos de los tres meses con más eventos:', error);
   });
-
 
 
 

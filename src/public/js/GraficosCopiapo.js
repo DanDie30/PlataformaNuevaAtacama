@@ -1,76 +1,85 @@
-// Función para actualizar el gráfico lineal con los datos recibidos
-function actualizarGraficoLineal(datos) {
-  // Actualizar las etiquetas del eje X con los meses
-  const meses = datos.map(item => item.mes);
-  GraficoLinealCopiapo.data.labels = meses;
-
-  // Actualizar los datos del gráfico con la cantidad de eventos por mes
-  const eventos = datos.map(item => item.eventos);
-  GraficoLinealCopiapo.data.datasets[0].data = eventos;
-
-  // Actualizar el gráfico
-  GraficoLinealCopiapo.update();
-}
-
-// Realizar la solicitud AJAX al servidor para obtener los datos de eventos por mes
-fetch('/data') // Asegúrate de que esta ruta coincida con la definida en el servidor
+fetch('/recuentoEventosPorMesCopiapo')
   .then(response => response.json())
   .then(data => {
-    // Una vez obtenidos los datos, llamar a la función para actualizar el gráfico
-    actualizarGraficoLineal(data);
+    console.log(data); // Verifica la estructura de los datos en la consola
+
+    // Actualiza los datos del gráfico de barras
+    GraficoLinealCopiapo.data.labels = data.labels;
+    GraficoLinealCopiapo.data.datasets[0].data = data.data;
+
+    // Actualiza el gráfico de barras
+    GraficoLinealCopiapo.update();
   })
   .catch(error => {
-    // Manejar errores en caso de que la solicitud falle
-    console.error('Error al obtener datos de eventos por mes:', error);
+    console.error('Error al obtener los datos:', error);
   });
 
+  fetch('/recuentoEventosPorPlantaCopiapo')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data); // Verifica la estructura de los datos en la consola
+
+    // Actualiza los datos del gráfico de barras
+    GraficoBarraCopiapo.data.labels = data.labels;
+    GraficoBarraCopiapo.data.datasets[0].data = data.data;
+
+    // Actualiza el gráfico de barras
+    GraficoBarraCopiapo.update();
+  })
+  .catch(error => {
+    console.error('Error al obtener los datos:', error);
+  });
+
+
 //GRAFICOS COPIAPO
-var ctx1 = document.getElementById('GraficosBarraCopiapo').getContext('2d');
-var data1 = {
-    labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
-    datasets: [{
-      label: 'Ejemplo de Gráfico de Barras',
-      backgroundColor: 'rgba(75, 192, 192, 0.2)',
-      borderColor: 'rgba(75, 192, 192, 1)',
-      borderWidth: 1,
-      data: [30, 10, 25, 15, 20], // Cambia estos valores
-  }]
-};
-var options1 = {
-  scales: {
-    y: {
-      beginAtZero: true
-    }
-  }
-};
-var GraficosBarraCopiapo = new Chart(ctx1, {
+const GraficoBarraCopiapo = new Chart(document.getElementById('GraficoBarraCopiapo'), {
   type: 'bar',
-  data: data1,
-  options: options1
-});
-
-
-var ctx3 = document.getElementById('GraficoLinealCopiapo').getContext('2d');
-var data3 = {
-    labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+  data: {
+    labels: [], // Aquí se colocarán las etiquetas de los datos
     datasets: [{
-      label: 'Ejemplo de Gráfico Lineal',
+      label: 'Cantidad de Eventos',
+      data: [], // Aquí se colocarán los valores de los datos
       backgroundColor: 'rgba(75, 192, 192, 0.2)',
-      borderColor: 'rgba(75, 192, 192, 1)',
-      borderWidth: 1,
-      data: [30, 10, 25, 15, 20], 
-  }]
-};
-var options3 = {
-  scales: {
-    y: {
-      beginAtZero: true
+      borderColor: 'rgba(0, 0, 0, 0.8)',
+      // Color de fondo de las barras
+    }]
+  },
+  options: {
+    // Configuración de opciones del gráfico (ejemplo)
+    scales: {
+      y: {
+        beginAtZero: true
+      }
     }
   }
-};
-var GraficoLinealCopiapo = new Chart(ctx3, {
-  type: 'line',
-  data: data3,
-  options: options3
 });
+
+
+
+
+    // El código JavaScript que generaste para crear los gráficos y los enlaces de descarga
+    let ctx = document.getElementById('GraficoLinealCopiapo').getContext('2d');
+    let data = {
+      labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+      datasets: [{
+        label: 'Ejemplo de Gráfico Lineal',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+        data: [30, 10, 25, 15, 20],
+      }]
+    };
+    let options = {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    };
+    let GraficoLinealCopiapo = new Chart(ctx, {
+      type: 'line',
+      data: data,
+      options: options
+    });
+
 

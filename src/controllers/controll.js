@@ -1,30 +1,30 @@
 const sql = require('mssql')
 const pool = require('../utils/db')
 
-const obtenerRecuentoEventosPorMes = async (req, res) => {
+const obtenerRecuentoEventosPorMesCopiapo = async (req, res) => {
   try {
-    // Consulta SQL para obtener el recuento de eventos por mes
     const query = `
-    SELECT 
-    CASE 
-      WHEN MONTH(Fecha) = 1 THEN 'Enero'
-      WHEN MONTH(Fecha) = 2 THEN 'Febrero'
-      WHEN MONTH(Fecha) = 3 THEN 'Marzo'
-      WHEN MONTH(Fecha) = 4 THEN 'Abril'
-      WHEN MONTH(Fecha) = 5 THEN 'Mayo'
-      WHEN MONTH(Fecha) = 6 THEN 'Junio'
-      WHEN MONTH(Fecha) = 7 THEN 'Julio'
-      WHEN MONTH(Fecha) = 8 THEN 'Agosto'
-      WHEN MONTH(Fecha) = 9 THEN 'Septiembre'
-      WHEN MONTH(Fecha) = 10 THEN 'Octubre'
-      WHEN MONTH(Fecha) = 11 THEN 'Noviembre'
-      WHEN MONTH(Fecha) = 12 THEN 'Diciembre'
-      ELSE 'Mes Desconocido'
-    END AS Mes,
-    COUNT(*) AS CantidadEventos
-  FROM Evento
-  GROUP BY MONTH(Fecha)
-  ORDER BY MONTH(Fecha);
+      SELECT 
+        CASE 
+          WHEN MONTH(Fecha) = 1 THEN 'Enero'
+          WHEN MONTH(Fecha) = 2 THEN 'Febrero'
+          WHEN MONTH(Fecha) = 3 THEN 'Marzo'
+          WHEN MONTH(Fecha) = 4 THEN 'Abril'
+          WHEN MONTH(Fecha) = 5 THEN 'Mayo'
+          WHEN MONTH(Fecha) = 6 THEN 'Junio'
+          WHEN MONTH(Fecha) = 7 THEN 'Julio'
+          WHEN MONTH(Fecha) = 8 THEN 'Agosto'
+          WHEN MONTH(Fecha) = 9 THEN 'Septiembre'
+          WHEN MONTH(Fecha) = 10 THEN 'Octubre'
+          WHEN MONTH(Fecha) = 11 THEN 'Noviembre'
+          WHEN MONTH(Fecha) = 12 THEN 'Diciembre'
+          ELSE 'Mes Desconocido'
+        END AS Mes,
+        COUNT(*) AS CantidadEventos
+      FROM Evento
+      WHERE IdSector = 1
+      GROUP BY MONTH(Fecha)
+      ORDER BY MONTH(Fecha);
     `;
     
     const result = await pool.query(query);
@@ -43,7 +43,93 @@ const obtenerRecuentoEventosPorMes = async (req, res) => {
   }
 };
 
-const obtenerRecuentoEventosPorPlanta = async (req, res) => {
+const obtenerRecuentoEventosPorMesVallenar = async (req, res) => {
+  try {
+    const query = `
+      SELECT 
+        CASE 
+          WHEN MONTH(Fecha) = 1 THEN 'Enero'
+          WHEN MONTH(Fecha) = 2 THEN 'Febrero'
+          WHEN MONTH(Fecha) = 3 THEN 'Marzo'
+          WHEN MONTH(Fecha) = 4 THEN 'Abril'
+          WHEN MONTH(Fecha) = 5 THEN 'Mayo'
+          WHEN MONTH(Fecha) = 6 THEN 'Junio'
+          WHEN MONTH(Fecha) = 7 THEN 'Julio'
+          WHEN MONTH(Fecha) = 8 THEN 'Agosto'
+          WHEN MONTH(Fecha) = 9 THEN 'Septiembre'
+          WHEN MONTH(Fecha) = 10 THEN 'Octubre'
+          WHEN MONTH(Fecha) = 11 THEN 'Noviembre'
+          WHEN MONTH(Fecha) = 12 THEN 'Diciembre'
+          ELSE 'Mes Desconocido'
+        END AS Mes,
+        COUNT(*) AS CantidadEventos
+      FROM Evento
+      WHERE IdSector = 3
+      GROUP BY MONTH(Fecha)
+      ORDER BY MONTH(Fecha);
+    `;
+    
+    const result = await pool.query(query);
+
+    if (result && result.recordset && result.recordset.length > 0) {
+      const labels = result.recordset.map(row => row.Mes);
+      const data = result.recordset.map(row => row.CantidadEventos);
+
+      res.status(200).json({ labels, data });
+    } else {
+      res.status(404).send('No se encontraron resultados');
+    }
+  } catch (err) {
+    res.status(500).send('Error al obtener el recuento de eventos por mes: ' + err.message);
+    console.error(err.message);
+  }
+};
+
+const obtenerRecuentoEventosPorMesChanaral = async (req, res) => {
+  try {
+    const query = `
+      SELECT 
+        CASE 
+          WHEN MONTH(Fecha) = 1 THEN 'Enero'
+          WHEN MONTH(Fecha) = 2 THEN 'Febrero'
+          WHEN MONTH(Fecha) = 3 THEN 'Marzo'
+          WHEN MONTH(Fecha) = 4 THEN 'Abril'
+          WHEN MONTH(Fecha) = 5 THEN 'Mayo'
+          WHEN MONTH(Fecha) = 6 THEN 'Junio'
+          WHEN MONTH(Fecha) = 7 THEN 'Julio'
+          WHEN MONTH(Fecha) = 8 THEN 'Agosto'
+          WHEN MONTH(Fecha) = 9 THEN 'Septiembre'
+          WHEN MONTH(Fecha) = 10 THEN 'Octubre'
+          WHEN MONTH(Fecha) = 11 THEN 'Noviembre'
+          WHEN MONTH(Fecha) = 12 THEN 'Diciembre'
+          ELSE 'Mes Desconocido'
+        END AS Mes,
+        COUNT(*) AS CantidadEventos
+      FROM Evento
+      WHERE IdSector = 2
+      GROUP BY MONTH(Fecha)
+      ORDER BY MONTH(Fecha);
+    `;
+    
+    const result = await pool.query(query);
+
+    if (result && result.recordset && result.recordset.length > 0) {
+      const labels = result.recordset.map(row => row.Mes);
+      const data = result.recordset.map(row => row.CantidadEventos);
+
+      res.status(200).json({ labels, data });
+    } else {
+      res.status(404).send('No se encontraron resultados');
+    }
+  } catch (err) {
+    res.status(500).send('Error al obtener el recuento de eventos por mes: ' + err.message);
+    console.error(err.message);
+  }
+};
+
+
+
+const obtenerRecuentoEventosPorPlantaCopiapo = async (req, res) => {
   try {
     // Consulta SQL para obtener el recuento de eventos por planta (IdPlanta)
     const query = `
@@ -57,6 +143,7 @@ const obtenerRecuentoEventosPorPlanta = async (req, res) => {
         END AS NombrePlanta,
         COUNT(*) AS CantidadEventos
       FROM Evento
+      WHERE IdSector = 1
       GROUP BY IdPlanta
       ORDER BY IdPlanta;
     `;
@@ -76,8 +163,66 @@ const obtenerRecuentoEventosPorPlanta = async (req, res) => {
     console.error(err.message);
   }
 };
+const obtenerTresMesesConMasEventosVallenar = async (req, res) => {
+  try {
+    const query = `
+      SELECT TOP 3
+        DATENAME(month, Fecha) AS Mes,
+        COUNT(*) AS CantidadEventos
+      FROM Evento
+      WHERE IdSector = 3
+      GROUP BY DATENAME(month, Fecha)
+      ORDER BY CantidadEventos DESC
+    `;
+
+    const result = await pool.query(query);
+
+    if (result && result.recordset && result.recordset.length > 0) {
+      const mesesConMasEventos = result.recordset.map(row => ({
+        Mes: row.Mes,
+        CantidadEventos: row.CantidadEventos
+      }));
+
+      res.status(200).json(mesesConMasEventos);
+    } else {
+      res.status(404).send('No se encontraron resultados');
+    }
+  } catch (err) {
+    res.status(500).send('Error al obtener los tres meses con más eventos: ' + err.message);
+    console.error(err.message);
+  }
+};
 
 
+const obtenerTresMesesConMasEventosChanaral = async (req, res) => {
+  try {
+    const query = `
+      SELECT TOP 3
+        DATENAME(month, Fecha) AS Mes,
+        COUNT(*) AS CantidadEventos
+      FROM Evento
+      WHERE IdSector = 2
+      GROUP BY DATENAME(month, Fecha)
+      ORDER BY CantidadEventos DESC
+    `;
+
+    const result = await pool.query(query);
+
+    if (result && result.recordset && result.recordset.length > 0) {
+      const mesesConMasEventos = result.recordset.map(row => ({
+        Mes: row.Mes,
+        CantidadEventos: row.CantidadEventos
+      }));
+
+      res.status(200).json(mesesConMasEventos);
+    } else {
+      res.status(404).send('No se encontraron resultados');
+    }
+  } catch (err) {
+    res.status(500).send('Error al obtener los tres meses con más eventos: ' + err.message);
+    console.error(err.message);
+  }
+};
 
 
 const obtenerDatosInformes = async (req, res) => {
@@ -157,6 +302,10 @@ module.exports = {
     saveDataFormFallas,
     saveDataFormDispositivos,
     obtenerDatosInformes, 
-    obtenerRecuentoEventosPorMes,
-    obtenerRecuentoEventosPorPlanta
+    obtenerRecuentoEventosPorMesCopiapo,
+    obtenerRecuentoEventosPorPlantaCopiapo,
+    obtenerRecuentoEventosPorMesVallenar,
+    obtenerTresMesesConMasEventosVallenar,
+    obtenerRecuentoEventosPorMesChanaral,
+    obtenerTresMesesConMasEventosChanaral
 }

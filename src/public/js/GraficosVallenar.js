@@ -1,3 +1,32 @@
+function createDownloadSvgLink(linkId, buttonText, ctx) {
+  var link = document.getElementById(linkId);
+  link.addEventListener('click', function() {
+    var dataUrl = ctx.canvas.toDataURL(); 
+    var svgContent = '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600">' + 
+                     '<style>/* Agrega tus estilos aquí */</style>' +
+                     '<foreignObject width="100%" height="100%">' +
+                     '<div xmlns="http://www.w3.org/1999/xhtml">' +
+                     '<img src="' + dataUrl + '" alt="Gráfico" />' +
+                     '</div></foreignObject></svg>';
+    link.href = 'data:image/svg+xml,' + encodeURIComponent(svgContent); 
+  });
+}
+function createDownloadPngLink(linkId, buttonText, ctx) {
+  var link = document.getElementById(linkId);
+  link.addEventListener('click', function() {
+    var dataUrl = ctx.canvas.toDataURL(); 
+    link.href = dataUrl; 
+  });
+}
+var ctxBarraCopiapo = document.getElementById('GraficoBarraVallenar').getContext('2d');
+var ctxLinealCopiapo = document.getElementById('GraficoLinealVallenar').getContext('2d');
+createDownloadPngLink('downloadPngBarraVallenar', 'Exportar PNG (Gráfico de Barras)', ctxBarraCopiapo);
+createDownloadSvgLink('downloadSvgBarraVallenar', 'Exportar SVG (Gráfico de Barras)', ctxBarraCopiapo);
+createDownloadPngLink('downloadPngLinealVallenar', 'Exportar PNG (Gráfico Lineal)', ctxLinealCopiapo);
+createDownloadSvgLink('downloadSvgLinealVallenar', 'Exportar SVG (Gráfico Lineal)', ctxLinealCopiapo);
+
+
+
 fetch('/recuentoEventosPorMesVallenar')
   .then(response => response.json())
   .then(data => {

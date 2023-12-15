@@ -11,6 +11,19 @@
 
 
   <style>
+    .download-button {
+    
+    padding: 8px 16px;
+    background-color: #007bff; /* Color de fondo del botón */
+    color: #ffffff; /* Color del texto */
+    text-decoration: none;
+    margin-right: 10px; /* Espacio entre botones */
+   
+    cursor: pointer; /* Cambiar el cursor al pasar el mouse */
+  }
+  .download-button:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el mouse */
+  }
     /* Estilos adicionales */
     .navbar {
       flex-shrink: 0;
@@ -147,10 +160,14 @@
       <div class="col content">
         <div class="content2">
          <div class="chart-container">
-            <canvas id="GraficoBarraPrincipal" width="300" height="320"></canvas> <button>Generar SVG</button>
+            <canvas id="GraficoBarraPrincipal" width="300" height="320"></canvas>
+            <a href="#" id="downloadPngBarraPrincipal" class="download-button" download="grafico_barras.png">Descargar PNG </a>
+            <a href="#" id="downloadSvgBarraPrincipal" class="download-button" download="grafico_barras.svg">Descargar SVG </a>
           </div>  
           <div class="chart-container">
-            <canvas id="GraficoLinealPrincipal" width="300" height="320"></canvas> <button>Generar SVG</button>
+            <canvas id="GraficoLinealPrincipal" width="300" height="320"></canvas>
+            <a href="#" id="downloadPngLinealPrincipal" class="download-button" download="grafico_lineal.png">Descargar PNG </a>
+            <a href="#" id="downloadSvgLinealPrincipal" class="download-button" download="grafico_lineal.svg">Descargar SVG </a>
           </div>
           
         </div>

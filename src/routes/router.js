@@ -15,6 +15,12 @@ router.get('/diagramachanaral', (req, res) => {
 router.get('/diagramacopiapo', (req, res) => {
     res.sendFile('DiagramaCopiapo.html', { root: './pages' });
   });
+  router.get('/confusuarios', (req, res) => {
+    res.sendFile('ConfUsuarios.html', { root: './pages' });
+  });
+  router.get('/confalertas', (req, res) => {
+    res.sendFile('ConfAlertas.html', { root: './pages' });
+  });  
 router.get('/diagramavallenar', (req, res) => {
     res.sendFile('DiagramaVallenar.html', { root: './pages' });
   });

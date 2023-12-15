@@ -55,27 +55,31 @@ const GraficoBarraCopiapo = new Chart(document.getElementById('GraficoBarraCopia
 });
 
 
-var ctx3 = document.getElementById('GraficoLinealCopiapo').getContext('2d');
-var data3 = {
-    labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
-    datasets: [{
-      label: 'Ejemplo de Gráfico Lineal',
-      backgroundColor: 'rgba(75, 192, 192, 0.2)',
-      borderColor: 'rgba(75, 192, 192, 1)',
-      borderWidth: 1,
-      data: [30, 10, 25, 15, 20], 
-  }]
-};
-var options3 = {
-  scales: {
-    y: {
-      beginAtZero: true
-    }
-  }
-};
-var GraficoLinealCopiapo = new Chart(ctx3, {
-  type: 'line',
-  data: data3,
-  options: options3
-});
+
+
+    // El código JavaScript que generaste para crear los gráficos y los enlaces de descarga
+    let ctx = document.getElementById('GraficoLinealCopiapo').getContext('2d');
+    let data = {
+      labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+      datasets: [{
+        label: 'Ejemplo de Gráfico Lineal',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+        data: [30, 10, 25, 15, 20],
+      }]
+    };
+    let options = {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    };
+    let GraficoLinealCopiapo = new Chart(ctx, {
+      type: 'line',
+      data: data,
+      options: options
+    });
+
 

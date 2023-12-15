@@ -69,7 +69,7 @@
       </img>
           <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
               <li class="nav-item">
-                  <a href="../index.html" class="nav-link align-middle px-0">
+                  <a href="/index" class="nav-link align-middle px-0">
                       <i class="fas fa-chart-line"></i><span class="ms-1 d-none d-sm-inline text-dark">Dashboard</span>
                   </a>
               </li>
@@ -145,14 +145,37 @@
       <div class="col content">
         <div class="content2">
           <div class="chart-container">
-            <canvas id="GraficoBarraCopiapo" width="300" height="320"></canvas> <button>Generar SVG</button>
+            <!-- Gráfico de barras -->
+            <canvas id="GraficoBarraCopiapo" width="300" height="320"></canvas> 
+            <!-- Enlace de descarga PNG para el gráfico de barras -->
+            <a href="#" id="downloadPngBarraCopiapo" download="grafico_barras.png">Descargar PNG (Gráfico de Barras)</a>
+            <!-- Enlace de descarga SVG para el gráfico de barras -->
+            <a href="#" id="downloadSvgBarraCopiapo" download="grafico_barras.svg">Descargar SVG (Gráfico de Barras)</a>
           </div>
           <div class="chart-container">
-            <canvas id="GraficoLinealCopiapo" width="300" height="320"></canvas> <button>Generar SVG</button>
+            <!-- Gráfico lineal -->
+            <canvas id="GraficoLinealCopiapo" width="300" height="320"></canvas>
+            <!-- Enlace de descarga PNG para el gráfico lineal -->
+            <a href="#" id="downloadPngLinealCopiapo" download="grafico_lineal.png">Descargar PNG (Gráfico Lineal)</a>
+            <!-- Enlace de descarga SVG para el gráfico lineal -->
+            <a href="#" id="downloadSvgLinealCopiapo" download="grafico_lineal.svg">Descargar SVG (Gráfico Lineal)</a>
           </div>
-          
         </div>
-    </div>
+      </div>
+<script>
+  // Generar enlaces de descarga en PNG y SVG
+  let width =  900;
+let height = 600;
+
+// values we set at the top
+context.width =  width;
+context.height = height;
+
+  createPngLink('chart.png', 'Exportar PNG', GraficoLinealCopiapo);
+    createSvgLink('chart.svg', 'Exportar SVG', GraficoLinealCopiapo, options);
+</script>
+
+
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

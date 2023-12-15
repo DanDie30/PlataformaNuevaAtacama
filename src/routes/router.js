@@ -5,7 +5,9 @@ const router = express.Router()
 const controll = require('../controllers/controll');
 
 
-
+router.get('/index', (req, res) => {
+  res.sendFile('index.html', { root: './pages' });
+});
 router.get('/configuracion', (req, res) => {
     res.sendFile('Configuracion.html', { root: './pages' });
   });

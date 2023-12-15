@@ -66,14 +66,21 @@ router.route('/data')
   .post(controll.saveDataFormFallas);
 
 router.post('/data', controll.saveDataFormDispositivos);
+//Graficos Vallenar
 router.get('/recuentoEventoTresMesesVallenar', controll.obtenerTresMesesConMasEventosVallenar);
-
-router.get('/recuentoEventosPorPlantaCopiapo', controll.obtenerRecuentoEventosPorPlantaCopiapo);
-
-router.get('/recuentoEventosPorMesCopiapo', controll.obtenerRecuentoEventosPorMesCopiapo);
 router.get('/recuentoEventosPorMesVallenar', controll.obtenerRecuentoEventosPorMesVallenar);
+
+//Graficos Copiapo
+router.get('/recuentoEventosPorPlantaCopiapo', controll.obtenerRecuentoEventosPorPlantaCopiapo);
+router.get('/recuentoEventosPorMesCopiapo', controll.obtenerRecuentoEventosPorMesCopiapo);
 router.get('/datosInformes', controll.obtenerDatosInformes);
+
+//Graficos Chanaral
 router.get('/recuentoEventosPorMesChanaral', controll.obtenerRecuentoEventosPorMesChanaral);
 router.get('/recuentoEventoTresMesesChanaral', controll.obtenerTresMesesConMasEventosChanaral);
+
+//Graficos Principal
+router.get('/recuentoEventosPrincipal', controll.obtenerRecuentoTotalEventosPorMes);
+router.get('/recuentoEventosPorPlantaPrincipal', controll.obtenerRecuentoEventosPorPlanta);
 
 module.exports = router;

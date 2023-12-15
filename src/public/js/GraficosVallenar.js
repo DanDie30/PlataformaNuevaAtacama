@@ -40,8 +40,8 @@ var data1 = {
   labels: ['Vicuña', 'Cancha Rayada', 'Cartavio', 'Sectores Altos'],
   datasets: [{
     label: 'Recuento de eventos ocurridos:',
-    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-    borderColor: 'rgba(75, 192, 192, 1)',
+    backgroundColor: 'rgba(90, 177, 38, 1)',
+    borderColor: 'rgba(0, 0, 0, 1)',
     borderWidth: 1,
     data: [30, 10, 25, 15],
     }]
@@ -65,8 +65,8 @@ var data3 = {
   labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre','Noviembre','Diciembre'],
   datasets: [{
     label: 'Recuento de falla por Mes general',
-    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-    borderColor: 'rgba(75, 192, 192, 1)',
+    backgroundColor: 'rgba(48, 96, 159, 1)',
+    borderColor: 'rgba(97, 97, 97, 1)',
     borderWidth: 1,
     data: [10, 15, 20, 25, 30, 10, 15, 20, 25, 30, 20,20], // Cambia estos valores
   }]

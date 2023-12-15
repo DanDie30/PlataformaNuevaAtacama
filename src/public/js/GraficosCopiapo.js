@@ -37,10 +37,11 @@ const GraficoBarraCopiapo = new Chart(document.getElementById('GraficoBarraCopia
   data: {
     labels: [], // Aquí se colocarán las etiquetas de los datos
     datasets: [{
-      label: 'Cantidad de Eventos',
+      label: 'Cantidad De Eventos Por Planta',
       data: [], // Aquí se colocarán los valores de los datos
-      backgroundColor: 'rgba(75, 192, 192, 0.2)',
-      borderColor: 'rgba(0, 0, 0, 0.8)',
+      backgroundColor: 'rgba(90, 177, 38, 1)',
+      borderColor: 'rgba(0, 0, 0, 1)',
+      borderWidth: 1,
       // Color de fondo de las barras
     }]
   },
@@ -62,9 +63,9 @@ const GraficoBarraCopiapo = new Chart(document.getElementById('GraficoBarraCopia
     let data = {
       labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
       datasets: [{
-        label: 'Ejemplo de Gráfico Lineal',
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderColor: 'rgba(75, 192, 192, 1)',
+        label: 'Recuento Por Mes',
+        backgroundColor: 'rgba(48, 96, 159, 1)',
+        borderColor: 'rgba(97, 97, 97, 1)',
         borderWidth: 1,
         data: [30, 10, 25, 15, 20],
       }]

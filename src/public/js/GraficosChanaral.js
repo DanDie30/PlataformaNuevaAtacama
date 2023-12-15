@@ -41,9 +41,9 @@ var ctx1 = document.getElementById('GraficoBarraChanaral').getContext('2d');
 var data1 = {
   labels: ['Dato 1', 'Dato 2', 'Dato 3', 'Dato 4', 'Dato 5'],
   datasets: [{
-    label: 'Ejemplo de Gráfico de Barras',
-    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-    borderColor: 'rgba(75, 192, 192, 1)',
+    label: 'Top 3 Meses Con Mas Eventos',
+    backgroundColor: 'rgba(90, 177, 38, 1)',
+      borderColor: 'rgba(0, 0, 0, 1)',
     borderWidth: 1,
     data: [30, 10, 25, 15, 20],
     }]
@@ -66,9 +66,9 @@ var ctx3 = document.getElementById('GraficoLinealChanaral').getContext('2d');
 var data3 = {
   labels: ['Dato 5', 'Dato 2', 'Dato 3', 'Dato 4', 'Dato 5'],
   datasets: [{
-    label: 'Ejemplo de Gráfico de Barras',
-    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-    borderColor: 'rgba(75, 192, 192, 1)',
+    label: 'Recuento De Eventos',
+    backgroundColor: 'rgba(48, 96, 159, 1)',
+    borderColor: 'rgba(97, 97, 97, 1)',
     borderWidth: 1,
     data: [10, 15, 20, 25, 30], // Cambia estos valores
   }]

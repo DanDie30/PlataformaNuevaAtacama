@@ -42,6 +42,70 @@ const obtenerRecuentoEventosPorMesCopiapo = async (req, res) => {
     console.error(err.message);
   }
 };
+const obtenerRecuentoEventosPorPlanta = async (req, res) => {
+  try {
+    const query = `
+    SELECT 
+    P.Nombre_planta AS NombrePlanta,
+    COUNT(E.IdEvento) AS CantidadEventos
+FROM Evento E
+JOIN Planta P ON E.IdPlanta = P.IdPlanta
+GROUP BY P.Nombre_planta;
+
+    `;
+
+    const result = await pool.query(query);
+
+    if (result && result.recordset && result.recordset.length > 0) {
+      const recuentoEventosPorPlanta = result.recordset.map(row => ({
+        NombrePlanta: row.NombrePlanta,
+        CantidadEventos: row.CantidadEventos
+      }));
+
+      res.status(200).json(recuentoEventosPorPlanta);
+    } else {
+      res.status(404).send('No se encontraron resultados');
+    }
+  } catch (err) {
+    res.status(500).send('Error al obtener el recuento de eventos por planta: ' + err.message);
+    console.error(err.message);
+  }
+};
+
+
+
+const obtenerRecuentoTotalEventosPorMes = async (req, res) => {
+  try {
+    const query = `
+      SELECT DATENAME(month, Fecha) AS Mes,
+             COUNT(*) AS CantidadEventos
+      FROM Evento
+      GROUP BY DATENAME(month, Fecha)
+      ORDER BY CantidadEventos DESC
+    `;
+
+    const result = await pool.query(query);
+
+    if (result && result.recordset && result.recordset.length > 0) {
+      const recuentoTotalEventosPorMes = result.recordset.map(row => ({
+        Mes: row.Mes,
+        CantidadEventos: row.CantidadEventos
+      }));
+
+      const labels = recuentoTotalEventosPorMes.map(item => item.Mes);
+      const data = recuentoTotalEventosPorMes.map(item => item.CantidadEventos);
+
+      res.status(200).json({ labels, data });
+    } else {
+      res.status(404).send('No se encontraron resultados');
+    }
+  } catch (err) {
+    res.status(500).send('Error al obtener el recuento total de eventos por mes: ' + err.message);
+    console.error(err.message);
+  }
+};
+
+
 
 const obtenerRecuentoEventosPorMesVallenar = async (req, res) => {
   try {
@@ -163,6 +227,7 @@ const obtenerRecuentoEventosPorPlantaCopiapo = async (req, res) => {
     console.error(err.message);
   }
 };
+
 const obtenerTresMesesConMasEventosVallenar = async (req, res) => {
   try {
     const query = `
@@ -307,5 +372,7 @@ module.exports = {
     obtenerRecuentoEventosPorMesVallenar,
     obtenerTresMesesConMasEventosVallenar,
     obtenerRecuentoEventosPorMesChanaral,
-    obtenerTresMesesConMasEventosChanaral
+    obtenerTresMesesConMasEventosChanaral,
+    obtenerRecuentoTotalEventosPorMes,
+    obtenerRecuentoEventosPorPlanta
 }

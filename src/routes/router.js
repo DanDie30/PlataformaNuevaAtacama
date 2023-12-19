@@ -11,6 +11,9 @@ router.get('/index', (req, res) => {
 router.get('/configuracion', (req, res) => {
     res.sendFile('Configuracion.html', { root: './pages' });
   });
+  router.get('/login', (req, res) => {
+    res.sendFile('Login.html', { root: './pages' });
+  });  
 router.get('/diagramachanaral', (req, res) => {
     res.sendFile('DiagramaChanaral.html', { root: './pages' });
   });
@@ -61,8 +64,6 @@ router.route('/data')
   router.get('/data', (req, res) => {
     res.json({ message: 'Main poto' })
 })
-
-
   .post(controll.saveDataFormFallas);
 
 router.post('/data', controll.saveDataFormDispositivos);

@@ -2,6 +2,7 @@ const sql = require('mssql')
 const pool = require('../utils/db')
 
 
+
 const obtenerRecuentoEventosPorMesCopiapo = async (req, res) => {
   try {
     const query = `

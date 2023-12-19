@@ -55,7 +55,7 @@
     <!-- #### Encabezado #### -->
     <nav class="navbar-light bg-body-secondary border border-dark text-dark">
       <p class="text-end text-dark fs-2 my-0">
-        Graficos Vallenar 
+        Mantenimiento de dispositivos 
       </p>
     </nav>
   <!-- SideBar-->
@@ -143,13 +143,13 @@
     
      <div class="col content">
 
-      <form action="http://localhost:3000/guardarDatosFormularioDispositivo" method="post" id="FormularioDispositivo">
+      <form action="/registrarDispositivo" method="post" id="FormularioDispositivo">
 
         <!-- Primer apartado de inputs -->
         <div class="row mb-3">
           <div class="col">
             <label for="date">ID Sensor</label>
-            <input type="number" name="IdSensor" class="form-control" placeholder="Ingrese fecha">
+            <input type="number" name="IdSensor" class="form-control" placeholder="Ingrese Id Sensor">
           </div>
           <div class="col">
             <label for="faultType">Sector</label>
@@ -202,6 +202,40 @@
     </div>
 
       </form>
+
+      
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const form = document.getElementById('FormularioDispositivo');
+      
+          form.addEventListener('submit', function(event) {
+            event.preventDefault();
+      
+            const formData = new FormData(form);
+            const formDataJSON = {};
+      
+            for (const [key, value] of formData.entries()) {
+              formDataJSON[key] = value;
+            }
+      
+            fetch('/registrarDispositivo', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(formDataJSON)
+            })
+            .then(response => response.text())
+            .then(data => {
+              console.log('Datos registrados correctamente:', data);
+              // Realizar acciones adicionales si es necesario
+            })
+            .catch(error => {
+              console.error('Error al registrar datos:', error);
+            });
+          });
+        });
+      </script>
   <!-- Mantén el resto del código intacto -->
   </div>
   </div>

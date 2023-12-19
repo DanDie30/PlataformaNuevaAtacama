@@ -1,6 +1,11 @@
 const sql = require('mssql')
 const pool = require('../utils/db')
 
+<<<<<<< Updated upstream
+=======
+const moment = require('moment'); // Para el formato de fecha
+
+>>>>>>> Stashed changes
 
 
 const obtenerRecuentoEventosPorMesCopiapo = async (req, res) => {
@@ -293,74 +298,216 @@ const obtenerTresMesesConMasEventosChanaral = async (req, res) => {
 
 
 const obtenerDatosInformes = async (req, res) => {
-    try {
-        const result = await pool.request().query(
-        `SELECT * FROM Planta`);
-  
-      res.status(200).json(result.recordset);
-    } catch (err) {
-      res.status(500).send('Error al obtener datos de eventos por mes: ' + err.message);
-      console.log(err.message);
+  try {
+    const sectorSeleccionado = req.query.sector;
+
+    const mapeoSectorABD = {
+      '1': 'Copiapó',
+      '2': 'Chañaral',
+      '3': 'Vallenar'
+    };
+
+    const mapeoPlantaABD = {
+      '10': 'Vicuña',
+      '11': 'Cancha Rayada',
+      '12': 'Cartavio',
+      '13': 'Santa Ines',
+      '14': 'El Salado'
+    };
+
+    const nombreSector = mapeoSectorABD[sectorSeleccionado];
+
+    if (nombreSector === undefined) {
+      return res.status(404).send('Sector seleccionado no válido');
     }
+
+    const query = `
+      SELECT 
+        TipoFalla, 
+        '${nombreSector}' AS NombreSector,
+        CASE IdPlanta
+          WHEN 10 THEN '${mapeoPlantaABD['10']}'
+          WHEN 11 THEN '${mapeoPlantaABD['11']}'
+          WHEN 12 THEN '${mapeoPlantaABD['12']}'
+          WHEN 13 THEN '${mapeoPlantaABD['13']}'
+          WHEN 14 THEN '${mapeoPlantaABD['14']}'
+          ELSE ''
+        END AS NombrePlanta,
+        CONVERT(varchar, FechaDetencion, 23) AS FechaDetencion,
+        Descripcion, 
+        ResponsableMantenimiento, 
+        CONVERT(varchar, HoraDetencion, 108) AS HoraDetencion, 
+        CONVERT(varchar, HoraResolucion, 108) AS HoraResolucion, 
+        CONVERT(varchar, FechaResolucion, 23) AS FechaResolucion
+      FROM MantenimientoFallaDetectada
+      WHERE IdSector = ${sectorSeleccionado}
+    `;
+
+    const result = await pool.request().query(query);
+
+    if (result && result.recordset && result.recordset.length > 0) {
+      let htmlResponse = '<table><thead><tr><th>Tipo Falla</th><th>Nombre Sector</th><th>Nombre Planta</th><th>Fecha Detención</th><th>Descripción</th><th>Responsable Mantenimiento</th><th>Hora Detención</th><th>Hora Resolución</th><th>Fecha Resolución</th></tr></thead><tbody>';
+
+      result.recordset.forEach(evento => {
+        htmlResponse += `
+          <tr>
+            <td>${evento.TipoFalla}</td>
+            <td>${evento.NombreSector}</td>
+            <td>${evento.NombrePlanta}</td>
+            <td>${evento.FechaDetencion}</td>
+            <td>${evento.Descripcion}</td>
+            <td>${evento.ResponsableMantenimiento}</td>
+            <td>${evento.HoraDetencion}</td>
+            <td>${evento.HoraResolucion}</td>
+            <td>${evento.FechaResolucion}</td>
+          </tr>
+        `;
+      });
+
+      htmlResponse += '</tbody></table>';
+      res.status(200).send(htmlResponse);
+    } else {
+      res.status(404).send('No se encontraron eventos para este sector');
+    }
+  } catch (err) {
+    res.status(500).send('Error al obtener los eventos por sector: ' + err.message);
+    console.error(err.message);
+  }
+  };
+
+  
+const obtenerDatosDispositivos = async (req, res) => {
+  try {
+    const sectorSeleccionado = req.query.sector;
+
+    const mapeoSectorABD = {
+      '1': 'Copiapó',
+      '2': 'Chañaral',
+      '3': 'Vallenar'
+    };
+
+    const mapeoPlantaABD = {
+      '10': 'Vicuña',
+      '11': 'Cancha Rayada',
+      '12': 'Cartavio',
+      '13': 'Santa Ines',
+      '14': 'El Salado'
+    };
+
+    const nombreSector = mapeoSectorABD[sectorSeleccionado];
+
+    if (nombreSector === undefined) {
+      return res.status(404).send('Sector seleccionado no válido');
+    }
+
+    const query = `
+      SELECT 
+      IdSensor,
+        '${nombreSector}' AS NombreSector,
+        CASE IdPlanta
+          WHEN 10 THEN '${mapeoPlantaABD['10']}'
+          WHEN 11 THEN '${mapeoPlantaABD['11']}'
+          WHEN 12 THEN '${mapeoPlantaABD['12']}'
+          WHEN 13 THEN '${mapeoPlantaABD['13']}'
+          WHEN 14 THEN '${mapeoPlantaABD['14']}'
+          ELSE ''
+        END AS NombrePlanta,
+        CONVERT(varchar, FechaMantenimiento, 23) AS FechaMantenimiento,
+        DescripcionMantenimiento, 
+        ResponsableMantenimiento 
+      FROM MantenimientoDispositivos
+      WHERE IdSector = ${sectorSeleccionado}
+    `;
+
+    const result = await pool.request().query(query);
+
+    if (result && result.recordset && result.recordset.length > 0) {
+      let htmlResponse = '<table><thead><tr><th>Id Sensor</th><th>Nombre Sector</th><th>Nombre Planta</th><th>Fecha Mantenimiento</th></tr></thead><tbody>';
+
+      result.recordset.forEach(evento => {
+        htmlResponse += `
+          <tr>
+            <td>${evento.IdSensor}</td>
+            <td>${evento.NombreSector}</td>
+            <td>${evento.NombrePlanta}</td>
+            <td>${evento.FechaMantenimiento}</td>
+            <td>${evento.ResponsableMantenimiento}</td>
+            <td>${evento.DescripcionMantenimiento}</td>
+
+          </tr>
+        `;
+      });
+
+      htmlResponse += '</tbody></table>';
+      res.status(200).send(htmlResponse);
+    } else {
+      res.status(404).send('No se encontraron eventos para este sector');
+    }
+  } catch (err) {
+    res.status(500).send('Error al obtener los eventos por sector: ' + err.message);
+    console.error(err.message);
+  }
   };
 
 
 const saveDataFormFallas = async (req, res) => {
-    try {
+  try {
+    const fechaDetencion = req.body.FechaDetencion;
 
-        const horaDetencion = req.body.HoraDetencion + ":00";
-        const horaResolucion = req.body.HoraResolucion + ":00";
+    
+    const fechaResolucion = req.body.FechaResolucion;
 
-        await pool.request()
-            .input('TipoFalla', sql.NVarChar, req.body.TipoFalla)
-            .input('IdSector', sql.Int, req.body.IdSector)
-            .input('IdPlanta', sql.NVarChar, req.body.IdPlanta)
-            .input('FechaDetencion', sql.Date, req.body.FechaDetencion)
-            .input('Descripcion', sql.NVarChar, req.body.Descripcion)
-            .input('ResponsableMantenimiento', sql.NVarChar, req.body.ResponsableMantenimiento)
-            .input('HoraDetencion', sql.NVarChar, horaDetencion) // Usar NVarChar para el tiempo
-            .input('HoraResolucion', sql.NVarChar, horaResolucion) // Usar NVarChar para el tiempo
-            .input('FechaResolucion', sql.Date, req.body.FechaResolucion)
-            .query(`
+    const horaDetencion = req.body.HoraDetencion; // Asegúrate de obtener HoraDetencion correctamente
+    const horaResolucion = req.body.HoraResolucion; // Asegúrate de obtener HoraDetencion correctamente
+
+
+
+    await pool.request()
+      .input('TipoFalla', sql.VarChar(255), req.body.TipoFalla)
+      .input('IdSector', sql.Int, req.body.IdSector)
+      .input('IdPlanta', sql.Int, req.body.IdPlanta)
+      .input('FechaDetencion', sql.Date, fechaDetencion)
+      .input('Descripcion', sql.VarChar(255), req.body.Descripcion)
+      .input('ResponsableMantenimiento', sql.VarChar(255), req.body.ResponsableMantenimiento)
+      .input('HoraDetencion', sql.NVarChar, horaDetencion)
+      .input('HoraResolucion', sql.NVarChar, horaResolucion)
+      .input('FechaResolucion', sql.Date, fechaResolucion)
+      .query(`
           INSERT INTO MantenimientoFallaDetectada
           (TipoFalla, IdSector, IdPlanta, FechaDetencion, Descripcion, ResponsableMantenimiento, HoraDetencion, HoraResolucion, FechaResolucion)
           VALUES
           (@TipoFalla, @IdSector, @IdPlanta, @FechaDetencion, @Descripcion, @ResponsableMantenimiento, @HoraDetencion, @HoraResolucion, @FechaResolucion)
-        `);
+      `);
 
-        res.status(200).send('Datos insertados correctamente');
-    } catch (err) {
-        res.status(500).send('Error al insertar datos: ' + err.message);
+    res.status(200).send('Datos insertados correctamente');
+  } catch (err) {
+    res.status(500).send('Error al insertar datos: ' + err.message);
+    console.log(err.message);
+  }
 
-        console.log(err.message)
-    }
 }
+const saveDataFormDispositivos = async (req, res) => {
+  try {
+    const { IdSensor, IdSector, IdPlanta, FechaMantenimiento, ResponsableMantenimiento, DescripcionMantenimiento } = req.body;
 
-const saveDataFormDispositivos = async () => {
-    try {
-
-        const horaDetencion = req.body.HoraDetencion + ":00";
-        const horaResolucion = req.body.HoraResolucion + ":00";
-
-        await pool.request()
-            .input('IdSensor', sql.Int, req.body.IdSensor)
-            .input('IdSector', sql.Int, req.body.IdSector)
-            .input('IdPlanta', sql.Int, req.body.IdPlanta)
-            .input('FechaMantenimiento', sql.Date, req.body.FechaMantenimiento)
-            .input('ResponsableMantenimiento', sql.NVarChar, req.body.ResponsableMantenimiento)
-            .input('DescripcionMantenimiento', sql.NVarChar, req.body.DescripcionMantenimiento)
-            .query(`
+    await pool.request()
+      .input('IdSensor', sql.Int, IdSensor)
+      .input('IdSector', sql.Int, IdSector)
+      .input('IdPlanta', sql.Int, IdPlanta)
+      .input('FechaMantenimiento', sql.Date, FechaMantenimiento)
+      .input('ResponsableMantenimiento', sql.NVarChar, ResponsableMantenimiento)
+      .input('DescripcionMantenimiento', sql.NVarChar, DescripcionMantenimiento)
+      .query(`
         INSERT INTO MantenimientoDispositivos
         (IdSensor, IdSector, IdPlanta, FechaMantenimiento, ResponsableMantenimiento, DescripcionMantenimiento)
         VALUES
         (@IdSensor, @IdSector, @IdPlanta, @FechaMantenimiento, @ResponsableMantenimiento, @DescripcionMantenimiento)
       `);
 
-
-        res.status(200).send('Datos insertados correctamente');
-    } catch (err) {
-        res.status(500).send('Error al insertar datos: ' + err.message);
-    }
+    res.status(200).send('Datos insertados correctamente');
+  } catch (err) {
+    res.status(500).send('Error al insertar datos: ' + err.message);
+  }
 }
 
 
@@ -376,5 +523,6 @@ module.exports = {
     obtenerRecuentoEventosPorMesChanaral,
     obtenerTresMesesConMasEventosChanaral,
     obtenerRecuentoTotalEventosPorMes,
-    obtenerRecuentoEventosPorPlanta
+    obtenerRecuentoEventosPorPlanta,
+    obtenerDatosDispositivos
 }

@@ -5,6 +5,8 @@ const router = express.Router()
 const controll = require('../controllers/controll');
 
 
+
+
 router.get('/index', (req, res) => {
   res.sendFile('index.html', { root: './pages' });
 });
@@ -58,15 +60,25 @@ router.get('/informes', (req, res) => {
     res.sendFile('VerFallasDetectadas.html', { root: './pages' });
   });
 router.route('/data')
-  .get(controll.obtenerDatosInformes) //Manejar GET
-  .post(controll.saveDataFormFallas); // Manejar POST
+  .get(controll.obtenerDatosInformes); //Manejar GET
 
   router.get('/data', (req, res) => {
     res.json({ message: 'Main poto' })
 })
+<<<<<<< Updated upstream
   .post(controll.saveDataFormFallas);
+=======
 
-router.post('/data', controll.saveDataFormDispositivos);
+router.post('/registrarFalla', controll.saveDataFormFallas);
+
+>>>>>>> Stashed changes
+
+
+  router.get('/datosInformes', controll.obtenerDatosInformes);
+  router.get('/datosdispositivos', controll.obtenerDatosDispositivos);
+
+
+router.post('/registrarDispositivo', controll.saveDataFormDispositivos);
 //Graficos Vallenar
 router.get('/recuentoEventoTresMesesVallenar', controll.obtenerTresMesesConMasEventosVallenar);
 router.get('/recuentoEventosPorMesVallenar', controll.obtenerRecuentoEventosPorMesVallenar);
@@ -74,7 +86,6 @@ router.get('/recuentoEventosPorMesVallenar', controll.obtenerRecuentoEventosPorM
 //Graficos Copiapo
 router.get('/recuentoEventosPorPlantaCopiapo', controll.obtenerRecuentoEventosPorPlantaCopiapo);
 router.get('/recuentoEventosPorMesCopiapo', controll.obtenerRecuentoEventosPorMesCopiapo);
-router.get('/datosInformes', controll.obtenerDatosInformes);
 
 //Graficos Chanaral
 router.get('/recuentoEventosPorMesChanaral', controll.obtenerRecuentoEventosPorMesChanaral);

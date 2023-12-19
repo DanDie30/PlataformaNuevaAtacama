@@ -143,7 +143,7 @@
     <div class="col content">
 
     <!-- FORMULARIO -->
-    <form action="http://localhost:3000/data" method="post" id="FormularioFallas">
+    <form action="/registrarFalla" method="post" id="FormularioFallas">
         <!-- Primer apartado de inputs -->
         <div class="row mb-3">
           <div class="col">
@@ -210,6 +210,43 @@
         <button id="btnEnviar" type="submit" class="btn btn-primary btn-lg btn-light border border-dark d-block mx-auto my-3 btn-medium rounded-pill">Guardar</button>
       </div>
     </form>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('FormularioFallas');
+  const btnEnviar = document.getElementById('btnEnviar');
+
+  btnEnviar.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+
+    // Convertir los datos del formulario a un objeto JSON
+    const formDataJSON = {};
+    for (const [key, value] of formData.entries()) {
+      formDataJSON[key] = value;
+    }
+
+    fetch('/registrarFalla', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formDataJSON)
+    })
+    .then(response => response.text())
+    .then(data => {
+      console.log('Datos registrados correctamente:', data);
+      // Realizar acciones adicionales si es necesario
+    })
+    .catch(error => {
+      console.error('Error al registrar datos:', error);
+    });
+  });
+});
+
+    </script>
+
     </div>
     
     </div>

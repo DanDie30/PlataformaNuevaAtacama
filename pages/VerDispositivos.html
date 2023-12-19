@@ -62,9 +62,30 @@
     }
     
     .table{
-      margin-top: 5%;
+      margin-top: 7%;
+      margin-right: 20%;
       border: black;
       border-radius: 1px;
+    }
+
+    #btnRegistrarMantenimiento {
+  position: absolute;
+  top: 7%;
+  left: 83%;
+  width: 13em;
+  height: 2.5em; /* Ajusta la altura según lo necesites */
+  border-radius: 50px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 18px;
+  background-color: #EFEFEF;
+        color: black;
+        border-color: black;
+}
+
+    #btnRegistrarMantenimiento:hover{
+      transition: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+      transition-duration: 0.10s;
+      background-color: darkgray;
     }
 
  
@@ -161,12 +182,11 @@
       </div>
       </div>
     <!-- Mantén el resto del código intacto -->
-<!-- Mantén el resto del código intacto -->
 
 <!-- Dentro del div con la clase "content" -->
 <div class="col content d-flex justify-content-center">
     <div>
-      <button id="btn-mensual">Registrar Mantenimiento</button>
+      <a class="btn btn-primary btn-md my-2" id="btnRegistrarMantenimiento">Registrar Mantenimiento</a>
 
       
 
@@ -174,80 +194,102 @@
      
        
 
-          <select name="" id="SelectPlanta" style=" height: 40px; font-size: 20px;">
-            <option value="">Planta</option>
-            <option value="">Vicuña</option>
-            <option value="">Copiapó</option>
-            <option value="">Cartavio</option>
-            <option value="">Paipote</option>
-          </select>
-
-    
           
-         
-        <button  id="btn-Buscar" name="/data" type="submit">Buscar</button>
-      </div>
-
-      <div style="display: flex;">
-
-      <table class="table">
-        <caption>Datos de informe</caption>
-        <thead>
-          <tr>
-            <th scope="col">Id Sensor</th>
-            <th scope="col">Planta</th>
-            <th scope="col">Fecha Mantenimiento</th>
-            <th scope="col">Descripcion Mantenimiento</th>
-            <th scope="col">Responsable Mantenimiento</th>
+        <form id="consultaForm" action="/datosdispositivos" method="get">
+          <div id="filtroBuscar">
+            <label for="selectPlanta">Selecciona un sector:</label>
+            <select name="sector" id="selectPlanta">
+              <option value="1">Copiapó</option>
+              <option value="2">Chañaral</option>
+              <option value="3">Vallenar</option>
+            </select>
+          </div>
+   
+          <button type="submit" id="btnConsultar">Consultar</button>
+        </form>
 
 
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>102323</td>
-            <td>Vicuña</td>
-            <td>13-12-2023</td>
-            <td>Ajuste de dispositivo</td>
-            <td>Diego Villalobos</td>
-        
-          </tr>
-          <tr>
-            <td>102353</td>
-            <td>Vicuña</td>
-            <td>13-12-2023</td>
-            <td>Ajuste de caja maestra</td>
-            <td>Duvan Rojas</td>
-          </tr>
-          <tr>
-            <td>113293</td>
-            <td>Vicuña</td>
-            <td>14-12-2023</td>
-            <td>Ajuste de dispositivo</td>
-            <td>Catalina Lagos</td>
+        <table id="tablaResultados" class="table">
+          <thead>
+            <tr>
+              <th>Id Sensor</th>
+              <th>Nombre Sector</th>
+              <th>Nombre Planta</th>
+              <th>Fecha Mantenimiento</th>
+              <th>Responsable Mantenimiento</th>
+              <th>Descripción Mantenimiento</th>
+            </tr>
+          </thead>
+          <tbody id="tablaBody">
+            <!-- Aquí se mostrarán los resultados -->
+          </tbody>
+        </table>
 
-          </tr>
-        </tbody>
-      </table>
-    </div>
 
-  
+      </div>  
 
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script>
-        document.getElementById('getDataButton').addEventListener('click', async () => {
-            try {
-                const response = await fetch('/api/data'); // Hacer una solicitud a la ruta '/api/data'
-                const data = await response.json(); // Obtener los datos JSON de la respuesta
-                
-                // Manejar los datos recibidos, como mostrarlos en el DOM
-                console.log(data); // Mostrar los datos en la consola para ver qué recibiste
-            } catch (error) {
-                console.error('Error al obtener datos:', error);
-                console.log(error);
-                
-            }
+        $(document).ready(function() {
+          $('#consultaForm').submit(function(event) {
+            event.preventDefault();
+      
+            const formData = $(this).serialize();
+      
+            $.ajax({
+              url: '/datosdispositivos?' + formData,
+              method: 'get',
+              success: function(response) {
+                const tablaBody = $('#tablaBody');
+                tablaBody.empty(); // Limpiar la tabla actual
+      
+                // Crear un elemento div para contener la tabla y convertir la respuesta a elementos HTML
+                const div = $('<div></div>');
+                div.html(response);
+      
+                // Obtener todas las filas de la tabla
+                const filas = div.find('tr');
+      
+                // Recorrer cada fila y obtener los datos
+                filas.each(function(index, fila) {
+                  // Ignorar la primera fila ya que es la cabecera de la tabla
+                  if (index !== 0) {
+                    const columnas = $(fila).find('td'); // Obtener las columnas de la fila
+      
+                    // Obtener los datos de cada columna
+                    const idSensor = columnas.eq(0).text();
+                    const idSector = columnas.eq(1).text();
+                    const idPlanta = columnas.eq(2).text();
+                    const fechaMantenimiento = columnas.eq(3).text();
+                    const responsableMantenimiento = columnas.eq(4).text();
+                    const descripcionMantenimiento = columnas.eq(5).text();
+
+      
+                    // Construir una fila HTML con los datos
+                    const filaHTML = `
+                      <tr>
+                        <td>${idSensor}</td>
+                        <td>${idSector}</td>
+                        <td>${idPlanta}</td>
+                        <td>${fechaMantenimiento}</td>
+                        <td>${responsableMantenimiento}</td>
+                        <td>${descripcionMantenimiento}</td>
+                    
+                      </tr>
+                    `;
+      
+                    tablaBody.append(filaHTML); // Agregar la fila a la tabla en la página
+                  }
+                });
+              },
+              error: function(xhr, status, error) {
+                console.error('Error al obtener los datos:', error);
+              }
+            });
+          });
         });
-    </script>
+      </script>
+      
 
 
  

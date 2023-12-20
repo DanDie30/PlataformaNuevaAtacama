@@ -69,14 +69,20 @@ router.route('/data')
   router.get('/data', (req, res) => {
     res.json({ message: 'Main poto' })
 })
-  .post(controll.saveDataFormFallas);
 
 
-  router.get('/datosInformes', controll.obtenerDatosInformes);
+
+
+router.post('/login', controll.inicioSesion);
+
+router.post('/registrarFalla', controll.saveDataFormFallas);
+
+//Obtener Datos para informes
+  router.get('/datosInformes', controll.obtenerDatosInformes); //¿? de donde salio
   router.get('/datosdispositivos', controll.obtenerDatosDispositivos);
-//Validar credenciales usuario
-router.post('/login', controll.validarUsuario)
-//
+  router.get('/datosevento', controll.obtenerDatosEventos);
+
+
 router.post('/registrarDispositivo', controll.saveDataFormDispositivos);
 //Graficos Vallenar
 router.get('/recuentoEventoTresMesesVallenar', controll.obtenerTresMesesConMasEventosVallenar);

@@ -1,5 +1,50 @@
 const sql = require('mssql')
 const pool = require('../utils/db')
+const path = require('path');
+
+
+const config = {
+  user: 'adminsql',
+  password: 'Megalodon_2001',
+  server: 'servidortestsql.database.windows.net',
+  database: 'BDTest',
+  options: {
+    encrypt: true, // En caso de que estés utilizando conexiones seguras (recomendado para Azure)
+    enableArithAbort: true // Habilita el comportamiento recomendado para las conexiones con SQL Server
+  }
+};
+
+// Función para realizar la consulta
+const inicioSesion = async (req, res) => {
+  const { NombreUsuario, Clave } = req.body;
+
+  try {
+    // Configurar la conexión
+    const pool = await sql.connect(config);
+
+    // Consulta SQL con parámetros con nombres
+    const request = pool.request();
+    request.input('NombreUsuario', sql.NVarChar, NombreUsuario);
+    request.input('Clave', sql.NVarChar, Clave);
+
+    const query = 'SELECT * FROM Usuarios WHERE NombreUsuario = @NombreUsuario AND Clave = @Clave';
+    const result = await request.query(query);
+
+    if (result.recordset.length > 0) {
+      // Inicio de sesión exitoso
+      // Puedes almacenar información del usuario en la sesión si lo deseas
+
+      // Redirigir al usuario a la página '/index'
+      res.redirect('/index');
+    } else {
+      res.status(401).json({ success: false, message: 'Credenciales inválidas' });
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error en la base de datos' });
+    console.error('Error en la base de datos:', error);
+  }
+};
+
 
 
 
@@ -336,6 +381,7 @@ const obtenerDatosInformes = async (req, res) => {
         CONVERT(varchar, FechaResolucion, 23) AS FechaResolucion
       FROM MantenimientoFallaDetectada
       WHERE IdSector = ${sectorSeleccionado}
+      ORDER BY FechaDetencion DESC
     `;
 
     const result = await pool.request().query(query);
@@ -409,6 +455,7 @@ const obtenerDatosDispositivos = async (req, res) => {
         ResponsableMantenimiento 
       FROM MantenimientoDispositivos
       WHERE IdSector = ${sectorSeleccionado}
+      ORDER BY FechaMantenimiento DESC
     `;
 
     const result = await pool.request().query(query);
@@ -497,6 +544,81 @@ const saveDataFormFallas = async (req, res) => {
   }
 
 }
+
+const obtenerDatosEventos = async (req, res) => {
+  try {
+    const sectorSeleccionado = req.query.sector;
+
+    const mapeoSectorABD = {
+      '1': 'Copiapó',
+      '2': 'Chañaral',
+      '3': 'Vallenar'
+    };
+
+    const mapeoPlantaABD = {
+      '10': 'Vicuña',
+      '11': 'Cancha Rayada',
+      '12': 'Cartavio',
+      '13': 'Santa Ines',
+      '14': 'El Salado'
+    };
+
+    const nombreSector = mapeoSectorABD[sectorSeleccionado];
+
+    if (nombreSector === undefined) {
+      return res.status(404).send('Sector seleccionado no válido');
+    }
+
+    const query = `
+      SELECT 
+        IdSensor, 
+        '${nombreSector}' AS NombreSector,
+        CASE IdPlanta
+          WHEN 10 THEN '${mapeoPlantaABD['10']}'
+          WHEN 11 THEN '${mapeoPlantaABD['11']}'
+          WHEN 12 THEN '${mapeoPlantaABD['12']}'
+          WHEN 13 THEN '${mapeoPlantaABD['13']}'
+          WHEN 14 THEN '${mapeoPlantaABD['14']}'
+          ELSE ''
+        END AS NombrePlanta,
+        CONVERT(varchar, Fecha, 23) AS Fecha,
+        CONVERT(varchar, Hora, 108) AS Hora, 
+        CONVERT(varchar, DuracionDetencion, 108) AS DuracionDetencion 
+      FROM Evento
+      WHERE IdSector = ${sectorSeleccionado}
+    `;
+
+    const result = await pool.request().query(query);
+
+    if (result && result.recordset && result.recordset.length > 0) {
+      let htmlResponse = '<table><thead><tr><th>Id Sensor</th><th>Nombre Sector</th><th>Nombre Planta</th><th>Fecha</th><th>Hora</th><th>Duración Detención</th></tr></thead><tbody>';
+
+      result.recordset.forEach(evento => {
+        htmlResponse += `
+          <tr>
+            <td>${evento.IdSensor}</td>
+            <td>${evento.NombreSector}</td>
+            <td>${evento.NombrePlanta}</td>
+            <td>${evento.Fecha}</td>
+            <td>${evento.Hora}</td>
+            <td>${evento.DuracionDetencion}</td>
+          </tr>
+        `;
+      });
+
+      htmlResponse += '</tbody></table>';
+      res.status(200).send(htmlResponse);
+    } else {
+      res.status(404).send('No se encontraron eventos para este sector');
+    }
+  } catch (err) {
+    res.status(500).send('Error al obtener los eventos por sector: ' + err.message);
+    console.error(err.message);
+  }
+
+};
+
+
 const saveDataFormDispositivos = async (req, res) => {
   try {
     const { IdSensor, IdSector, IdPlanta, FechaMantenimiento, ResponsableMantenimiento, DescripcionMantenimiento } = req.body;
@@ -536,5 +658,6 @@ module.exports = {
     obtenerRecuentoTotalEventosPorMes,
     obtenerRecuentoEventosPorPlanta,
     obtenerDatosDispositivos,
-    validarUsuario
+    obtenerDatosEventos,
+    inicioSesion
 }

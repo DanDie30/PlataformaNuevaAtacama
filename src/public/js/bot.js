@@ -86,7 +86,7 @@ async function verificarNuevoValor() {
         + `Sector: ${idSectorNombre}\n`
         + `Planta: ${idPlantaNombre}\n` 
         + `IdSensor: ${ultimoEvento.IdSensor}\n`
-        + `Duración de detención: ${duracionDetencionTexto}\n`
+       // + `Duración de detención: ${duracionDetencionTexto}\n`
         + `Fecha: ${fecha}\n`
         + `Hora: ${hora}`;
       console.log('Detalles del mensaje:', mensaje);

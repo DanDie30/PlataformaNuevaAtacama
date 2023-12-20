@@ -15,7 +15,8 @@
     "node-cron": "^3.0.3",
     "node-schedule": "^2.1.1",
     "node-telegram-bot-api": "^0.64.0",
-    "odbc": "^2.4.8"
+    "odbc": "^2.4.8",
+    "axios": "^1.6.2"
   },
   "name": "pruebaatacama",
   "version": "1.0.0",
@@ -23,6 +24,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/server.js",
+    "dev1": "nodemon src/public/js/int.js",
     "start": "concurrently \"npm run dev\" \"node src/public/js/bot.js\""
   },
   "keywords": [],

@@ -29,7 +29,8 @@
       <div class="text-center fs-1 fw-bold">Monitoreo de señales digitales</div>
       <div class="input-group mt-4">
         <div class="input-group-text bg-info">
-          <img
+          <form id="login-form" action="" >
+            <img
             src="/assets/username-icon.svg"
             alt="username-icon"
             style="height: 1rem"
@@ -37,6 +38,7 @@
         </div>
         <input
           name="username"
+          id="username"
           class="form-control bg-light"
           type="text"
           placeholder="Usuario"
@@ -52,8 +54,9 @@
         </div>
         <input
           name="password"
-          class="form-control bg-light"
+          id="password"
           type="password"
+          class="form-control bg-light"
           placeholder="Contraseña"
         />
       </div>
@@ -74,49 +77,47 @@
       <div class="btn btn-info text-white w-100 mt-4 fw-semibold shadow-sm">
         Iniciar sesión
       </div>
-      <script>
-        const form = document.querySelector('form'); // Asumiendo que hay un elemento "form"
-        form.addEventListener('submit', async (event) => {
-          event.preventDefault(); // Prevenir el envío automático del formulario
-          const username = document.querySelector('input[name="username"]').value;
-          const password = document.querySelector('input[name="password"]').value;
-          const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              username,
-              password,
-            }),
-          });
-
-          if (!response.ok) {
-            // Manejar error de la respuesta HTTP
-            const errorMessage = await response.text();
-            alert('Error al iniciar sesión: ' + errorMessage);
-            return;
-          }
-
-          const data = await response.json();
-
-          if (data.success) {
-            // Redireccionar a la página principal
-            window.location.href = '/';
-          } else {
-            // Mostrar mensaje de error en base al mensaje recibido
-            alert(data.message);
-          }
-        });
-
-      </script>
       <div class="d-flex gap-1 justify-content-center mt-1">
         <div>¿No tienes una cuenta?</div>
         <a href="#" class="text-decoration-none text-info fw-semibold"
           >Registrate</a>
       </div>
-    </div>
-
-  
+          </form>
+          <script>
+            const form = document.querySelector('form'); // Asumiendo que hay un elemento "form"
+            form.addEventListener('submit', async (event) => {
+              event.preventDefault(); // Prevenir el envío automático del formulario
+              const username = document.querySelector('input[name="username"]').value;
+              const password = document.querySelector('input[name="password"]').value;
+              const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  username,
+                  password,
+                }),
+              });
+    
+              if (!response.ok) {
+                // Manejar error de la respuesta HTTP
+                const errorMessage = await response.text();
+                alert('Error al iniciar sesión: ' + errorMessage);
+                return;
+              }
+    
+              const data = await response.json();
+    
+              if (data.success) {
+                // Redireccionar a la página principal
+                window.location.href = '/';
+              } else {
+                // Mostrar mensaje de error en base al mensaje recibido
+                alert(data.message);
+              }
+            });
+          </script>
+      </div>
   </body>
 </html>

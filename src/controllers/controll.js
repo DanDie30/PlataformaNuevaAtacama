@@ -3,6 +3,7 @@ const pool = require('../utils/db')
 const path = require('path');
 
 
+
 const obtenerRecuentoEventosPorMesCopiapo = async (req, res) => {
   try {
     const query = `

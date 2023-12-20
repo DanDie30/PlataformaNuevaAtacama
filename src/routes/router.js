@@ -65,17 +65,18 @@ router.route('/data')
   router.get('/data', (req, res) => {
     res.json({ message: 'Main poto' })
 })
-<<<<<<< Updated upstream
-  .post(controll.saveDataFormFallas);
-=======
+
+
+
+
+
 
 router.post('/registrarFalla', controll.saveDataFormFallas);
 
->>>>>>> Stashed changes
-
-
-  router.get('/datosInformes', controll.obtenerDatosInformes);
+//Obtener Datos para informes
+  router.get('/datosInformes', controll.obtenerDatosInformes); //¿? de donde salio
   router.get('/datosdispositivos', controll.obtenerDatosDispositivos);
+  router.get('/datosevento', controll.obtenerDatosEventos);
 
 
 router.post('/registrarDispositivo', controll.saveDataFormDispositivos);

@@ -71,11 +71,21 @@
       border: black;
       border-radius: 1px;
     }
+    .arrow-icon {
+  position: absolute;
+top: 1.5%;
+  left: 17%;
+  font-size: 1.8rem; /* Tamaño de la flecha ajustable */
+  cursor: pointer; /* Opcional: para hacer clic en la flecha */
+}
+
   </style>
 </head>
 <body>
   <!-- #### Encabezado #### -->
   <nav class=" navbar-light bg-body-secondary border border-dark text-dark">
+    <a href="/mantenimientoprincipal"> <i class="fas fa-arrow-left arrow-icon"></i> </a>
+
     <p class="text-end text-dark fs-2 my-0">
     Ver Mantenimiento de Fallas Detectadas
     </p>
@@ -274,46 +284,7 @@
         </script>
         
         
-<<<<<<< Updated upstream
-          </tr>
-          <tr>
-            <td>102353</td>
-            <td>Vicuña</td>
-            <td>13-12-2023</td>
-            <td>Ajuste de caja maestra</td>
-            <td>Duvan Rojas</td>
-          </tr>
-          <tr>
-            <td>113293</td>
-            <td>Vicuña</td>
-            <td>14-12-2023</td>
-            <td>Ajuste de dispositivo</td>
-            <td>Catalina Lagos</td>
-
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-  
-
-      <script>
-        document.getElementById('getDataButton').addEventListener('click', async () => {
-            try {
-                const response = await fetch('/api/data'); // Hacer una solicitud a la ruta '/api/data'
-                const data = await response.json(); // Obtener los datos JSON de la respuesta
-                
-                // Manejar los datos recibidos, como mostrarlos en el DOM
-                console.log(data); // Mostrar los datos en la consola para ver qué recibiste
-            } catch (error) {
-                console.error('Error al obtener datos:', error);
-                console.log(error);
-            }
-        });
-    </script>
-=======
  
->>>>>>> Stashed changes
     </div>
     </div>
   </div>

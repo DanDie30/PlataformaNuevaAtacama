@@ -1,11 +1,6 @@
 const sql = require('mssql')
 const pool = require('../utils/db')
 
-<<<<<<< Updated upstream
-=======
-const moment = require('moment'); // Para el formato de fecha
-
->>>>>>> Stashed changes
 
 
 const obtenerRecuentoEventosPorMesCopiapo = async (req, res) => {
@@ -385,7 +380,6 @@ const obtenerDatosDispositivos = async (req, res) => {
       '2': 'Chañaral',
       '3': 'Vallenar'
     };
-
     const mapeoPlantaABD = {
       '10': 'Vicuña',
       '11': 'Cancha Rayada',
@@ -393,9 +387,7 @@ const obtenerDatosDispositivos = async (req, res) => {
       '13': 'Santa Ines',
       '14': 'El Salado'
     };
-
     const nombreSector = mapeoSectorABD[sectorSeleccionado];
-
     if (nombreSector === undefined) {
       return res.status(404).send('Sector seleccionado no válido');
     }
@@ -433,11 +425,9 @@ const obtenerDatosDispositivos = async (req, res) => {
             <td>${evento.FechaMantenimiento}</td>
             <td>${evento.ResponsableMantenimiento}</td>
             <td>${evento.DescripcionMantenimiento}</td>
-
           </tr>
         `;
       });
-
       htmlResponse += '</tbody></table>';
       res.status(200).send(htmlResponse);
     } else {
@@ -448,8 +438,29 @@ const obtenerDatosDispositivos = async (req, res) => {
     console.error(err.message);
   }
   };
-
-
+  async function validarUsuario(username, password) {
+    const usuario = await pool.query(
+      `
+      SELECT
+        NombreUsuario,
+        Clave
+      FROM
+        Usuarios
+      WHERE
+        NombreUsuario = @username AND
+        Clave = @password
+      `,
+      {
+        username,
+        password,
+      }
+    );
+    if (usuario.length === 1) {
+      return usuario[0];
+    } else {
+      return null;
+    }
+  }
 const saveDataFormFallas = async (req, res) => {
   try {
     const fechaDetencion = req.body.FechaDetencion;
@@ -524,5 +535,6 @@ module.exports = {
     obtenerTresMesesConMasEventosChanaral,
     obtenerRecuentoTotalEventosPorMes,
     obtenerRecuentoEventosPorPlanta,
-    obtenerDatosDispositivos
+    obtenerDatosDispositivos,
+    validarUsuario
 }

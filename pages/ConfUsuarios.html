@@ -41,9 +41,12 @@
     .content {
       margin-left: 250px; /* Ancho del sidebar */
     }
-    @media (max-width: 992px) {
+    @media (max-width: 768px) {
       .content {
         margin-left: 0;
+      }
+      .sidebar{
+        width: 40%;
       }
     }
   .content2{
@@ -213,42 +216,50 @@
        <div class="col content d-flex justify-content-center">
         <div>
           <div class="d-flex" style="justify-content: space-between;">
-            <p style="margin-right: 10px; margin-top: 5px;">Filtro:</p>
-            <select style="margin-right: 10px;">
-              <option value="">X</option>
-              <option value=""></option>
-              <option value="">Can</option>
-              <option value="">Cartavio</option>
-              <option value="">Paipote</option>
-            </select>
-            <select style="margin-right: 10px;">
-              <option value="">X</option>
-              <option value="">Menor o = 30 segundos</option>
-              <option value="">Menor o = a 2 minutos</option>
-              <option value="">Menor o = a 10 minutos</option>
-            </select>
-            <button type="submit" id="btn-Buscar" name="/data">Buscar</button>
-          </div>
-          <div class="d-flex" style="justify-content: space-between;">
-            <p style="margin-right: 10px; margin-top: 5px;">Rol:</p>
-            <div class="d-flex flex-column gap-1">
-              <label class="form-check">
-                <input class="form-check-input" type="checkbox" id="rolAdmin" name="rol">
-                <label class="form-check-label" for="rolAdmin">Administrador</label>
-              </label>
-              <label class="form-check">
-                <input class="form-check-input" type="checkbox" id="rolUsuario" name="rol">
-                <label class="form-check-label" for="rolUsuario">Usuario</label>
-              </label>
-              <label class="form-check">
-                <input class="form-check-input" type="checkbox" id="rolInvitado" name="rol">
-                <label class="form-check-label" for="rolInvitado">Invitado</label>
-              </label>
+            <div class="d-flex justify-content-center align-items-center">
+              <div style="width: 25rem">
+                <div class="text-center fs-1 fw-bold">Usuarios</div>
+                <div class="d-flex mt-4">
+                  <p style="margin-right: 10px; margin-top: 5px;">Filtro:</p>
+                  <select style="margin-right: 10px;" class="form-control">
+                    <option value="">X</option>
+                    <option value="">Planta 1</option>
+                    <option value="">Planta 2</option>
+                    <option value="">Planta 3</option>
+                  </select>
+                  <select style="margin-right: 10px;" class="form-control">
+                    <option value="">X</option>
+                    <option value="">Menor o = 30 segundos</option>
+                    <option value="">Menor o = a 2 minutos</option>
+                    <option value="">Menor o = a 10 minutos</option>
+                  </select>
+
+                  <button type="submit" id="btn-Buscar" name="/data" class="btn btn-secondary text-white fw-semibold shadow-sm">Buscar</button>
+                </div>
+            
+                <div class="d-flex mt-4">
+                  <p style="margin-right: 10px; margin-top: 5px;">Rol:</p>
+                  <div class="d-flex flex-column gap-1">
+                    <label class="form-check">
+                      <input class="form-check-input" type="checkbox" id="rolAdmin" name="rol">
+                      <label class="form-check-label" for="rolAdmin">Administrador</label>
+                    </label>
+                    <label class="form-check">
+                      <input class="form-check-input" type="checkbox" id="rolUsuario" name="rol">
+                      <label class="form-check-label" for="rolUsuario">Usuario</label>
+                    </label>
+                    <label class="form-check">
+                      <input class="form-check-input" type="checkbox" id="rolInvitado" name="rol">
+                      <label class="form-check-label" for="rolInvitado">Invitado</label>
+                    </label>
+                  </div>
+                </div>
+            
+                <div style="display: flex; justify-content: center;">
+                  <button type="submit" id="btn-Buscar" name="/data" class="btn btn-secondary text-white w-100 mt-4 fw-semibold shadow-sm">Guardar cambios</button>
+                </div>
+              </div>
             </div>
-          </div>
-          <div style="display: flex; justify-content: center;">
-            <button type="submit" id="btn-Buscar" name="/data">Guardar cambios</button>
-          </div>
         </div>
       </div>
       

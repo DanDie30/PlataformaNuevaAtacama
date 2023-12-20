@@ -8,11 +8,8 @@
   <!-- Librería de Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">  
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
   <style>
     .download-button {
-    
     padding: 8px 16px;
     background-color: #007bff; /* Color de fondo del botón */
     color: #ffffff; /* Color del texto */
@@ -39,7 +36,7 @@
       left: 0;
       z-index: 1000;
       overflow-y: auto;
-      padding-top: 56px; /* Altura de la barra de navegación */
+      padding-top: 4%; /* Altura de la barra de navegación */
     }    .content2 {
       margin-left: 15%;
       padding: 16px;
@@ -57,9 +54,12 @@
     .content {
       margin-left: 250px; /* Ancho del sidebar */
     }
-    @media (max-width: 992px) {
+    @media (max-width: 768px) {
       .content {
         margin-left: 0;
+      }
+      .sidebar{
+        width: 40%;
       }
     }
   .content2{
@@ -75,7 +75,6 @@
     </p>
   </nav>
   <!-- SideBar-->
-
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 col-md-3 col-xl-2 bg-body-secondary border border-dark sidebar">

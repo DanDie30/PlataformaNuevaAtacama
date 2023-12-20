@@ -29,7 +29,7 @@
       <div class="text-center fs-1 fw-bold">Monitoreo de señales digitales</div>
       <div class="input-group mt-4">
         <div class="input-group-text bg-info">
-          <form id="login-form" action="" >
+          <form action="/login" method="POST" id="formLogin">
             <img
             src="/assets/username-icon.svg"
             alt="username-icon"
@@ -60,63 +60,32 @@
           placeholder="Contraseña"
         />
       </div>
-      <div class="d-flex justify-content-around mt-1">
-        <div class="d-flex align-items-center gap-1">
-          <input class="form-check-input" type="checkbox" />
-          <div class="pt-1" style="font-size: 0.9rem">Recuérdame</div>
-        </div>
-        <div class="pt-1">
-          <a
-            href="#"
-            class="text-decoration-none text-info fw-semibold fst-italic"
-            style="font-size: 0.9rem"
-            >¿Olvidaste tu contraseña?</a
-          >
-        </div>
-      </div>
-      <div class="btn btn-info text-white w-100 mt-4 fw-semibold shadow-sm">
-        Iniciar sesión
-      </div>
-      <div class="d-flex gap-1 justify-content-center mt-1">
-        <div>¿No tienes una cuenta?</div>
-        <a href="#" class="text-decoration-none text-info fw-semibold"
-          >Registrate</a>
+      <div>
+        <button type="submit" name="EnviarDatosLogin" class="btn btn-info text-white w-100 mt-4 fw-semibold shadow-sm">Iniciar sesión</button>
       </div>
           </form>
           <script>
-            const form = document.querySelector('form'); // Asumiendo que hay un elemento "form"
-            form.addEventListener('submit', async (event) => {
-              event.preventDefault(); // Prevenir el envío automático del formulario
-              const username = document.querySelector('input[name="username"]').value;
-              const password = document.querySelector('input[name="password"]').value;
-              const response = await fetch('/api/login', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  username,
-                  password,
-                }),
-              });
-    
-              if (!response.ok) {
-                // Manejar error de la respuesta HTTP
-                const errorMessage = await response.text();
-                alert('Error al iniciar sesión: ' + errorMessage);
-                return;
-              }
-    
-              const data = await response.json();
-    
-              if (data.success) {
-                // Redireccionar a la página principal
-                window.location.href = '/';
-              } else {
-                // Mostrar mensaje de error en base al mensaje recibido
-                alert(data.message);
-              }
-            });
+       async function handleLogin(event) {
+  event.preventDefault();
+
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  // Utiliza la función validarUsuario
+  const usuario = await validarUsuario(username, password);
+
+  if (usuario) {
+    // Inicio de sesión exitoso (redirigir o mostrar mensaje de confirmación)
+    console.log('Inicio de sesión exitoso!');
+    // TODO: Implementar la lógica de redirección o confirmación
+  } else {
+    // Credenciales incorrectas (mostrar mensaje de error)
+    console.error('Usuario o contraseña incorrectos');
+    // TODO: Implementar el manejo del error (mostrar mensaje al usuario)
+  }
+}
+
+document.getElementById("formLogin").addEventListener("submit", handleLogin);
           </script>
       </div>
   </body>

@@ -59,25 +59,24 @@ router.get('/informes', (req, res) => {
   router.get('/verfallasdetectadas', (req, res) => {
     res.sendFile('VerFallasDetectadas.html', { root: './pages' });
   });
+  //LOGIN
+  router.get('/login'), (req, res) => {
+    res.sendFile('Login.html', { root: './pages'});
+  }
 router.route('/data')
   .get(controll.obtenerDatosInformes); //Manejar GET
 
   router.get('/data', (req, res) => {
     res.json({ message: 'Main poto' })
 })
-<<<<<<< Updated upstream
   .post(controll.saveDataFormFallas);
-=======
-
-router.post('/registrarFalla', controll.saveDataFormFallas);
-
->>>>>>> Stashed changes
 
 
   router.get('/datosInformes', controll.obtenerDatosInformes);
   router.get('/datosdispositivos', controll.obtenerDatosDispositivos);
-
-
+//Validar credenciales usuario
+router.post('/login', controll.validarUsuario)
+//
 router.post('/registrarDispositivo', controll.saveDataFormDispositivos);
 //Graficos Vallenar
 router.get('/recuentoEventoTresMesesVallenar', controll.obtenerTresMesesConMasEventosVallenar);

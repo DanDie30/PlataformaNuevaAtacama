@@ -3,16 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bootstrap demo</title>
+  <title>Configuración de alertas</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- Librería de Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">  
-
-<style>
+  <style>
     /* Estilos adicionales */
     .navbar {
       flex-shrink: 0;
       color: black;
-    
+    }
+    canvas {
+      margin-bottom: 20px;
     }
     .sidebar {
       position: fixed;
@@ -21,7 +23,20 @@
       left: 0;
       z-index: 1000;
       overflow-y: auto;
-      padding-top: 4%; /* Altura de la barra de navegación */
+      padding-top: 56px; /* Altura de la barra de navegación */
+    }    .content2 {
+      margin-left: 15%;
+      padding: 16px;
+      height: 800px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .chart-container {
+      width: 48%; 
+    }
+    canvas {
+      margin-bottom: 20px;
     }
     .content {
       margin-left: 250px; /* Ancho del sidebar */
@@ -34,133 +49,170 @@
         width: 40%;
       }
     }
-    #Dropdown1, #Dropdown2{
-        background-color: #C4C4C4;
-        margin-top: 20%;
+  .content2{
+    margin-left: 10px;
+  }
+    #btnVerDispositivos{
+        background-color: #EFEFEF;
+        color: black;
+        border-color: black;
+        font-size: 20px;
     }
-    #btn-Buscar{
-       
-      border-radius: 10%;
-        font-size: 23px;
+    #btnRegistrarDispositivos{
+        background-color: #EFEFEF;
+        color: black;
+        border-color: black;
+        font-size: 20px;
     }
-    #btn-Buscar:hover{
-      transition: cubic-bezier(0.6, -0.28, 0.735, 0.045);
-      transition-duration: 0.10s;
-      background-color: darkgray;
+    #btnVerDispositivos:hover{
+        background-color: #dadada;
+        
     }
-    #btn-mensual{
-      margin-top: 1%;
-      margin-bottom: 10px;
-      margin-left: 100%;
-      border-radius: 5%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      width: 30%;
-      height: 10%;
-      font-size: 18px;
+    #btnVerFallas:hover{
+        background-color: #dadada;
+
     }
-    #btn-mensual:hover{
-      transition: cubic-bezier(0.6, -0.28, 0.735, 0.045);
-      transition-duration: 0.10s;
-      background-color: darkgray;
+    #btnRegistrarDispositivos:hover{
+        background-color: #dadada;
+
     }
-    
-    .table{
-      margin-top: 5%;
-      border: black;
-      border-radius: 1px;
+    #btnRegistrarFallas:hover{
+        background-color: #dadada;
+
+    }
+    #btnVerFallas{
+        background-color: #EFEFEF;
+        color: black;
+        border-color: black;
+        font-size: 20px;
+    }
+   
+    #btnRegistrarFallas{
+        background-color: #EFEFEF;
+        color: black;
+        border-color: black;
+        font-size: 20px;
+    }
+ 
+    #BotonesAcceso {
+    margin-top: 10%;
+    margin-left: 35%; /* Ajusta este valor según la cantidad de desplazamiento que desees */
+    text-align: end; /* Alinea los botones a la derecha */
+  }
+  /* Estilos para el botón */
+  .boton-config {
+      display: inline-block;
+      padding: 10px 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+      text-decoration: none;
+      color: #333;
+      transition: background-color 0.3s ease;
+    }
+    /* Estilos para el icono */
+    .icono-config {
+      margin-right: 5px;
+    }
+    /* Estilos cuando se pasa el cursor sobre el botón */
+    .boton-config:hover {
+      background-color: #e0e0e0;
     }
   </style>
 </head>
 <body>
   <!-- #### Encabezado #### -->
-  <nav class=" navbar-light bg-body-secondary border border-dark text-dark">
+  <nav class="navbar-light bg-body-secondary border border-dark text-dark">
     <p class="text-end text-dark fs-2 my-0">
-    Configuración de alertas
+      Configuración de alertas
     </p>
   </nav>
   <!-- SideBar-->
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12 col-md-3 col-xl-2 bg-body-secondary border border-dark sidebar">
-        <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white">
-          <img src="" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-      </img>
-          <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-              <li class="nav-item">
-                  <a href="/index" class="nav-link align-middle px-0">
-                      <i class="fas fa-chart-line"></i><span class="ms-1 d-none d-sm-inline text-dark">Dashboard</span>
-                  </a>
-              </li>
-              <li>
-                  <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                      <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline text-dark">Copiapo</span> </a>
-                  <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                      <li class="w-100">
-                          <a href="/diagramacopiapo" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Diagrama</span></a>
-                      </li>
-                      <li>
-                          <a href="/graficoscopiapo" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Grafico</span></a>
-                      </li>
-                  </ul>
-              </li>
-           
-              <li>
-                  <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                      <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline text-dark">Vallenar</span></a>
-                  <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-                      <li class="w-100">
-                          <a href="/diagramavallenar" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Diagrama</span> </a>
-                      </li>
-                      <li>
-                          <a href="/graficosvallenar" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Grafico</span></a>
-                      </li>
-                  </ul>
-              </li>
-              <li>
-                  <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                      <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline text-dark">Chañaral</span> </a>
-                      <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-                      <li class="w-100">
-                          <a href="/diagramachanaral" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Diagrama</span></a>
-                      </li>
-                      <li>
-                          <a href="/graficoschanaral" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Grafico</span> </a>
-                      </li>
-                     
-                  </ul>
-              </li>
-              <li>
-                  <a href="/informes" class="nav-link px-0 align-middle">
-                      <i class="fas fa-file"></i><span class="ms-1 d-none d-sm-inline text-dark">Informe</span>
-                  </a>
-              </li>
-              <li>
-                  <a href="/mantenimientoprincipal" class="nav-link px-0 align-middle">
-                      <i class="far fa-clipboard"></i><span class="ms-1 d-none d-sm-inline text-dark">Mantenimiento</span>
-                  </a>
-              </li>
-              <li>
-                      <a href="/configuracion" class="nav-link px-0 align-middle">
-                          <i class="fas fa-cogs icono-config"></i>  <span class="ms-1 d-none d-sm-inline text-dark">Configuración</span></a>
-              </li>
-          </ul>
-          <hr>
-          <div class="dropdown pb-4 ">
-              <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle text-dark" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                  <span class="d-none d-sm-inline mx-1 text-dark">Usuario</span>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                  <li><a class="dropdown-item" href="#">Perfil</a></li>
-                  <li>
-                      <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="#">Sign out</a></li>
-              </ul>
+        <div class="col-12 col-md-3 col-xl-2 bg-body-secondary border border-dark sidebar">
+          <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white">
+            <img src="../src/public/img/LogoNuevaAtacama.jpg" alt="iconNuevaAtacama">
+        </img>
+            <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                <li class="nav-item">
+                    <a href="/index" class="nav-link align-middle px-0">
+                        <i class="fas fa-chart-line"></i><span class="ms-1 d-none d-sm-inline text-dark">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                        <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline text-dark">Copiapo</span> </a>
+                    <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                        <li class="w-100">
+                            <a href="/diagramacopiapo" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Diagrama</span></a>
+                        </li>
+                        <li>
+                            <a href="/graficoscopiapo" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Grafico</span></a>
+                        </li>
+                    </ul>
+                </li>
+             
+                <li>
+                    <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                        <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline text-dark">Vallenar</span></a>
+                    <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                        <li class="w-100">
+                            <a href="/diagramavallenar" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Diagrama</span> </a>
+                        </li>
+                        <li>
+                            <a href="/graficosvallenar" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Grafico</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                        <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline text-dark">Chañaral</span> </a>
+                        <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                        <li class="w-100">
+                            <a href="/diagramachanaral" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Diagrama</span></a>
+                        </li>
+                        <li>
+                            <a href="/graficoschanaral" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Grafico</span> </a>
+                        </li>
+                       
+                    </ul>
+                </li>
+                <li>
+                    <a href="/informes" class="nav-link px-0 align-middle">
+                        <i class="fas fa-file"></i><span class="ms-1 d-none d-sm-inline text-dark">Informe</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/mantenimientoprincipal" class="nav-link px-0 align-middle">
+                        <i class="far fa-clipboard"></i><span class="ms-1 d-none d-sm-inline text-dark">Mantenimiento</span>
+                    </a>
+                </li>
+                <li>
+                        <a href="/configuracion" class="nav-link px-0 align-middle">
+                            <i class="fas fa-cogs icono-config"></i>  <span class="ms-1 d-none d-sm-inline text-dark">Configuración</span></a>
+                </li>
+            </ul>
+            <hr>
+            <div class="dropdown pb-4 ">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle text-dark" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                    <span class="d-none d-sm-inline mx-1 text-dark">Usuario</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="#">Perfil</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                </ul>
+            </div>
           </div>
+        </div>              
       </div>
-      </div>
-    <!-- Mantén el resto del código intacto -->
+    </div>
+          <!-- Mantén el resto del código intacto -->
     <!-- #### Componentes Vistas #### -->
   <div class="d-flex justify-content-center align-items-center">
     <div style="width: 25rem">
@@ -189,12 +241,12 @@
         <div  style="width: 25%; padding-left: 9%;">Hora</div>
         <input name="hora" class="form-control" type="time" />
       </div>
-      <div class="btn btn-secondary text-white w-100 mt-4 fw-semibold shadow-sm">Aceptar</div>
+      <a type="submit" class="btn btn-secondary text-white w-100 mt-4 fw-semibold shadow-sm" href="#">Aceptar</a>
     </div>
   </div>
     </div>
     </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+      </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -24,7 +24,7 @@
       left: 0;
       z-index: 1000;
       overflow-y: auto;
-      padding-top: 56px; /* Altura de la barra de navegación */
+      padding-top: 4%; /* Altura de la barra de navegación */
     }    .content2 {
       margin-left: 15%;
       padding: 16px;
@@ -42,9 +42,12 @@
     .content {
       margin-left: 250px; /* Ancho del sidebar */
     }
-    @media (max-width: 992px) {
+    @media (max-width: 768px) {
       .content {
         margin-left: 0;
+      }
+      .sidebar{
+        width: 40%;
       }
     }
   .content2{
@@ -210,10 +213,10 @@
           </div>
           <div class="col-12 col-md-6 " id="BotonesAcceso">
                 <div class="d-grid gap-2">
-              <a class="btn btn-primary btn-md my-2" id="btnVerDispositivos" href="/verdispositivos">Ver Mantenimiento Dispositivos</a>
-              <a class="btn btn-primary btn-md my-2" id="btnRegistrarDispositivos" href="/registrodispositivos">Registrar Mantenimiento Dispositivos</a>
-              <a class="btn btn-primary btn-md my-2" id="btnVerFallas" href="/verfallasdetectadas" >Ver Mantenimiento Fallas Detectadas</a>
-              <a class="btn btn-primary btn-md my-2" id="btnRegistrarFallas" href="/registrofallasDetectadas">Registrar Mantenimiento Fallas Detectadas</a>
+              <a class="btn btn-secondary text-black w-100 mt-4 fw-semibold shadow-sm" id="btnVerDispositivos" href="/verdispositivos">Ver Mantenimiento Dispositivos</a>
+              <a class="btn btn-secondary text-black w-100 mt-4 fw-semibold shadow-sm" id="btnRegistrarDispositivos" href="/registrodispositivos">Registrar Mantenimiento Dispositivos</a>
+              <a class="btn btn-secondary text-black w-100 mt-4 fw-semibold shadow-sm" id="btnVerFallas" href="/verfallasdetectadas" >Ver Mantenimiento Fallas Detectadas</a>
+              <a class="btn btn-secondary text-black w-100 mt-4 fw-semibold shadow-sm" id="btnRegistrarFallas" href="/registrofallasDetectadas">Registrar Mantenimiento Fallas Detectadas</a>
                 </div>
             </div>
         </div>

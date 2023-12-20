@@ -69,7 +69,7 @@ router.route('/data')
 
 
 
-
+router.post('/login', controll.inicioSesion);
 
 router.post('/registrarFalla', controll.saveDataFormFallas);
 

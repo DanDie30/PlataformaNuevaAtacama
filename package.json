@@ -4,6 +4,7 @@
     "@azure/msal-node": "^2.5.1",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "axios": "^1.6.2",
     "bootstrap": "^5.3.2",
     "chart.js": "^4.4.0",
     "cors": "^2.8.5",
@@ -15,8 +16,7 @@
     "node-cron": "^3.0.3",
     "node-schedule": "^2.1.1",
     "node-telegram-bot-api": "^0.64.0",
-    "odbc": "^2.4.8",
-    "axios": "^1.6.2"
+    "odbc": "^2.4.8"
   },
   "name": "pruebaatacama",
   "version": "1.0.0",

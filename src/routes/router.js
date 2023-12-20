@@ -59,10 +59,13 @@ router.get('/informes', (req, res) => {
   router.get('/verfallasdetectadas', (req, res) => {
     res.sendFile('VerFallasDetectadas.html', { root: './pages' });
   });
-  //LOGIN
-  router.get('/login'), (req, res) => {
-    res.sendFile('Login.html', { root: './pages'});
-  }
+  router.get('/perfil', (req, res) => {
+    res.sendFile('Perfil.html', { root: './pages' });
+  });
+
+  router.get('/inicio', (req, res) => {
+    res.sendFile('Login.html', { root: './pages' });
+  });
 router.route('/data')
   .get(controll.obtenerDatosInformes); //Manejar GET
 

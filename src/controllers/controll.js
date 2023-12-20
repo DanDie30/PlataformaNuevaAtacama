@@ -27,12 +27,22 @@ const inicioSesion = async (req, res) => {
     request.input('NombreUsuario', sql.NVarChar, NombreUsuario);
     request.input('Clave', sql.NVarChar, Clave);
 
-    const query = 'SELECT * FROM Usuarios WHERE NombreUsuario = @NombreUsuario AND Clave = @Clave';
+    const query = 'SELECT NombreUsuario, Rol, Cargo FROM Usuarios WHERE NombreUsuario = @NombreUsuario AND Clave = @Clave';
     const result = await request.query(query);
 
     if (result.recordset.length > 0) {
-      // Inicio de sesión exitoso
-      // Puedes almacenar información del usuario en la sesión si lo deseas
+      // Verificar si req.session existe y es un objeto
+      if (!req.session) {
+        req.session = {}; // Inicializar req.session si no existe
+      }
+
+      // Establecer la propiedad 'user' en req.session
+      req.session.user = {
+        NombreUsuario: NombreUsuario,
+        Rol: result.recordset[0].Rol,
+        Cargo: result.recordset[0].Cargo
+        // Agregar más detalles del usuario si es necesario
+      };
 
       // Redirigir al usuario a la página '/index'
       res.redirect('/index');
@@ -44,7 +54,6 @@ const inicioSesion = async (req, res) => {
     console.error('Error en la base de datos:', error);
   }
 };
-
 
 
 

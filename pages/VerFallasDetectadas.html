@@ -3,10 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bootstrap demo</title>
+  <title>Ver fallas detectadas</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">  
-
 <style>
     /* Estilos adicionales */
     .navbar {
@@ -29,6 +28,9 @@
     @media (max-width: 992px) {
       .content {
         margin-left: 0;
+      }
+      .sidebar{
+        width: 40%;
       }
     }
     #Dropdown1, #Dropdown2{
@@ -178,7 +180,7 @@ top: 1.5%;
 <!-- Dentro del div con la clase "content" -->
 <div class="col content d-flex justify-content-center">
     <div>
-      <a class="btn btn-primary btn-md my-2" id="btnRegistrarMantenimiento">Registrar Mantenimiento</a>
+      <a class="btn btn-secondary text-black fw-semibold shadow-sm" id="btnRegistrarMantenimiento" style="margin-top: 17px;">Registrar Mantenimiento</a>
 
       
 
@@ -188,17 +190,15 @@ top: 1.5%;
         <form id="consultaForm" action="/verfallasdetectadas" method="get">
           <div id="filtroBuscar">
             <label for="selectPlanta">Selecciona un sector:</label>
-            <select name="sector" id="selectPlanta">
+            <select name="sector" id="selectPlanta" class="form-control mr-2 pl-2">
               <option value="1">Copiapó</option>
               <option value="2">Chañaral</option>
               <option value="3">Vallenar</option>
             </select>
           </div>
-   
-          <button type="submit" id="btnConsultar">Consultar</button>
+          <button type="submit" id="btnConsultar" class="btn btn-secondary text-white fw-semibold shadow-sm" style="margin-top: 10px;">Consultar</button>
         </form>
-        
-        <table id="tablaResultados" class="table">
+        <table id="tablaResultados" class="table" style="margin-left: 10px;">
           <thead>
             <tr>
               <th>Tipo Falla</th>
@@ -284,42 +284,7 @@ top: 1.5%;
         </script>
         
         
-          </tr>
-          <tr>
-            <td>102353</td>
-            <td>Vicuña</td>
-            <td>13-12-2023</td>
-            <td>Ajuste de caja maestra</td>
-            <td>Duvan Rojas</td>
-          </tr>
-          <tr>
-            <td>113293</td>
-            <td>Vicuña</td>
-            <td>14-12-2023</td>
-            <td>Ajuste de dispositivo</td>
-            <td>Catalina Lagos</td>
-
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-  
-
-      <script>
-        document.getElementById('getDataButton').addEventListener('click', async () => {
-            try {
-                const response = await fetch('/api/data'); // Hacer una solicitud a la ruta '/api/data'
-                const data = await response.json(); // Obtener los datos JSON de la respuesta
-                
-                // Manejar los datos recibidos, como mostrarlos en el DOM
-                console.log(data); // Mostrar los datos en la consola para ver qué recibiste
-            } catch (error) {
-                console.error('Error al obtener datos:', error);
-                console.log(error);
-            }
-        });
-    </script>
+ 
     </div>
     </div>
   </div>

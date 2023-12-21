@@ -60,27 +60,27 @@ const inicioSesion = async (req, res) => {
 const obtenerRecuentoEventosPorMesCopiapo = async (req, res) => {
   try {
     const query = `
-      SELECT 
-        CASE 
-          WHEN MONTH(Fecha) = 1 THEN 'Enero'
-          WHEN MONTH(Fecha) = 2 THEN 'Febrero'
-          WHEN MONTH(Fecha) = 3 THEN 'Marzo'
-          WHEN MONTH(Fecha) = 4 THEN 'Abril'
-          WHEN MONTH(Fecha) = 5 THEN 'Mayo'
-          WHEN MONTH(Fecha) = 6 THEN 'Junio'
-          WHEN MONTH(Fecha) = 7 THEN 'Julio'
-          WHEN MONTH(Fecha) = 8 THEN 'Agosto'
-          WHEN MONTH(Fecha) = 9 THEN 'Septiembre'
-          WHEN MONTH(Fecha) = 10 THEN 'Octubre'
-          WHEN MONTH(Fecha) = 11 THEN 'Noviembre'
-          WHEN MONTH(Fecha) = 12 THEN 'Diciembre'
-          ELSE 'Mes Desconocido'
-        END AS Mes,
-        COUNT(*) AS CantidadEventos
-      FROM Evento
-      WHERE IdSector = 1
-      GROUP BY MONTH(Fecha)
-      ORDER BY MONTH(Fecha);
+    SELECT 
+    CASE 
+      WHEN MONTH(Fecha) = 1 THEN 'Enero'
+      WHEN MONTH(Fecha) = 2 THEN 'Febrero'
+      WHEN MONTH(Fecha) = 3 THEN 'Marzo'
+      WHEN MONTH(Fecha) = 4 THEN 'Abril'
+      WHEN MONTH(Fecha) = 5 THEN 'Mayo'
+      WHEN MONTH(Fecha) = 6 THEN 'Junio'
+      WHEN MONTH(Fecha) = 7 THEN 'Julio'
+      WHEN MONTH(Fecha) = 8 THEN 'Agosto'
+      WHEN MONTH(Fecha) = 9 THEN 'Septiembre'
+      WHEN MONTH(Fecha) = 10 THEN 'Octubre'
+      WHEN MONTH(Fecha) = 11 THEN 'Noviembre'
+      WHEN MONTH(Fecha) = 12 THEN 'Diciembre'
+      ELSE 'Mes Desconocido'
+    END AS Mes,
+    COUNT(*) AS CantidadEventos
+  FROM Evento
+  WHERE IdSector = 1 AND ValorSenal = 0
+  GROUP BY MONTH(Fecha)
+  ORDER BY MONTH(Fecha);
     `;
     
     const result = await pool.query(query);
@@ -106,6 +106,7 @@ const obtenerRecuentoEventosPorPlanta = async (req, res) => {
     COUNT(E.IdEvento) AS CantidadEventos
 FROM Evento E
 JOIN Planta P ON E.IdPlanta = P.IdPlanta
+WHERE ValorSenal = 0
 GROUP BY P.Nombre_planta;
 
     `;
@@ -136,6 +137,7 @@ const obtenerRecuentoTotalEventosPorMes = async (req, res) => {
       SELECT DATENAME(month, Fecha) AS Mes,
              COUNT(*) AS CantidadEventos
       FROM Evento
+      WHERE ValorSenal = 0
       GROUP BY DATENAME(month, Fecha)
       ORDER BY CantidadEventos DESC
     `;
@@ -184,7 +186,7 @@ const obtenerRecuentoEventosPorMesVallenar = async (req, res) => {
         END AS Mes,
         COUNT(*) AS CantidadEventos
       FROM Evento
-      WHERE IdSector = 3
+      WHERE IdSector = 3 AND ValorSenal = 0
       GROUP BY MONTH(Fecha)
       ORDER BY MONTH(Fecha);
     `;
@@ -226,7 +228,7 @@ const obtenerRecuentoEventosPorMesChanaral = async (req, res) => {
         END AS Mes,
         COUNT(*) AS CantidadEventos
       FROM Evento
-      WHERE IdSector = 2
+      WHERE IdSector = 2 AND ValorSenal = 0
       GROUP BY MONTH(Fecha)
       ORDER BY MONTH(Fecha);
     `;
@@ -263,7 +265,7 @@ const obtenerRecuentoEventosPorPlantaCopiapo = async (req, res) => {
         END AS NombrePlanta,
         COUNT(*) AS CantidadEventos
       FROM Evento
-      WHERE IdSector = 1
+      WHERE IdSector = 1 AND ValorSenal = 0
       GROUP BY IdPlanta
       ORDER BY IdPlanta;
     `;
@@ -291,7 +293,7 @@ const obtenerTresMesesConMasEventosVallenar = async (req, res) => {
         DATENAME(month, Fecha) AS Mes,
         COUNT(*) AS CantidadEventos
       FROM Evento
-      WHERE IdSector = 3
+      WHERE IdSector = 3 AND ValorSenal = 0
       GROUP BY DATENAME(month, Fecha)
       ORDER BY CantidadEventos DESC
     `;
@@ -322,7 +324,7 @@ const obtenerTresMesesConMasEventosChanaral = async (req, res) => {
         DATENAME(month, Fecha) AS Mes,
         COUNT(*) AS CantidadEventos
       FROM Evento
-      WHERE IdSector = 2
+      WHERE IdSector = 2 AND ValorSenal = 0
       GROUP BY DATENAME(month, Fecha)
       ORDER BY CantidadEventos DESC
     `;
@@ -389,7 +391,7 @@ const obtenerDatosInformes = async (req, res) => {
         CONVERT(varchar, HoraResolucion, 108) AS HoraResolucion, 
         CONVERT(varchar, FechaResolucion, 23) AS FechaResolucion
       FROM MantenimientoFallaDetectada
-      WHERE IdSector = ${sectorSeleccionado}
+      WHERE IdSector = ${sectorSeleccionado} AND ValorSenal = 0
       ORDER BY FechaDetencion DESC
     `;
 
@@ -463,7 +465,7 @@ const obtenerDatosDispositivos = async (req, res) => {
         DescripcionMantenimiento, 
         ResponsableMantenimiento 
       FROM MantenimientoDispositivos
-      WHERE IdSector = ${sectorSeleccionado}
+      WHERE IdSector = ${sectorSeleccionado} AND ValorSenal = 0
       ORDER BY FechaMantenimiento DESC
     `;
 
@@ -594,7 +596,7 @@ const obtenerDatosEventos = async (req, res) => {
         CONVERT(varchar, Hora, 108) AS Hora, 
         CONVERT(varchar, DuracionDetencion, 108) AS DuracionDetencion 
       FROM Evento
-      WHERE IdSector = ${sectorSeleccionado}
+      WHERE IdSector = ${sectorSeleccionado} AND ValorSenal = 0
     `;
 
     const result = await pool.request().query(query);
@@ -618,6 +620,7 @@ const obtenerDatosEventos = async (req, res) => {
       htmlResponse += '</tbody></table>';
       res.status(200).send(htmlResponse);
     } else {
+      alert('No existen Eventos en este Sector');
       res.status(404).send('No se encontraron eventos para este sector');
     }
   } catch (err) {

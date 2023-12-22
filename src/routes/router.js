@@ -66,6 +66,11 @@ router.get('/informes', (req, res) => {
   router.get('/inicio', (req, res) => {
     res.sendFile('Login.html', { root: './pages' });
   });
+
+  router.get('/diagramaprincipal', (req, res) => {
+    res.sendFile('DiagramaPrincipal.html', { root: './pages' });
+  });
+
 router.route('/data')
   .get(controll.obtenerDatosInformes); //Manejar GET
 

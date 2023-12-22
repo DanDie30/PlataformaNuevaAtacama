@@ -6,8 +6,10 @@
   <title>Informes</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+  
 
   <style>
     /* Estilos adicionales */
@@ -66,6 +68,16 @@
       background-color: darkgray;
     }
     #btn-mensual{
+      bottom: 30%;
+    margin-bottom: 3%;
+      margin-left: 80%;
+      border-radius: 5%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      width: 30%;
+      height: 10%;
+      font-size: 20px;
+    }
+    #btnGenerarPDF{
       bottom: 30%;
     margin-bottom: 3%;
       margin-left: 80%;
@@ -240,7 +252,8 @@
 
     <div class="mb-10">
       <button id="btn-mensual" class="btn btn-secondary text-white fw-semibold shadow-sm me-2">Reporte Mensual</button>
-      <button id="btn-mensual" class="btn btn-secondary text-white fw-semibold shadow-sm me-2 mb-2 b-2">Generar informe PDF</button>
+      <button id="btnGenerarPDF" class="btn btn-secondary text-white fw-semibold shadow-sm me-2">Generar informe PDF</button>
+
     </div>
 
     <table id="tablaResultados" class="table" style="margin-left: 18%;">
@@ -320,13 +333,46 @@
 
         });
     </script>
-
 <script>
-  // Evento click para generar el PDF
-  document.getElementById('btnGenerarPDF').addEventListener('click', () => {
-    window.location.href = '/generarPDF'; // Ruta a la que se llama para generar el PDF
+  document.getElementById('btnGenerarPDF').addEventListener('click', function() {
+      const element = document.getElementById('tablaResultados'); 
+      const pdfContent = {
+          content: [
+              { text: 'Informes de Eventos detectados', style: 'header' },
+              {
+                  table: {
+                      headerRows: 1, 
+                      body: [
+                          ['Id Sensor', 'Nombre Sector', 'Nombre Planta', 'Fecha', 'Hora', 'Duración Detención']
+                      ]
+                  }
+              }
+          ],
+          styles: {
+              header: {
+                  fontSize: 18,
+                  bold: true,
+                  margin: [0, 0, 0, 10]
+              }
+          }
+      };
+  
+      // Llenar el contenido de la tabla del PDF con los datos de la tabla actual
+      const filas = element.querySelectorAll('tbody tr');
+      filas.forEach((fila, index) => {
+          const columnas = fila.querySelectorAll('td');
+          const rowData = [];
+          columnas.forEach(columna => {
+              rowData.push(columna.innerText);
+          });
+          pdfContent.content[1].table.body.push(rowData);
+      });
+  
+      pdfMake.createPdf(pdfContent).download('informe.pdf'); 
   });
-</script>
+  
+  </script>
+
 
   </div>
   </div>
@@ -334,7 +380,7 @@
 
 </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  <script src="html2pdf.bundle.min.js"></script>
+
 
 
 </body>

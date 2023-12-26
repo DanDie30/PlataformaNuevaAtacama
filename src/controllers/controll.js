@@ -2,17 +2,16 @@ const sql = require('mssql')
 const pool = require('../utils/db')
 const path = require('path');
 
-//Consulta para diagrama a tiempo real, del cual obtiene el ultimo valor la señal del evento, indicando el estado del arduino
 const obtenerEstadoValorBinario = async (req, res) => {
   try {
     const pool = await sql.connect(config);
 
     const request = pool.request();
-    const query = 'SELECT ValorSenal FROM Evento'; 
+    const query = 'SELECT TOP 1  ValorSenal FROM Evento ORDER BY IdEvento DESC;'; 
     const result = await request.query(query);
-
     if (result.recordset.length > 0) {
-      const valorBinario = result.recordset[0].ValorBinario;
+      const valorBinario = result.recordset[0].ValorSenal;
+
       res.status(200).json({ valorBinario });
     } else {
       res.status(404).json({ message: 'No se encontró el valor binario' });
@@ -22,7 +21,7 @@ const obtenerEstadoValorBinario = async (req, res) => {
     console.error('Error en la base de datos:', error);
   }
 };
-
+ 
 
 const config = {
   user: 'adminsql',

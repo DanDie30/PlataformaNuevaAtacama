@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaña de Notificaciones</title>
+</head>
+<body>
+
+<button id="obtenerSenal">Obtener Valor de Señal</button>
+<div id="resultado"></div>
+
+<script>
+    document.getElementById('obtenerSenal').addEventListener('click', async () => {
+        const response = await fetch('../src/js/public/js/campanita.js');
+        const data = await response.json();
+        document.getElementById('resultado').innerText = `Valor de la señal: ${data[0].ValorSenal}`;
+    });
+</script>
+
+</body>
+</html>

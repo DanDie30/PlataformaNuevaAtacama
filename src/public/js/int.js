@@ -106,12 +106,11 @@ async function main() {
         
         setInterval(async () => {
             await ejecutarInsercion();
-        }, 20000);  
+        }, 15000);  
     } catch (error) {
         console.error('Error en el proceso principal:', error);
     }
 }
-
 //Ocupa las funciones para obtener datos e insertar para insertar los datos en SQL Server
 async function ejecutarInsercion() {
     try {

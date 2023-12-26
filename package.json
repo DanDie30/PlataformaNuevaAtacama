@@ -26,7 +26,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/server.js",
     "dev1": "nodemon src/public/js/int.js",
-    "start": "concurrently \"npm run dev\" \"node src/public/js/int.js\" \"node src/public/js/bot.js\" "
+    "dev2": "nodemon src/public/js/campanita.js",
+    "start": "concurrently \"npm run dev\" \"node src/public/js/campanita.js\" \"node src/public/js/int.js\" \"node src/public/js/bot.js\" "
   
   },
   "keywords": [],

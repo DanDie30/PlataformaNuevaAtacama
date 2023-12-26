@@ -10,6 +10,7 @@ function createDownloadSvgLink(linkId, buttonText, ctx) {
                      '</div></foreignObject></svg>';
     link.href = 'data:image/svg+xml,' + encodeURIComponent(svgContent); 
   });
+  //Funcion para descargar graficos en PNG
 }
 function createDownloadPngLink(linkId, buttonText, ctx) {
   var link = document.getElementById(linkId);
@@ -65,7 +66,7 @@ fetch('/recuentoEventoTresMesesChanaral') // Cambia la ruta según tu configurac
 
 
 
-//GRAFICOS VALLENAR
+//GRAFICOS Chañaral
 var ctx1 = document.getElementById('GraficoBarraChanaral').getContext('2d');
 var data1 = {
   labels: ['Dato 1', 'Dato 2', 'Dato 3', 'Dato 4', 'Dato 5'],

@@ -57,14 +57,15 @@ async function obtenerUltimoEvento() {
     console.error('Error al conectar a la base de datos:', err.message);
   }
 }
-
+//Almacena nuevos identificadores de chat en el arreglo chatIds.
 async function registrarNuevoChat(chatId) {
   if (!chatIds.includes(chatId)) {
     chatIds.push(chatId);
     console.log(`Nuevo chatId almacenado: ${chatId}`);
   }
 }
-
+// Comprueba si hay un nuevo valor de señal en la Bd desde la ultima consulta. 
+//Si hay un nuevo valor, crea un mensaje con detalles del evento y lo envía a todos los chats almacenados en chatIds.
 async function verificarNuevoValor() {
   try {
     console.log('Función verificarNuevoValor ejecutada:', new Date().toLocaleString());
@@ -106,12 +107,13 @@ async function verificarNuevoValor() {
     console.error('Error en verificarNuevoValor:', error.message);
   }
 }
-
+//maneja el evento de recepción de un comando /r desde Telegram, registrando el numero si no está almacenado.
 bot.onText(/\/r/, async (msg, match) => {
   const nuevoValor = match[1];
   const chatId = msg.chat.id;
   await registrarNuevoChat(chatId);
 });
 
+//Cada 30 segundos, el Bot se actualiza para ver si llego un nuevo dato
 setInterval(verificarNuevoValor, 30000);
 console.log('Bot de Telegram listo para recibir comandos.');

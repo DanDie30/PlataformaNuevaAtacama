@@ -1,5 +1,7 @@
 const axios = require('axios');
 const sql = require('mssql');
+
+//Credenciales BD Azure
 const config = {
     user: 'adminsql',
     password: 'Megalodon_2001',
@@ -9,10 +11,13 @@ const config = {
         encrypt: true
     }
 };
+
+//Definir constantes para conteo de durancion detencion
 let contando = false;
 let inicioConteo = null;
 let duracionAcumulada = 0;
 
+//Obtenemos datos de la bd Thingpspeak mediante la API
 async function obtenerDatosThingSpeak() {
     try {
         const response = await axios.get('https://api.thingspeak.com/channels/2220274/feeds.json?api_key=9EHD9U70M7TKHT9P&results=1');
@@ -22,7 +27,7 @@ async function obtenerDatosThingSpeak() {
         throw error;
     }
 }
-
+//Los datos de thing speak se formatean primero para ingresarse en la bd, como fecha y  hora
 async function insertarDatosSQLServer(datos) {
     try {
         await sql.connect(config);
@@ -39,7 +44,7 @@ async function insertarDatosSQLServer(datos) {
             // Restar 3 horas
             let nuevaHora = parseInt(hh, 10) - 3;
             
-            // Asegurarse de que la hora no sea negativa y ajustar el día si es necesario
+            //  comprobar que la hora no sea negativa y ajustar el día si es necesario
             if (nuevaHora < 0) {
                 nuevaHora += 24;
                 fecha = fecha.split("-").map((part, index) => {
@@ -53,8 +58,7 @@ async function insertarDatosSQLServer(datos) {
             // Componer la nueva hora en formato HH:MM:SS
             hora = `${String(nuevaHora).padStart(2, '0')}:${mm}:${ss}`;
             
-           // Resto del código original...
-
+//calcular y acumular la duracion de un evento, luego del calculo se insertan los dastos en la tabla Evento
 if (dato.field1 == 1 && !contando) { 
     contando = true;
     inicioConteo = new Date(fechaHora.join(" "));
@@ -78,8 +82,6 @@ if (dato.field1 == 1 && !contando) {
     duracionAcumulada += (finConteo - inicioConteo) / (1000 * 60); 
     inicioConteo = finConteo; 
 }
-
-// ... Resto del código original
 
             const query = `
             INSERT INTO Evento (IdSensor, Fecha, Hora, DuracionDetencion, IdSector, Idplanta, ValorSenal)
@@ -109,6 +111,7 @@ async function main() {
     }
 }
 
+//Ocupa las funciones para obtener datos e insertar para insertar los datos en SQL Server
 async function ejecutarInsercion() {
     try {
         const datosThingSpeak = await obtenerDatosThingSpeak();

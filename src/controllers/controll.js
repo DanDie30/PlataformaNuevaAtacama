@@ -2,12 +2,13 @@ const sql = require('mssql')
 const pool = require('../utils/db')
 const path = require('path');
 
+//Consulta para diagrama a tiempo real, del cual obtiene el ultimo valor la señal del evento, indicando el estado del arduino
 const obtenerEstadoValorBinario = async (req, res) => {
   try {
     const pool = await sql.connect(config);
 
     const request = pool.request();
-    const query = 'SELECT ValorSenal FROM Evento'; // Ajusta la consulta según tu estructura de base de datos
+    const query = 'SELECT ValorSenal FROM Evento'; 
     const result = await request.query(query);
 
     if (result.recordset.length > 0) {
@@ -23,7 +24,6 @@ const obtenerEstadoValorBinario = async (req, res) => {
 };
 
 
-
 const config = {
   user: 'adminsql',
   password: 'Megalodon_2001',
@@ -35,7 +35,7 @@ const config = {
   }
 };
 
-// Función para realizar la consulta
+// "Const config" u "Const inicioSesion" funcionan de la mano para que un usuario pueda iniciar sesión
 const inicioSesion = async (req, res) => {
   const { NombreUsuario, Clave } = req.body;
 
@@ -77,7 +77,7 @@ const inicioSesion = async (req, res) => {
 };
 
 
-
+//Consulta para recuento por mes grafico Copiapo, lineal
 const obtenerRecuentoEventosPorMesCopiapo = async (req, res) => {
   try {
     const query = `
@@ -119,6 +119,8 @@ const obtenerRecuentoEventosPorMesCopiapo = async (req, res) => {
     console.error(err.message);
   }
 };
+
+//Consulta para recuento por planta, grafico principal, Barra
 const obtenerRecuentoEventosPorPlanta = async (req, res) => {
   try {
     const query = `
@@ -151,7 +153,7 @@ GROUP BY P.Nombre_planta;
 };
 
 
-
+//Consulta para recuerto total eventos, grafico principal, Lineal
 const obtenerRecuentoTotalEventosPorMes = async (req, res) => {
   try {
     const query = `
@@ -185,7 +187,7 @@ const obtenerRecuentoTotalEventosPorMes = async (req, res) => {
 };
 
 
-
+//Consulta para recuento por mes para Sector Vallenar, Grafico Lineal
 const obtenerRecuentoEventosPorMesVallenar = async (req, res) => {
   try {
     const query = `
@@ -227,6 +229,8 @@ const obtenerRecuentoEventosPorMesVallenar = async (req, res) => {
     console.error(err.message);
   }
 };
+
+//Consulta para recuento por mes para Sector Chañaral, Grafico Lineal
 
 const obtenerRecuentoEventosPorMesChanaral = async (req, res) => {
   try {
@@ -271,6 +275,7 @@ const obtenerRecuentoEventosPorMesChanaral = async (req, res) => {
 };
 
 
+//Consulta para recuento por planta para Sector Copiapo, Grafico Barra
 
 const obtenerRecuentoEventosPorPlantaCopiapo = async (req, res) => {
   try {
@@ -307,6 +312,7 @@ const obtenerRecuentoEventosPorPlantaCopiapo = async (req, res) => {
   }
 };
 
+//Consulta para 3 meses que mas han ocurrido Eventos en Sector Vallenar, Grafico Barra
 const obtenerTresMesesConMasEventosVallenar = async (req, res) => {
   try {
     const query = `
@@ -337,6 +343,8 @@ const obtenerTresMesesConMasEventosVallenar = async (req, res) => {
   }
 };
 
+
+//Consulta para 3 meses que mas han ocurrido Eventos en Sector Chañaral, Grafico Barra
 
 const obtenerTresMesesConMasEventosChanaral = async (req, res) => {
   try {
@@ -369,6 +377,7 @@ const obtenerTresMesesConMasEventosChanaral = async (req, res) => {
 };
 
 
+//Consulta para obtener datos para tabla en informes, adquirida de la tabla eventos
 const obtenerDatosInformes = async (req, res) => {
   try {
     const sectorSeleccionado = req.query.sector;
@@ -448,7 +457,7 @@ const obtenerDatosInformes = async (req, res) => {
   }
   };
 
-  
+//Consulta para obtener datos para tabla mantenimiento dispositivos, adquirida de la tabla Mantenimiento Dispositivos
 const obtenerDatosDispositivos = async (req, res) => {
   try {
     const sectorSeleccionado = req.query.sector;
@@ -540,6 +549,8 @@ const obtenerDatosDispositivos = async (req, res) => {
       return null;
     }
   }
+
+  //Consulta para reigstrar datos en la tabla MantenimientoFallas
 const saveDataFormFallas = async (req, res) => {
   try {
     const fechaDetencion = req.body.FechaDetencion;
@@ -576,7 +587,7 @@ const saveDataFormFallas = async (req, res) => {
   }
 
 }
-
+//Consulta para obtener datos para tabla en informes, adquirida de la tabla eventos
 const obtenerDatosEventos = async (req, res) => {
   try {
     const sectorSeleccionado = req.query.sector;
@@ -652,6 +663,7 @@ ORDER BY Fecha DESC, Hora DESC;
 
 };
 
+  //Consulta para reigstrar datos en la tabla MantenimientoDispositivos
 
 const saveDataFormDispositivos = async (req, res) => {
   try {

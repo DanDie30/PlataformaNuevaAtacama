@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Registro de fallas detectadas</title>
-    <!-- Librería de Font Awesome -->
+    <!--Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">  
+        <!--Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <style>
-    /* Estilos adicionales */
     .navbar {
       flex-shrink: 0;
       color: black;
@@ -62,8 +62,7 @@ top: 1.5%;
   </style>
 </head>
 <body>
-  <!-- #### Encabezado #### -->
-<!-- #### Encabezado #### -->
+<!--Encabezado-->
 <nav class="navbar-light bg-body-secondary border border-dark text-dark">
   <p class="text-end text-dark fs-2 my-0">
     Registro Mantenimiento Fallas Detectadas 
@@ -76,6 +75,7 @@ top: 1.5%;
 
       <img src="https://www.nuevaatacama.cl/img/logo.svg" alt="iconNuevaAtacama" style="position: relative; width: 100%; bottom: 9%;">
 
+      <!--Posiciona en el Side Bar mas a la derecha los enlaces para otras paginas-->
       <div class="d-flex flex-column align-items-center align-items-sm-start px-3  text-white">
     </img>
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
@@ -143,6 +143,8 @@ top: 1.5%;
             </li>
         </ul>
         <hr>
+
+        <!--Icono para perfil y salir-->
         <div class="dropdown pb-4 ">
             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle text-dark" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
@@ -228,6 +230,8 @@ top: 1.5%;
         <button id="btnEnviar" type="submit" class="btn btn-primary btn-lg btn-light border border-dark d-block mx-auto my-3 btn-medium rounded-pill">Guardar</button>
       </div>
     </form>
+
+    <!--Manejar el envio de datos del formulario mediante un POST a la ruta-->
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('FormularioFallas');

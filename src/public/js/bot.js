@@ -1,6 +1,7 @@
-const sql = require('mssql');
-const TelegramBot = require('node-telegram-bot-api');
-const moment = require('moment-timezone');
+const sql = require('mssql'); //Trabajar con SQL Server
+const TelegramBot = require('node-telegram-bot-api'); //Api para interactuar con bot de telegram
+const moment = require('moment-timezone'); //Workear con fecha y hora
+
 
 const nombresDeSector = {
   1: 'Copiapó',
@@ -16,6 +17,7 @@ const nombresDePlanta = {
   14: 'El Salado'
 };
 
+//configuracion para la conexion de la base de datos sql server
 const config = {
   user: 'adminsql',
   password: 'Megalodon_2001',
@@ -26,7 +28,7 @@ const config = {
     enableArithAbort: true,
   },
 };
-
+//Objeto del bot
 const bot = new TelegramBot('6805680521:AAG6kGO3jjp68O8af1kR5_WTOy9PM4hT71A', { polling: true });
 
 let lastProcessedValorSenal = null;

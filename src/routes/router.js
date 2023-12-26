@@ -6,7 +6,7 @@ const controll = require('../controllers/controll');
 
 
 
-
+//RUTAS SENDFILE PARA REDIRECCIONAMIENTO ENTRE LAS PAGINAS
 router.get('/index', (req, res) => {
   res.sendFile('index.html', { root: './pages' });
 });
@@ -71,13 +71,11 @@ router.get('/informes', (req, res) => {
     res.sendFile('DiagramaPrincipal.html', { root: './pages' });
   });
 
+
+
+
 router.route('/data')
   .get(controll.obtenerDatosInformes); //Manejar GET
-
-  router.get('/data', (req, res) => {
-    res.json({ message: 'Main poto' })
-})
-
 
 router.get('/obtenerEstadoValorBinario', controll.obtenerEstadoValorBinario); // Nueva ruta para obtener el estado del valor binario
 
@@ -87,12 +85,12 @@ router.post('/login', controll.inicioSesion);
 router.post('/registrarFalla', controll.saveDataFormFallas);
 
 //Obtener Datos para informes
-  router.get('/datosInformes', controll.obtenerDatosInformes); //¿? de donde salio
-  router.get('/datosdispositivos', controll.obtenerDatosDispositivos);
+  router.get('/datosInformes', controll.obtenerDatosInformes); //Datos informes para obtener dato de Evento
+  router.get('/datosdispositivos', controll.obtenerDatosDispositivos); 
   router.get('/datosevento', controll.obtenerDatosEventos);
 
 
-router.post('/registrarDispositivo', controll.saveDataFormDispositivos);
+router.post('/registrarDispositivo', controll.saveDataFormDispositivos); //Registrar datos de mantenimiento dispositivos
 //Graficos Vallenar
 router.get('/recuentoEventoTresMesesVallenar', controll.obtenerTresMesesConMasEventosVallenar);
 router.get('/recuentoEventosPorMesVallenar', controll.obtenerRecuentoEventosPorMesVallenar);

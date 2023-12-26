@@ -58,7 +58,8 @@ async function insertarDatosSQLServer(datos) {
             // Componer la nueva hora en formato HH:MM:SS
             hora = `${String(nuevaHora).padStart(2, '0')}:${mm}:${ss}`;
             
-//calcular y acumular la duracion de un evento, luego del calculo se insertan los dastos en la tabla Evento
+//calcular y acumular la duracion de un evento, luego del calculo se insertan los dastos en la tabla Evento 
+//Lo que calcula es solamente la fecha, hora y tiempo de detencion provenientes del Arduino, datos como IdSensor,Planta y Sector se configuran en la Query
 if (dato.field1 == 1 && !contando) { 
     contando = true;
     inicioConteo = new Date(fechaHora.join(" "));
@@ -97,7 +98,7 @@ if (dato.field1 == 1 && !contando) {
         throw error;
     }
 }
-
+//Funcion que demuestra mensajes en Consola
 async function main() {
     try {
         console.log('Iniciando proceso de inserción de datos...');

@@ -2,6 +2,27 @@ const sql = require('mssql')
 const pool = require('../utils/db')
 const path = require('path');
 
+const obtenerEstadoValorBinario = async (req, res) => {
+  try {
+    const pool = await sql.connect(config);
+
+    const request = pool.request();
+    const query = 'SELECT ValorSenal FROM Evento'; // Ajusta la consulta según tu estructura de base de datos
+    const result = await request.query(query);
+
+    if (result.recordset.length > 0) {
+      const valorBinario = result.recordset[0].ValorBinario;
+      res.status(200).json({ valorBinario });
+    } else {
+      res.status(404).json({ message: 'No se encontró el valor binario' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener el estado del valor binario desde la base de datos' });
+    console.error('Error en la base de datos:', error);
+  }
+};
+
+
 
 const config = {
   user: 'adminsql',
@@ -581,22 +602,23 @@ const obtenerDatosEventos = async (req, res) => {
     }
 
     const query = `
-      SELECT 
-        IdSensor, 
-        '${nombreSector}' AS NombreSector,
-        CASE IdPlanta
-          WHEN 10 THEN '${mapeoPlantaABD['10']}'
-          WHEN 11 THEN '${mapeoPlantaABD['11']}'
-          WHEN 12 THEN '${mapeoPlantaABD['12']}'
-          WHEN 13 THEN '${mapeoPlantaABD['13']}'
-          WHEN 14 THEN '${mapeoPlantaABD['14']}'
-          ELSE ''
-        END AS NombrePlanta,
-        CONVERT(varchar, Fecha, 23) AS Fecha,
-        CONVERT(varchar, Hora, 108) AS Hora, 
-        CONVERT(varchar, DuracionDetencion, 108) AS DuracionDetencion 
-      FROM Evento
-      WHERE IdSector = ${sectorSeleccionado} AND ValorSenal = 0
+    SELECT TOP 5
+    IdSensor, 
+    '${nombreSector}' AS NombreSector,
+    CASE IdPlanta
+        WHEN 10 THEN '${mapeoPlantaABD['10']}'
+        WHEN 11 THEN '${mapeoPlantaABD['11']}'
+        WHEN 12 THEN '${mapeoPlantaABD['12']}'
+        WHEN 13 THEN '${mapeoPlantaABD['13']}'
+        WHEN 14 THEN '${mapeoPlantaABD['14']}'
+        ELSE ''
+    END AS NombrePlanta,
+    CONVERT(varchar, Fecha, 23) AS Fecha,
+    CONVERT(varchar, Hora, 108) AS Hora, 
+    CONVERT(varchar, DuracionDetencion, 108) AS DuracionDetencion 
+FROM Evento
+WHERE IdSector = ${sectorSeleccionado} AND ValorSenal = 0
+ORDER BY Fecha DESC, Hora DESC;
     `;
 
     const result = await pool.request().query(query);
@@ -671,5 +693,6 @@ module.exports = {
     obtenerRecuentoEventosPorPlanta,
     obtenerDatosDispositivos,
     obtenerDatosEventos,
-    inicioSesion
+    inicioSesion,
+    obtenerEstadoValorBinario
 }

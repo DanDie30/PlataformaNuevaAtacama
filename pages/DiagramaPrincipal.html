@@ -31,22 +31,24 @@
       position: absolute;
       border: 1px solid #ccc;
     }
+
+ 
     #pelotita1, #pelotita{
-        width: 10%;
-     height: 20%;
+        width: 5%;
+     height: 10%;
      -moz-border-radius: 50%;
      -webkit-border-radius: 50%;
      border-radius: 50%;
      border: black;
      background: #FF5733;
-     left: 38%;
+     left: 46%;
      top: 20%;
 
     }
 
     #pelotita2 {
-        width: 5%;
-     height: 15%;
+        width: 2%;
+     height: 8%;
      -moz-border-radius: 50%;
      -webkit-border-radius: 50%;
      border-radius: 50%;
@@ -57,29 +59,53 @@
 
     }
 
+    #pelotita7{
+      width: 2%;
+     height: 8%;
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+     border: black;
+     background: #FF5733;
+     left: 53%;
+     top: 26%;
+    }
+
     #pelotita3 {
-        width: 8%;
-     height: 15%;
+        width: 5%;
+     height: 10%;
      -moz-border-radius: 50%;
      -webkit-border-radius: 50%;
      border-radius: 50%;
      border: black;
      background: #10ffff;
-     left: 64%;
-     top: 45%;
+     left: 55%;
+     top: 40%;
 
     }
 
-    #pelotita4 {
-        width: 4%;
-     height: 13%;
+    #pelotita6{
+      width: 5%;
+     height: 10%;
      -moz-border-radius: 50%;
      -webkit-border-radius: 50%;
      border-radius: 50%;
      border: black;
      background: #10ffff;
-     left: 71%;
-     top: 48%;
+     left: 60%;
+     top: 80%;
+    }
+
+    #pelotita4 {
+        width: 2%;
+     height: 8%;
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+     border: black;
+     background: #10ffff;
+     left: 50%;
+     top: 80%;
 
     }
     .navbar {
@@ -131,7 +157,7 @@
   <!-- #### Encabezado #### -->
   <nav class="navbar-light bg-body-secondary border border-dark text-dark">
     <p class="text-end text-dark fs-2 my-0">
-      Diagrama Principal 
+      Monitoreo de Plantas 
     </p>
   </nav>
   <!-- SideBar-->
@@ -223,77 +249,134 @@
           </div>
       </div>
       </div>
-     <!-- Mantén el resto del código intacto -->
+     <!-- PLANTA DE COPIAPO -->
      
      <div class="container col content" style="border: silver solid; border-radius: 2%;">
-        <h3 style="text-align: center; margin-bottom: 1%;">Planta Vicuña, Copiapó</h3>
+        <h3 style="text-align: center; margin-bottom: 1%;">Planta El Salado, Chañaral</h3>
         <br><br>
-        <div id="pelotita" class="secondary-div"></div>
+        <!--Circulos que deben cambiar de estado en caso de que reciba un valor binario distinto-->
+      <div id="pelotita" class="secondary-div"></div>         
 
-        <div id="pelotita3" class="secondary-div"></div>
+      <div id="pelotita3" class="secondary-div"></div>
 
+      <div id="pelotita6" class="secondary-div"></div>
+      
+      <h3 style="font-size: 13px; background-color: white; top: 53%; width: 30%;" class="secondary-div">Torre de Alta Tensión</h3>
+
+      <h3 style="font-size: 13px; background-color: white; top: 22%; width: 25%; left: 73%;" class="secondary-div">Motor de Planta</h3>
+
+      <h3 style="font-size: 13px; background-color: white; top: 63%; width: 25%; left: 73%;" class="secondary-div">Tanque de Agua</h3>
 
          <!-- Contenedor principal -->
-       <img src="https://cdn-icons-png.flaticon.com/512/448/448568.png" class="main-div" style="top: 16%; left: 10%;">
+       <img src="https://static.vecteezy.com/system/resources/previews/010/310/967/large_2x/electrical-tower-icon-on-white-background-flat-style-electricity-sign-high-voltage-electric-transmission-tower-electric-power-logo-vector.jpg" class="main-div" style="top: 16%; left: 5%; height: 35%;">
      
          <!-- Divs secundarios -->
-       <img src="https://cdn-icons-png.flaticon.com/512/5557/5557384.png" class="secondary-div" style="top: 16%; left: 60%;">
-       <img src="https://cdn-icons-png.flaticon.com/512/78/78192.png" class="secondary-div" style="top: 70%; left: 60%;">
+       <img src="https://cdn-icons-png.flaticon.com/512/5557/5557384.png" class="secondary-div" style="top: 30%; left: 75%;">
+       <img src="https://cdn-icons-png.flaticon.com/512/78/78192.png" class="secondary-div" style="top: 70%; left: 75%;">
      
-         <!-- Líneas que conectan los divs -->
-         <div class="line" style="top: 30.5%; left: 25.5%; width: 34.6%; border-color: black;"></div>
-         <div class="line" style="top: 43.3%; left: 67.5%; height: 24.5%; border-color: black;"></div>
+         <!-- Lineas que conectan los div-->
+         <div class="line" style="top: 25%; left: 25.5%; width: 23%; border-color: black;"></div>
+         <div class="line" style="top: 25%; left: 48.5%; height: 75%; border-color: black;"></div>
+
+         <div class="line" style="top: 45%; left: 48.5%; width: 26.5%; border-color: black;"></div>
+         <div class="line" style="top: 85%; left: 48.5%; width: 26.5%; border-color: black;"></div>
+
+
        </div>
 
-       
+                 <!-- PLANTA DE VALLENAR -->
+
      <div class="container col content" style="border: silver solid; border-radius: 2%;">
         <h3 style="text-align: center; margin-bottom: 1%;">Planta Santa Ines Vallenar</h3>
         <div id="pelotita1" class="secondary-div"></div>
 
-        <div id="pelotita3" class="secondary-div"></div>
+        <div id="pelotita" class="secondary-div"></div>         
 
+        <div id="pelotita3" class="secondary-div"></div>
+  
+        <div id="pelotita6" class="secondary-div"></div>
+
+
+        <h3 style="font-size: 13px; background-color: white; top: 53%; width: 30%; left: 7%;" class="secondary-div">Torre de Alta Tensión</h3>
+
+        <h3 style="font-size: 13px; background-color: white; top: 22%; width: 25%; left: 73%;" class="secondary-div">Motor de Planta</h3>
+  
+        <h3 style="font-size: 13px; background-color: white; top: 63%; width: 25%; left: 73%;" class="secondary-div">Tanque de Agua</h3>
 
         <!-- Contenedor principal -->
-        <img src="https://cdn-icons-png.flaticon.com/512/448/448568.png" class="secondary-div" style="top: 16%; left: 10%;">
+        <img src="https://static.vecteezy.com/system/resources/previews/010/310/967/large_2x/electrical-tower-icon-on-white-background-flat-style-electricity-sign-high-voltage-electric-transmission-tower-electric-power-logo-vector.jpg" class="secondary-div" style="top: 16%; left: 10%; height: 35%;">
     
         <!-- Divs secundarios -->
-        <img src="https://cdn-icons-png.flaticon.com/512/5557/5557384.png" class="secondary-div" style="top: 16%; left: 60%;">
-        <img src="https://cdn-icons-png.flaticon.com/512/78/78192.png" class="secondary-div" style="top: 70%; left: 60%;">
+        <img src="https://cdn-icons-png.flaticon.com/512/5557/5557384.png" class="secondary-div" style="top: 30%; left: 75%;">
+        <img src="https://cdn-icons-png.flaticon.com/512/78/78192.png" class="secondary-div" style="top: 70%; left: 75%;">
     
         <!-- Líneas que conectan los divs -->
-        <div class="line" style="top: 30.5%; left: 25.5%; width: 34.6%; border-color: black;"></div>
-         <div class="line" style="top: 43%; left: 67.5%; height: 27%; border-color: black;"></div>
+          <!-- Lineas que conectan los div-->
+          <div class="line" style="top: 25%; left: 25.5%; width: 23%; border-color: black;"></div>
+          <div class="line" style="top: 25%; left: 48.5%; height: 75%; border-color: black;"></div>
+ 
+          <div class="line" style="top: 45%; left: 48.5%; width: 26.5%; border-color: black;"></div>
+          <div class="line" style="top: 85%; left: 48.5%; width: 26.5%; border-color: black;"></div>
+
       </div>
 
       
+          <!-- PLANTA DE CHAÑARAL -->
 
         </div>
         <div class="container col content" style="margin-left: 10%;">
-            <h3 style="text-align: center; margin-bottom: 1%;">Planta El Salado, Chañaral</h3>
+            <h3 style="text-align: center; margin-bottom: 1%;">Planta Vicuña, Copiapó</h3>
 
             <div style="margin-left: 50%;">
-                <div id="pelotita2" class="secondary-div"></div>
+                <div id="pelotita7" class="secondary-div"></div>
 
                 <div id="pelotita4" class="secondary-div"></div>
 
 
-      
+                <h3 style="font-size: 13px; background-color: white; top: 65%; width: 30%; left: 17%;" class="secondary-div">Torre de Alta Tensión</h3>
+
+                <h3 style="font-size: 13px; background-color: white; top: 10%; width: 25%; left: 74.5%;" class="secondary-div">Motor de Planta</h3>
+          
+                <h3 style="font-size: 13px; background-color: white; top: 62%; width: 25%; left: 74.5%;" class="secondary-div">Tanque de Agua</h3>
+        
 
             <!-- Contenedor principal -->
 
           
-            <img src="https://cdn-icons-png.flaticon.com/512/448/448568.png" class="secondary-div" style="top: 18%; left: 35%; border-color: black;">
+            <img src="https://static.vecteezy.com/system/resources/previews/010/310/967/large_2x/electrical-tower-icon-on-white-background-flat-style-electricity-sign-high-voltage-electric-transmission-tower-electric-power-logo-vector.jpg" class="secondary-div" style="top: 18%; left: 18.5%; height: 45%; border-color: black;">
             <!-- Divs secundarios -->
-            <img src="https://cdn-icons-png.flaticon.com/512/5557/5557384.png" class="main-div" style="top: 16%; left: 70%;">
+            <img src="https://cdn-icons-png.flaticon.com/512/5557/5557384.png" class="main-div" style="top: 16%; left: 75%;">
     
     
-          <img src="https://cdn-icons-png.flaticon.com/512/78/78192.png" class="secondary-div" style="top: 70%; left: 70%;">
+          <img src="https://cdn-icons-png.flaticon.com/512/78/78192.png" class="secondary-div" style="top: 70%; left: 75%;">
         
             <!-- Líneas que conectan los divs -->
-            <div class="line" style="top: 30.5%; left: 41%; width: 29%; border-color: black;"></div>
-         <div class="line" style="top: 43%; left: 73%; height: 27%; border-color: black;"></div>
+            <div class="line" style="top: 25%; left: 25.5%; width: 23%; border-color: black;"></div>
+            <div class="line" style="top: 25%; left: 48.5%; height: 75%; border-color: black;"></div>
+   
+            <div class="line" style="top: 30%; left: 48.5%; width: 26.5%; border-color: black;"></div>
+            <div class="line" style="top: 85%; left: 48.5%; width: 26.5%; border-color: black;"></div>
           </div>
         </div>
+
+        <!-- JavaScript -->
+<script>
+  // Hacer una solicitud al servidor para obtener el estado del valor binario
+  setInterval(() => {
+    fetch('/obtenerEstadoValorBinario') // Cambia la ruta por la correcta
+      .then(response => response.json())
+      .then(data => {
+        const pelotita = document.getElementById('pelotita');
+        if (data.valorBinario === 0) {
+          pelotita.style.backgroundColor = 'green'; // Cambiar el color si el valor es 0
+        } else {
+          pelotita.style.backgroundColor = 'black'; // Cambiar el color si el valor es 1
+        }
+      })
+      .catch(error => console.error('Error al obtener el estado:', error));
+  }, 2000); // Realizar la solicitud cada 5 segundos (cambia el tiempo según necesites)
+</script>
+
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

@@ -79,6 +79,7 @@ router.route('/data')
 })
 
 
+router.get('/obtenerEstadoValorBinario', controll.obtenerEstadoValorBinario); // Nueva ruta para obtener el estado del valor binario
 
 
 router.post('/login', controll.inicioSesion);

@@ -167,14 +167,37 @@ top: 1.5%;
           </div>
           <div class="col">
             <label for="faultType">Sector</label>
-            <select class="form-select" name="IdSector" aria-label="Default select example">
-              <option selected>Escoga sector de ubicación del dispositivo</option>
+            <select class="form-select" name="IdSector" aria-label="Default select example" required>
+              <option selected disabled>Escoga Sector...</option>
               <option value="1">Copiapo</option>
               <option value="2">Chañaral</option>
               <option value="3">Vallenar</option>
             </select>
           </div>
           </div>
+          <script>
+            document.addEventListener("DOMContentLoaded", function() {
+  document.querySelector('[name="IdSector"]').addEventListener('change', function() {
+      var sectorValue = this.value;
+      var plantaSelect = document.querySelector('[name="IdPlanta"]');
+      plantaSelect.innerHTML = '<option selected disabled>Escoga planta</option>';
+      if (sectorValue === '1') { 
+          plantaSelect.innerHTML += '<option value="10">Vicuña</option>';
+          plantaSelect.innerHTML += '<option value="11">Cancha Rayada</option>';
+          plantaSelect.innerHTML += '<option value="12">Cartavio</option>';
+      } 
+      else if (sectorValue === '2') { 
+          plantaSelect.innerHTML += '<option value="14">El Salado</option>';
+      }
+      else if (sectorValue === '3') { 
+          plantaSelect.innerHTML += '<option value="13">Santa Ines</option>';
+         
+      }
+     
+      
+  });
+});
+          </script>
         <!-- Segundo apartado de inputs -->
         <div class="row mb-3">
           <div class="col">
@@ -204,8 +227,8 @@ top: 1.5%;
               <option value="12">Cartavio</option>
               <option value="13">Santa Ines</option>
               <option value="14">El Salado</option>
-
-
+             
+             
             </select>
           </div>
         </div>

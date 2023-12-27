@@ -9,7 +9,145 @@
   <!-- Librería de Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">  
   <style>
-    /* Estilos adicionales */
+     #modalCambios {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#contenidoCambios {
+  background-color: #adecff;
+  padding: 20px;
+  border-radius: 5px;
+
+  align-items: center;
+  
+}
+
+#campanita {
+  position: fixed;
+  top: 10px;
+  right: 80%;
+  cursor: pointer;
+}
+
+#notificacion {
+  position: fixed;
+  bottom: 10px;  /* posicion desde la parte inferior */
+  right: 10px;  /* posicion desde la derecha */
+  cursor: pointer;
+  background-color: #94d4ff; /*fondo para la notificación */
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 40px;  /* aumenta el tamaño del texto */
+  display: none; 
+}
+
+    .container {
+      position: relative;
+      height: 300px;
+      border: 1px solid #ccc;
+    }
+    .main-div {
+      width: 80px;
+      height: 80px;
+      background-color: #f0f0f0;
+      position: absolute;
+    }
+    .secondary-div {
+      width: 80px;
+      height: 80px;
+      background-color: #f0f0f0;
+      position: absolute;
+    }
+    /* Estilos para las líneas que conectan los div */
+    .line {
+      position: absolute;
+      border: 1px solid #ccc;
+    }
+
+ 
+    #pelotita1, #pelotita{
+        width: 5%;
+     height: 10%;
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+     border: black;
+     background: green;
+     left: 46%;
+     top: 20%;
+
+    }
+
+    #pelotita2 {
+        width: 2%;
+     height: 8%;
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+     border: black;
+     background: green;
+     left: 53%;
+     top: 23%;
+
+    }
+
+    #pelotita7{
+      width: 3%;
+     height: 7%;
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+     border: black;
+     background: green;
+     left: 53%;
+     top: 26.5%;
+    }
+
+    #pelotita3 {
+        width: 5%;
+     height: 10%;
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+     border: black;
+     background: green;
+     left: 55%;
+     top: 40%;
+
+    }
+
+    #pelotita6{
+      width: 5%;
+     height: 10%;
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+     border: black;
+     background: green;
+     left: 60%;
+     top: 80%;
+    }
+
+    #pelotita4 {
+        width: 3%;
+     height: 7%;
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+     border: black;
+     background: green;
+     left: 50%;
+     top: 81%;
+
+    }
     .navbar {
       flex-shrink: 0;
       color: black;
@@ -59,7 +197,7 @@
   <!-- #### Encabezado #### -->
   <nav class="navbar-light bg-body-secondary border border-dark text-dark">
     <p class="text-end text-dark fs-2 my-0">
-      Diagrama Chañaral 
+      Chañaral, Planta El Salado 
     </p>
   </nav>
   <!-- SideBar-->
@@ -151,83 +289,44 @@
           </div>
       </div>
       </div>
-    <!-- Mantén el resto del código intacto -->
-    <div class="TituloDiagrama">
-        Diagrama Estado de Sensor Ciudad Chañaral
-    </div>
+       <!--Planta Santa Ines-->
+       <div class="container col content d-flex justify-content-center align-items-center" style="height: 90vh;">
+
+        <div style="margin-left: 50%;">
+            <div id="pelotita7" class="secondary-div"></div>
+
+            <div id="pelotita4" class="secondary-div"></div>
+
+
+            <h3 style="font-size: 18px; background-color: white; top: 45%; width: 30%; left: 7%;" class="secondary-div">Torre de Alta Tensión</h3>
+
+            <h3 style="font-size: 18px; background-color: white; top: 36%; width: 25%; left: 73%;" class="secondary-div">Motor de Planta</h3>
+      
+            <h3 style="font-size: 18px; background-color: white; top: 91%; width: 25%; left: 73%;" class="secondary-div">Tanque de Agua</h3>
     
+
+        <!-- Contenedor principal -->
+        <img src="https://static.vecteezy.com/system/resources/previews/010/310/967/large_2x/electrical-tower-icon-on-white-background-flat-style-electricity-sign-high-voltage-electric-transmission-tower-electric-power-logo-vector.jpg" class="secondary-div" style="top: 12%; left: 10%; height: 30%; border-color: black;">
+        <img src="https://cdn-icons-png.flaticon.com/512/5557/5557384.png" class="main-div" style="top: 23%; left: 75%;">
+
+
+      <img src="https://cdn-icons-png.flaticon.com/512/78/78192.png" class="secondary-div" style="top: 78%; left: 75%;">
     
-    
-        <div class="ContenedorTabla">
-    
-          <table class="">
-            <thead>
-              <tr>
-                <th scope="">ID Sensor</th>
-                <th scope="">Estado</th>
-                <th scope="">Sector</th>
-     
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td style="background-color: green; border-color: black; border: 1px solid;"></td>
-                <td><button>Acceder</button>  </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td style="background-color: green; border-color: black; border: 1px solid;"></td>
-                <td><button>Acceder</button></td>
-    
-              </tr>
-              <tr>
-                <td>2</td>
-                <td style="background-color: red; border-color: black; border: 1px solid;"></td>
-                <td><button>Acceder</button></td>
-                
-              </tr>
-            </tbody>
-          </table>      
-    
+        <!-- Líneas que conectan los divs -->
+        <div class="line" style="top: 25%; left: 17%; width: 31.6%; border-color: black;"></div>
+        <div class="line" style="top: 25%; left: 48.5%; height: 60%; border-color: black;"></div>
+
+        <div class="line" style="top: 30%; left: 48.5%; width: 26.5%; border-color: black;"></div>
+        <div class="line" style="top: 85%; left: 48.5%; width: 26.5%; border-color: black;"></div>
+      </div>
+
         </div>
     
     
       </div>
-    
-
-    <button id="botonMostrarDatos" style="margin-left: 50%;">Mostrar Datos</button>
-    <div id="datosPlanta" style="text-align: center;"></div>
   
-    <script>
-    document.getElementById('botonMostrarDatos').addEventListener('click', () => {
-fetch('/api/data')
-.then(response => response.json())
-.then(data => {
-console.log(data); // Verifica la estructura de los datos
-
-const datosPlantaDiv = document.getElementById('datosPlanta');
-datosPlantaDiv.innerHTML = ''; // Limpiar el contenedor antes de mostrar nuevos datos
-
-// Suponiendo que 'data' es un objeto con propiedades específicas
-// Mostrar las propiedades en el contenedor
-for (let i = 0; i < data.length; i++) {
-  const currentItem = data[i];
-  const info = document.createElement('p');
-  info.textContent = `ID de Planta: ${currentItem.IdPlanta}, Nombre de Planta: ${currentItem.Nombre_planta}, ID de Sector: ${currentItem.IdSector}`;
-  datosPlantaDiv.appendChild(info);
-}
-
-})
-.catch(error => {
-console.error('Error al obtener datos de la tabla Planta:', error);
-});
-});
-      </script>
-
 
 </div>
-  <!-- Mantén el resto del código intacto -->
   
 
 

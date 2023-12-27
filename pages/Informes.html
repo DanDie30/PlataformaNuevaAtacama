@@ -79,8 +79,7 @@
       font-size: 20px;
     }
     #btnGenerarPDF{
-      bottom: 30%;
-    margin-bottom: 3%;
+      top: 50%;
       margin-left: 80%;
       border-radius: 5%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -239,7 +238,7 @@
 <!-- Dentro del div con la clase "content" -->
 <div class="col content d-flex justify-content-center">
   <div>
-    <form id="consultaForm" action="/datosdispositivos" method="get">
+    <form id="consultaForm" action="/datosInformes" method="get">
       <div id="filtroBuscar" style="margin-bottom: 10px;">
         <label for="selectPlanta" style="margin-right: 10px;">Selecciona un sector:</label>
         <select name="sector" id="selectPlanta" class="form-control" style="margin-top: 7px; width: 200px;">
@@ -252,7 +251,7 @@
     </form>
 
     <div class="mb-10">
-      <button id="btn-mensual" class="btn btn-secondary text-white fw-semibold shadow-sm me-2">Reporte Mensual</button>
+  <!-- <button id="btn-mensual" class="btn btn-secondary text-white fw-semibold shadow-sm me-2">Reporte Mensual</button> -->
       <button id="btnGenerarPDF" class="btn btn-secondary text-white fw-semibold shadow-sm me-2">Generar informe PDF</button>
 
     </div>

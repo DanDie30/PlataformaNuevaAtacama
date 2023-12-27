@@ -6,10 +6,148 @@
   <title>Diagrama Vallenar</title>
   <link rel="shortcut icon" href="https://scontent.flsc3-1.fna.fbcdn.net/v/t39.30808-6/323952263_1362112847866960_2553278997048678117_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=9c7eae&_nc_ohc=e9zh3Nsrn-4AX9mEhCt&_nc_oc=AQnLJj98zPZ1cib7Dj2LjF_6_dkVtUfniKTi0E7D_Rs3_q2cRdfIW76z5sBP11NcDWw&_nc_ht=scontent.flsc3-1.fna&oh=00_AfAELYPa49OOzzbc9jZawzKUowu0_FxvEKDx9vExyjnzrQ&oe=658EB82A">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <!-- Librería de Font Awesome -->
+  <!--Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">  
   <style>
-    /* Estilos adicionales */
+        #modalCambios {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#contenidoCambios {
+  background-color: #adecff;
+  padding: 20px;
+  border-radius: 5px;
+
+  align-items: center;
+  
+}
+
+#campanita {
+  position: fixed;
+  top: 10px;
+  right: 80%;
+  cursor: pointer;
+}
+
+#notificacion {
+  position: fixed;
+  bottom: 10px;  /* posicion desde la parte inferior */
+  right: 10px;  /* posicion desde la derecha */
+  cursor: pointer;
+  background-color: #94d4ff; /*fondo para la notificación */
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 40px;  /* aumenta el tamaño del texto */
+  display: none; 
+}
+
+    .container {
+      position: relative;
+      height: 300px;
+      border: 1px solid #ccc;
+    }
+    .main-div {
+      width: 80px;
+      height: 80px;
+      background-color: #f0f0f0;
+      position: absolute;
+    }
+    .secondary-div {
+      width: 80px;
+      height: 80px;
+      background-color: #f0f0f0;
+      position: absolute;
+    }
+    /* Estilos para las líneas que conectan los div */
+    .line {
+      position: absolute;
+      border: 1px solid #ccc;
+    }
+
+ 
+    #pelotita1, #pelotita{
+        width: 5%;
+     height: 10%;
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+     border: black;
+     background: green;
+     left: 46%;
+     top: 20%;
+
+    }
+
+    #pelotita2 {
+        width: 2%;
+     height: 8%;
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+     border: black;
+     background: green;
+     left: 53%;
+     top: 23%;
+
+    }
+
+    #pelotita7{
+      width: 3%;
+     height: 7%;
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+     border: black;
+     background: green;
+     left: 53%;
+     top: 26.5%;
+    }
+
+    #pelotita3 {
+        width: 5%;
+     height: 10%;
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+     border: black;
+     background: green;
+     left: 55%;
+     top: 40%;
+
+    }
+
+    #pelotita6{
+      width: 5%;
+     height: 10%;
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+     border: black;
+     background: green;
+     left: 60%;
+     top: 80%;
+    }
+
+    #pelotita4 {
+        width: 3%;
+     height: 7%;
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+     border: black;
+     background: green;
+     left: 50%;
+     top: 81%;
+
+    }
     .navbar {
       flex-shrink: 0;
       color: black;
@@ -59,7 +197,7 @@
   <!-- #### Encabezado #### -->
   <nav class="navbar-light bg-body-secondary border border-dark text-dark">
     <p class="text-end text-dark fs-2 my-0">
-      Diagrama Vallenar 
+       Vallenar Planta Santa Ines 
     </p>
   </nav>
   <!-- SideBar-->
@@ -151,53 +289,40 @@
           </div>
       </div>
       </div>
-            <!-- Mantén el resto del código intacto -->
-    <div class="TituloDiagrama">
-        Diagrama Estado de Sensor Ciudad Vallenar
-    </div>
-    
-    
-    
-        <div class="ContenedorTabla">
-    
-          <table class="">
-            <thead>
-              <tr>
-                <th scope="">ID Sensor</th>
-                <th scope="">Estado</th>
-                <th scope="">Sector</th>
-     
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td style="background-color: green; border-color: black; border: 1px solid;"></td>
-                <td><button>Acceder</button>  </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td style="background-color: green; border-color: black; border: 1px solid;"></td>
-                <td><button>Acceder</button></td>
-    
-              </tr>
-              <tr>
-                <td>2</td>
-                <td style="background-color: red; border-color: black; border: 1px solid;"></td>
-                <td><button>Acceder</button></td>
-                
-              </tr>
-            </tbody>
-          </table>      
-    
-        </div>
-    
-    
+      <!--Planta Santa Ines-->
+      <div class="container col content d-flex justify-content-center align-items-center" style="height: 90vh;">
 
+        <div style="margin-left: 50%;">
+            <div id="pelotita7" class="secondary-div"></div>
+
+            <div id="pelotita4" class="secondary-div"></div>
+
+
+            <h3 style="font-size: 18px; background-color: white; top: 45%; width: 30%; left: 7%;" class="secondary-div">Torre de Alta Tensión</h3>
+
+            <h3 style="font-size: 18px; background-color: white; top: 36%; width: 25%; left: 73%;" class="secondary-div">Motor de Planta</h3>
       
+            <h3 style="font-size: 18px; background-color: white; top: 91%; width: 25%; left: 73%;" class="secondary-div">Tanque de Agua</h3>
+    
 
+        <!-- Contenedor principal -->
+        <img src="https://static.vecteezy.com/system/resources/previews/010/310/967/large_2x/electrical-tower-icon-on-white-background-flat-style-electricity-sign-high-voltage-electric-transmission-tower-electric-power-logo-vector.jpg" class="secondary-div" style="top: 12%; left: 10%; height: 30%; border-color: black;">
+        <img src="https://cdn-icons-png.flaticon.com/512/5557/5557384.png" class="main-div" style="top: 23%; left: 75%;">
+
+
+      <img src="https://cdn-icons-png.flaticon.com/512/78/78192.png" class="secondary-div" style="top: 78%; left: 75%;">
+    
+        <!-- Líneas que conectan los divs -->
+        <div class="line" style="top: 25%; left: 17%; width: 31.6%; border-color: black;"></div>
+        <div class="line" style="top: 25%; left: 48.5%; height: 60%; border-color: black;"></div>
+
+        <div class="line" style="top: 30%; left: 48.5%; width: 26.5%; border-color: black;"></div>
+        <div class="line" style="top: 85%; left: 48.5%; width: 26.5%; border-color: black;"></div>
+      </div>
 
         </div>
+      
+      </div>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

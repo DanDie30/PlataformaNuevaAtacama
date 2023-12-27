@@ -402,7 +402,7 @@ const obtenerDatosInformes = async (req, res) => {
     }
 
     const query = `
-      SELECT 
+      SELECT TOP 4
         TipoFalla, 
         '${nombreSector}' AS NombreSector,
         CASE IdPlanta

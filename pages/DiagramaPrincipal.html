@@ -24,9 +24,12 @@
 }
 
 #contenidoCambios {
-  background-color: #eb4949;
+  background-color: #adecff;
   padding: 20px;
   border-radius: 5px;
+
+  align-items: center;
+  
 }
 
 /* Estilos para la campanita y notificación */
@@ -428,65 +431,69 @@
 
 
         <!-- JavaScript -->
-        <script>
-let contadorCambios = 0;
+        <script>let contadorCambios = 0;
 
-function obtenerEstadoValorBinario() {
-  $.ajax({
-    url: '/obtenerEstadoValorBinario',
-    type: 'GET',
-    dataType: 'json',
-    success: function(data) {
-      const pelotita = $('#pelotita');
-      if (parseInt(data.valorBinario) === 0) {
-        pelotita.css('background-color', 'red');
-      } else {
-        pelotita.css('background-color', 'green');
-      }
-
-      // Actualizar contador y mostrar notificación
-      actualizarContador(++contadorCambios);
-      mostrarNotificacion();
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-      console.error('Error al obtener el estado:', textStatus);
-    }
-  });
-}
-
-function actualizarContador(cantidad) {
-  const contador = $('#contadorCambios');
-  contador.text(cantidad);
-}
-
-function mostrarNotificacion() {
-  const notificacion = $('#notificacion');
-  const contenido = $('#contenidoNotificacion');
-  
-  contenido.text(`Último cambio: ${contadorCambios ? '1' : '0'}`);
-  
-  notificacion.fadeIn().delay(2000).fadeOut();
-}
-
-function mostrarModalCambios() {
+          function obtenerEstadoValorBinario() {
+            $.ajax({
+              url: '/obtenerEstadoValorBinario',
+              type: 'GET',
+              dataType: 'json',
+              success: function(data) {
+                const pelotita = $('#pelotita');
+                if (parseInt(data.valorBinario) === 0) {
+                  pelotita.css('background-color', 'red');
+                  contadorCambios++;  // Incrementar el contador solo cuando valorBinario sea 0
+                  mostrarNotificacion();
+                } else {
+                  pelotita.css('background-color', 'green');
+                }
+          
+                // Actualizar contador
+                actualizarContador(contadorCambios);
+              },
+              error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Error al obtener el estado:', textStatus);
+              }
+            });
+          }
+          
+          function actualizarContador(cantidad) {
+            const contador = $('#contadorCambios');
+            contador.text(cantidad);
+          }
+          
+          function mostrarNotificacion() {
+            const notificacion = $('#notificacion');
+            const contenido = $('#contenidoNotificacion');
+            
+            contenido.text(`Últimos cambios: ${contadorCambios ? '1' : '0'}\nPlanta: El Salado\nSector: Chañaral`);
+            
+            notificacion.fadeIn().delay(10000).fadeOut();
+          }
+          
+          function mostrarModalCambios() {
   const modal = $('#modalCambios');
   const contenido = $('#contenidoCambios');
   
-  contenido.text(`Último cambio: ${contadorCambios ? '1' : '0'}`);
-  
-  modal.fadeIn();
-}
-
-function cerrarModal() {
-  const modal = $('#modalCambios');
-  modal.fadeOut();
-}
-
-// Evento para abrir el modal al hacer clic en la campanita
-$('#campanita').click(mostrarModalCambios);
-
-setInterval(obtenerEstadoValorBinario, 2000);
-
+  contenido.html(`
+    <p>Últimos cambios: ${contadorCambios ? '1' : '0'}</p>
+    <p>Sector: Copiapó</p>
+    <p>Planta: Vicuña</p>
+    
+  `);
+            modal.fadeIn();
+          }
+          
+          function cerrarModal() {
+            const modal = $('#modalCambios');
+            modal.fadeOut();
+          }
+          
+          // Evento para abrir el modal al hacer clic en la campanita
+          $('#campanita').click(mostrarModalCambios);
+          
+          setInterval(obtenerEstadoValorBinario, 2000);
+          
         </script>
         
 

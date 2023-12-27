@@ -420,14 +420,14 @@ const obtenerDatosInformes = async (req, res) => {
         CONVERT(varchar, HoraResolucion, 108) AS HoraResolucion, 
         CONVERT(varchar, FechaResolucion, 23) AS FechaResolucion
       FROM MantenimientoFallaDetectada
-      WHERE IdSector = ${sectorSeleccionado} AND ValorSenal = 0
+      WHERE IdSector = ${sectorSeleccionado}
       ORDER BY FechaDetencion DESC
     `;
 
     const result = await pool.request().query(query);
 
     if (result && result.recordset && result.recordset.length > 0) {
-      let htmlResponse = '<table><thead><tr><th>Tipo Falla</th><th>Nombre Sector</th><th>Nombre Planta</th><th>Fecha Detención</th><th>Descripción</th><th>Responsable Mantenimiento</th><th>Hora Detención</th><th>Hora Resolución</th><th>Fecha Resolución</th></tr></thead><tbody>';
+      let htmlResponse = '<table><thead><tr><th>Tipo Falla</th><th>Nombre Sector</th><th>Nombre Planta</th><th>Fecha Detención</th><th>Hora Detención</th><th>Fecha resolución</th><th>Hora Resolución</th><th>Descripción</th><th>Responsable Mantenimiento</th></tr></thead><tbody>';
 
       result.recordset.forEach(evento => {
         htmlResponse += `
@@ -436,11 +436,11 @@ const obtenerDatosInformes = async (req, res) => {
             <td>${evento.NombreSector}</td>
             <td>${evento.NombrePlanta}</td>
             <td>${evento.FechaDetencion}</td>
+            <td>${evento.HoraDetencion}</td>
+            <td>${evento.FechaResolucion}</td>
+            <td>${evento.HoraResolucion}</td>
             <td>${evento.Descripcion}</td>
             <td>${evento.ResponsableMantenimiento}</td>
-            <td>${evento.HoraDetencion}</td>
-            <td>${evento.HoraResolucion}</td>
-            <td>${evento.FechaResolucion}</td>
           </tr>
         `;
       });
@@ -466,7 +466,13 @@ const obtenerDatosDispositivos = async (req, res) => {
       '2': 'Chañaral',
       '3': 'Vallenar'
     };
-  
+    const mapeoPlantaABD = {
+      '10': 'Vicuña',
+      '11': 'Cancha Rayada',
+      '12': 'Cartavio',
+      '13': 'Santa Ines',
+      '14': 'El Salado'
+    };
     const nombreSector = mapeoSectorABD[sectorSeleccionado];
     if (nombreSector === undefined) {
       return res.status(404).send('Sector seleccionado no válido');
@@ -488,7 +494,7 @@ const obtenerDatosDispositivos = async (req, res) => {
         DescripcionMantenimiento, 
         ResponsableMantenimiento 
       FROM MantenimientoDispositivos
-      WHERE IdSector = ${sectorSeleccionado} AND ValorSenal = 0
+      WHERE IdSector = ${sectorSeleccionado}
       ORDER BY FechaMantenimiento DESC
     `;
 
@@ -515,6 +521,8 @@ const obtenerDatosDispositivos = async (req, res) => {
       res.status(404).send('No se encontraron eventos para este sector');
     }
   } catch (err) {
+    console.error('Error al obtener los eventos por sector:', err);
+
     res.status(500).send('Error al obtener los eventos por sector: ' + err.message);
     console.error(err.message);
   }

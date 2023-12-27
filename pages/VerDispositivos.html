@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">  
   <!-- Agregar la referencia a la biblioteca DataTables -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 
 
 <style>
@@ -135,7 +134,7 @@ top: 1.5%;
               <li>
                   <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                       <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline text-dark">Copiapo</span> </a>
-                  <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                  <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                       <li class="w-100">
                           <a href="/diagramacopiapo" class="nav-link px-0"> <span class="d-none d-sm-inline text-dark">Diagrama</span></a>
                       </li>
@@ -237,6 +236,7 @@ top: 1.5%;
         </table>
       </div>  
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
       <script>
         $(document).ready(function() {
           $('#consultaForm').submit(function(event) {

@@ -466,13 +466,7 @@ const obtenerDatosDispositivos = async (req, res) => {
       '2': 'Chañaral',
       '3': 'Vallenar'
     };
-    const mapeoPlantaABD = {
-      '10': 'Vicuña',
-      '11': 'Cancha Rayada',
-      '12': 'Cartavio',
-      '13': 'Santa Ines',
-      '14': 'El Salado'
-    };
+  
     const nombreSector = mapeoSectorABD[sectorSeleccionado];
     if (nombreSector === undefined) {
       return res.status(404).send('Sector seleccionado no válido');

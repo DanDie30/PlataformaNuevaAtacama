@@ -413,12 +413,10 @@ const obtenerDatosInformes = async (req, res) => {
           WHEN 14 THEN '${mapeoPlantaABD['14']}'
           ELSE ''
         END AS NombrePlanta,
-        CONVERT(varchar, FechaDetencion, 23) AS FechaDetencion,
+        CONVERT(varchar, Fecha, 23) AS Fecha,
         Descripcion, 
         ResponsableMantenimiento, 
-        CONVERT(varchar, HoraDetencion, 108) AS HoraDetencion, 
-        CONVERT(varchar, HoraResolucion, 108) AS HoraResolucion, 
-        CONVERT(varchar, FechaResolucion, 23) AS FechaResolucion
+        CONVERT(varchar, FechaResolucion, 23) AS DuracionDetencion
       FROM MantenimientoFallaDetectada
       WHERE IdSector = ${sectorSeleccionado}
       ORDER BY FechaDetencion DESC
@@ -427,20 +425,18 @@ const obtenerDatosInformes = async (req, res) => {
     const result = await pool.request().query(query);
 
     if (result && result.recordset && result.recordset.length > 0) {
-      let htmlResponse = '<table><thead><tr><th>Tipo Falla</th><th>Nombre Sector</th><th>Nombre Planta</th><th>Fecha Detención</th><th>Hora Detención</th><th>Fecha resolución</th><th>Hora Resolución</th><th>Descripción</th><th>Responsable Mantenimiento</th></tr></thead><tbody>';
+      let htmlResponse = '<table><thead><tr><th>Nombre Sector</th><th>Nombre Planta</th><th>Fecha</th><th>Hora</th><th>Duracion Detención</th></tr></thead><tbody>';
 
       result.recordset.forEach(evento => {
         htmlResponse += `
           <tr>
-            <td>${evento.TipoFalla}</td>
+            <td>${evento.IdSensor}</td>
             <td>${evento.NombreSector}</td>
             <td>${evento.NombrePlanta}</td>
-            <td>${evento.FechaDetencion}</td>
-            <td>${evento.HoraDetencion}</td>
-            <td>${evento.FechaResolucion}</td>
-            <td>${evento.HoraResolucion}</td>
-            <td>${evento.Descripcion}</td>
-            <td>${evento.ResponsableMantenimiento}</td>
+            <td>${evento.Fecha}</td>
+            <td>${evento.Hora}</td>
+            <td>${evento.DuracionDetencion}</td>
+
           </tr>
         `;
       });

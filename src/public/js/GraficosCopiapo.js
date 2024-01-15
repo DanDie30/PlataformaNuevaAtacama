@@ -29,7 +29,7 @@ createDownloadSvgLink('downloadSvgLinealCopiapo', 'Exportar SVG (Gráfico Lineal
 fetch('/recuentoEventosPorMesCopiapo')
   .then(response => response.json())
   .then(data => {
-    console.log(data); // Verifica la estructura de los datos en la consola
+    console.log(data); 
 
     // Actualiza los datos del gráfico de barras
     GraficoLinealCopiapo.data.labels = data.labels;
@@ -45,7 +45,7 @@ fetch('/recuentoEventosPorMesCopiapo')
   fetch('/recuentoEventosPorPlantaCopiapo')
   .then(response => response.json())
   .then(data => {
-    console.log(data); // Verifica la estructura de los datos en la consola
+    console.log(data); 
 
     // Actualiza los datos del gráfico de barras
     GraficoBarraCopiapo.data.labels = data.labels;

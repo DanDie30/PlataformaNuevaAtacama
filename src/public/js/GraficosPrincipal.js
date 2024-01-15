@@ -31,9 +31,8 @@ createDownloadSvgLink('downloadSvgLinealPrincipal', 'Exportar SVG (Gráfico Line
 fetch('/recuentoEventosPorPlantaPrincipal')
   .then(response => response.json())
   .then(data => {
-    console.log(data); // Verifica la estructura de los datos en la consola
+    console.log(data); 
 
-    // Actualiza los datos del gráfico con los datos obtenidos del servidor
     GraficoBarraPrincipal.data.labels = data.map(item => item.NombrePlanta); // Utiliza NombrePlanta en lugar de IdPlanta
     GraficoBarraPrincipal.data.datasets[0].data = data.map(item => item.CantidadEventos);
 

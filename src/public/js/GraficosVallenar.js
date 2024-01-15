@@ -51,7 +51,7 @@ fetch('/recuentoEventoTresMesesVallenar') // Cambia la ruta según tu configurac
     console.log(data); // Verifica la estructura de los datos en la consola
 
     // Actualiza los datos del gráfico de barras con los tres meses con más eventos
-    GraficoBarraVallenar.data.labels = data.map(item => `Mes ${item.Mes}`); // Supongamos que usamos "Mes X" como etiqueta
+    GraficoBarraVallenar.data.labels = data.map(item => `Mes ${item.Mes}`);
     GraficoBarraVallenar.data.datasets[0].data = data.map(item => item.CantidadEventos);
 
     // Actualiza el gráfico de barras

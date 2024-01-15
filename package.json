@@ -27,7 +27,7 @@
     "dev1": "nodemon src/public/js/int.js",
     "dev2": "nodemon src/public/js/campanita.js",
     "build": "npm start",
-    "start": "concurrently \"npm run dev\" \"node src/public/js/campanita.js\" \"node src/public/js/int.js\" \"node src/public/js/bot.js\" "
+    "start": "npm run dev & node src/public/js/campanita.js & node src/public/js/int.js & node src/public/js/bot.js"
   },
   "keywords": [],
   "author": "",
@@ -38,3 +38,4 @@
     "nodemon": "^3.0.2"
   }
 }
+

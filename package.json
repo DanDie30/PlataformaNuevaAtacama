@@ -18,7 +18,6 @@
     "node-telegram-bot-api": "^0.64.0",
     "odbc": "^2.4.8"
   },
-  
   "name": "pruebaatacama",
   "version": "1.0.0",
   "main": "App.js",
@@ -27,8 +26,8 @@
     "dev": "nodemon src/server.js",
     "dev1": "nodemon src/public/js/int.js",
     "dev2": "nodemon src/public/js/campanita.js",
+    "build": "npm start",
     "start": "concurrently \"npm run dev\" \"node src/public/js/campanita.js\" \"node src/public/js/int.js\" \"node src/public/js/bot.js\" "
-  
   },
   "keywords": [],
   "author": "",

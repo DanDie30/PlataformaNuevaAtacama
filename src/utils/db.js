@@ -9,6 +9,7 @@ const config = {
     options: {
         encrypt: true
     },
+    joder
 }
 
 //configurar la conexion lista para interactuar con la base de datos
